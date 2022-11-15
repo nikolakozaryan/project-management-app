@@ -1,5 +1,10 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Dashboard from '../../../pages/Dashboard/Dashboard';
+import Home from '../../../pages/Home/Home';
+import Login from '../../../pages/Login/Login';
+import NotFound from '../../../pages/NotFound/NotFound';
+import Register from '../../../pages/Register/Register';
 
 const Router = () => (
   <Routes>
