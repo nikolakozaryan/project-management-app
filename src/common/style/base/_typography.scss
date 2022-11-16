@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../../../../public/assets/fonts/Gilroy/Gilroy-SemiBold.eot');
+  src: local('Gilroy SemiBold'), local('Gilroy-SemiBold'),
+    url('../../../../public/assets/fonts/Gilroy/Gilroy-SemiBold.eot?#iefix') format('embedded-opentype'),
+    url('../../../../public/assets/fonts/Gilroy/Gilroy-SemiBold.woff') format('woff'),
+    url('../../../../public/assets/fonts/Gilroy/Gilroy-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../../../../public/assets/fonts/Gilroy/Gilroy-Regular.eot');
+  src: local('Gilroy Regular'), local('Gilroy-Regular'),
+    url('../../../../public/assets/fonts/Gilroy/Gilroy-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../../../../public/assets/fonts/Gilroy/Gilroy-Regular.woff') format('woff'),
+    url('../../../../public/assets/fonts/Gilroy/Gilroy-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
