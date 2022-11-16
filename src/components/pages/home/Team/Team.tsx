@@ -3,8 +3,8 @@ import classes from './Team.module.scss';
 import TeamCards from './TeamCards/TeamCards';
 
 const Team = () => (
-  <div>
-    <h3>Н</h3>
+  <div className={classes.container}>
+    <h3 className={classes.header}>Наша команда</h3>
     <TeamCards />
   </div>
 );

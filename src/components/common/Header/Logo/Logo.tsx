@@ -3,7 +3,7 @@ import classes from './Logo.module.scss';
 
 const Logo = () => (
   <div className={classes.container}>
-    <img src="" alt="logo" />
+    <img src="./home/logo.svg" alt="logo" />
     <h2>RS Project Management</h2>
   </div>
 );

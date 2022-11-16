@@ -4,7 +4,7 @@ import Video from './Video/Video';
 
 const Guide = () => (
   <div className={classes.container}>
-    <h2 className={classes.header}>s</h2>
+    <h2 className={classes.header}>Как работать с сервисом</h2>
     <Video embedId="Sy0A0pQmGPM"></Video>
   </div>
 );

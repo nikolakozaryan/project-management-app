@@ -4,10 +4,10 @@ import HeaderButtons from './HeaderButtons/HeaderButtons';
 import Logo from './Logo/Logo';
 
 const Header = () => (
-  <>
+  <div className={classes.container}>
     <Logo />
     <HeaderButtons />
-  </>
+  </div>
 );
 
 export default Header;

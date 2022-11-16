@@ -4,11 +4,10 @@ import { DICTIONARY } from '../../../constants/Dictionary';
 import { Link } from 'react-router-dom';
 
 const Button: React.FC<{ type: string }> = ({ type }) => {
-  console.log(DICTIONARY[type], DICTIONARY, type);
   return (
     <>
       <Link to={`/${DICTIONARY[type].ru}`}>
-        <button>{DICTIONARY[type].ru}</button>
+        <button className={classes.container}>{DICTIONARY[type].ru}</button>
       </Link>
     </>
   );
