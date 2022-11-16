@@ -14,4 +14,8 @@ export const DICTIONARY: Dictionary = {
     ru: 'Регистрация',
     en: 'Registration',
   },
+  Start: {
+    ru: 'Начать',
+    en: 'Start',
+  },
 };
