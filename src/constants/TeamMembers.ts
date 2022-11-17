@@ -1,18 +1,36 @@
 type TeamMember = {
-  name: string;
-  done: string;
+  name: {
+    ru: string;
+    en: string;
+  };
+  done: {
+    ru: string;
+    en: string;
+  };
 };
 export const TEAM_MEMBERS: TeamMember[] = [
   {
-    name: 'Григорьев Яша',
-    done: 'Пока ничего...',
+    name: {
+      ru: 'Григорьев Яша',
+      en: 'Yakov Grigorev',
+    },
+    done: {
+      ru: 'Пока ничего...',
+      en: 'Did nothing yet...',
+    },
   },
   {
-    name: 'Козарян Николай',
-    done: 'Пока ничего...',
+    name: { ru: 'Козарян Николай', en: 'Nikolay Kozaryan' },
+    done: {
+      ru: 'Пока ничего...',
+      en: 'Did nothing yet...',
+    },
   },
   {
-    name: 'Вставить Вставить',
-    done: 'Пока ничего...',
+    name: { ru: 'Козарян Николай', en: 'Nikolay Kozaryan' },
+    done: {
+      ru: 'Пока ничего...',
+      en: 'Did nothing yet...',
+    },
   },
 ];
