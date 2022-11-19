@@ -5,8 +5,11 @@
   padding: 3rem;
   border: .1rem solid $form-border-color;
   border-radius: .6rem;
-  margin: 20rem auto;
-  max-width: 32rem;
+
+  &__section {
+    max-width: 32rem;
+    margin: 20rem auto;
+  }
 
   &__heading {
     @include font(2.8rem, 3.43rem, 600);
@@ -19,4 +22,16 @@
     flex-direction: column;
     gap: 2rem;
   }
+}
+
+.signin {
+  margin-top: 2rem;
+  text-align: center;
+  @include font(1.6rem, 2rem, 400)
+}
+
+.link {
+  cursor: pointer;
+  font-weight: 600;
+  color: $main-color;
 }
