@@ -1,8 +1,5 @@
 import React from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
-import LoginInput from '../../components/Register/LoginInput/LoginInput';
-import NameInput from '../../components/Register/NameInput/NameInput';
-import PasswordInput from '../../components/Register/PasswordInput/PasswordInput';
 import { FormInputs } from './types';
 import classes from './Register.module.scss';
 import Button from '../../components/common/Button/Button';
@@ -10,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { send } from '../../features/signup/signupSlice';
 import FormError from '../../components/common/FormError/FormError';
 import { Link } from 'react-router-dom';
+import FormInput from '../../components/common/FormInput/FormInput';
 
 const Register = () => {
   const methods = useForm<FormInputs>({ reValidateMode: 'onChange' });
@@ -31,9 +29,9 @@ const Register = () => {
             onSubmit={methods.handleSubmit(formSubmitHandler)}
             className={classes.register__form}
           >
-            <NameInput />
-            <LoginInput />
-            <PasswordInput />
+            <FormInput type="name" validate={true} />
+            <FormInput type="login" validate={true} />
+            <FormInput type="password" validate={true} />
             <Button value="зарегистрироваться" />
           </form>
         </FormProvider>

@@ -2,13 +2,22 @@
 @import '../../common/style/abstracts/mixins';
 
 .register {
-  padding: 3rem;
   border: .1rem solid $form-border-color;
   border-radius: .6rem;
+  padding: 3rem;
+  transition: .5s;
+
+  @media (max-width: 480px) {
+    padding: 1.5rem;
+  }
 
   &__section {
-    max-width: 32rem;
     margin: 20rem auto;
+    max-width: 32rem;
+
+    @media (max-width: 480px) {
+      max-width: 30rem;
+    }
   }
 
   &__heading {
@@ -20,6 +29,7 @@
   &__form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 2rem;
   }
 }
