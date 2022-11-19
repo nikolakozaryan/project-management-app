@@ -1,51 +1,48 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { signup } from './helpers';
+import { IData, IState } from './interface';
+
+const initialState: IState = {
+  _id: '',
+  name: '',
+  login: '',
+  message: '',
+  loading: false,
+};
 
 export const signupSlice = createSlice({
   name: 'signup',
-  initialState: {
-    _id: '',
-    name: '',
-    login: '',
-    statusCode: '',
-    error: '',
-    loading: false,
-  },
+  initialState,
   reducers: {
-    setID: (state, action: PayloadAction<string>) => {
-      state._id = action.payload;
-    },
-    setName: (state, action: PayloadAction<string>) => {
-      state._id = action.payload;
-    },
-    setLogin: (state, action: PayloadAction<string>) => {
-      state._id = action.payload;
-    },
-    setStatusCode: (state, action: PayloadAction<string>) => {
-      state._id = action.payload;
-    },
-    setError: (state, action: PayloadAction<string>) => {
-      state._id = action.payload;
-    },
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.loading = action.payload;
-    },
+    resetSignupState: () => initialState,
   },
   extraReducers: (builder) => {
     builder.addCase(send.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(send.fulfilled, (state, action) => {
-      console.log(action);
+      const { _id, name, login } = action.payload as IData;
+      state._id = _id;
+      state.login = login;
+      state.name = name;
+      state.message = '';
+      state.loading = false;
     });
     builder.addCase(send.rejected, (state, action) => {
-      console.log(action);
+      const message = (
+        action.error.message === 'Rejected'
+          ? 'Server error. Try later, please.'
+          : action.error.message
+      ) as string;
+
+      state.message = message;
+      state.loading = false;
     });
   },
 });
 
 export const send = createAsyncThunk('signup/send', signup);
 
-export const {} = signupSlice.actions;
+export const { resetSignupState } = signupSlice.actions;
 
 export default signupSlice.reducer;
