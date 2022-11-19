@@ -1,26 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useFormContext } from 'react-hook-form';
+import React, { useState } from 'react';
+import { useInput } from '../../../hooks/useInput';
 import classes from './PasswordInput.module.scss';
 
 const PasswordInput = () => {
-  const methods = useFormContext();
-  const { formState } = methods;
-  const [isVisible, setIsVisible] = useState(false);
-  const [invalid, setInvalid] = useState(false);
-  const [fieldError, setFieldError] = useState('');
-
-  useEffect(() => {
-    const { errors } = formState;
-    const haveErrors = Object.keys(errors).includes('password');
-    if (haveErrors) {
-      console.log(errors);
-      setFieldError(errors.password?.message as string);
-      setInvalid(true);
-    } else {
-      setFieldError('');
-      setInvalid(false);
-    }
-  }, [formState]);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const { methods, invalid, error } = useInput('password');
 
   return (
     <div className={classes.input__wrapper}>
@@ -35,19 +19,18 @@ const PasswordInput = () => {
             lowercase: (v) => /(?=.*[a-z])/.test(v) || 'содержать маленькие буквы',
           },
         })}
-        onChange={() => setInvalid(false)}
         placeholder="Пароль"
         className={`${classes.input} ${invalid ? classes.input_invalid : ''}`}
-        type={isVisible ? 'text' : 'password'}
+        type={isPasswordVisible ? 'text' : 'password'}
       />
       <span
         className={`${classes.toggler} ${
-          isVisible ? classes.toggler_visible : classes.toggler_invisible
+          isPasswordVisible ? classes.toggler_visible : classes.toggler_invisible
         }`}
-        onMouseDown={() => setIsVisible(true)}
-        onMouseUp={() => setIsVisible(false)}
+        onMouseDown={() => setIsPasswordVisible(true)}
+        onMouseUp={() => setIsPasswordVisible(false)}
       />
-      {fieldError && invalid ? <p className={classes.error}>Пароль должен {fieldError}</p> : null}
+      {error && invalid ? <p className={classes.error}>Пароль должен {error}</p> : null}
     </div>
   );
 };
