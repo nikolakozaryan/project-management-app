@@ -23,10 +23,10 @@ const LanguageSelect = () => {
       name="language"
     >
       <option value={LANGUAGES.ru} selected={language === LANGUAGES.ru}>
-        {LANGUAGES.ru}
+        {LANGUAGES.ru.toLocaleUpperCase()}
       </option>
       <option value={LANGUAGES.en} selected={language === LANGUAGES.en}>
-        {LANGUAGES.en}
+        {LANGUAGES.en.toLocaleUpperCase()}
       </option>
     </select>
   );

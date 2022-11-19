@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const LS_L_KEY = 'lang';
-console.log(localStorage.getItem(LS_L_KEY) ?? 'ru');
+
 export const languageSlice = createSlice({
   name: 'language',
   initialState: {

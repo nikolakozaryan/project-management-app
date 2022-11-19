@@ -1,8 +1,25 @@
+@import '../../../common/style/abstract/_variables.scss';
+
 .container {
   text-align: center;
   padding: 10px 24px;
-  font-size: 16px;
+  font: $paragraph-font;
   border-radius: 4px;
   background: none;
   border: solid #838ca7 0.5px;
+  cursor: pointer;
+  transition: 0.5s;
+  &:hover {
+    background-color: #8dbffa;
+  }
+}
+.start {
+  background-color: #5f96e9;
+  width: 263px;
+  height: 44px;
+  color: #ffffff;
+  transition: 0.5s;
+  &:hover {
+    background-color: #8dbffa;
+  }
 }

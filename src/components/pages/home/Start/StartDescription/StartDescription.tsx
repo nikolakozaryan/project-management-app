@@ -6,13 +6,13 @@ import { useAppSelector } from '../../../../../app/hooks';
 import { DICTIONARY } from '../../../../../constants/Dictionary';
 
 const StartDescription = () => {
-  const set: string = useAppSelector((state) => state.language.lang);
+  const lang: string = useAppSelector((state) => state.language.lang);
   const dictionarySection = DICTIONARY.Description;
   return (
     <div className={classes.container}>
       <h1 className={classes.header}>RS Project Management</h1>
       <p className={classes.description}>
-        {dictionarySection[set as keyof typeof dictionarySection]}
+        {DICTIONARY.Description[lang as keyof typeof dictionarySection]}
       </p>
       <Button type={HEADER_BUTTONS.start} />
     </div>

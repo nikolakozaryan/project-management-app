@@ -1,3 +1,16 @@
+@import '../../../../common/style/abstract/_variables.scss';
+
 .container {
   display: flex;
+  h2 {
+    font: $paragraph-font;
+    color: #30323d;
+    line-height: 20px;
+    width: 100%;
+    max-width: 100px;
+    margin-left: 10px;
+  }
+}
+a {
+  text-decoration: none;
 }

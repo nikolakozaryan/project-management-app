@@ -1,8 +1,16 @@
+@import '../../../../../common/style/abstract/_variables.scss';
+
 .container {
+  display: block;
   width: 65px;
   height: 40px;
   border: 0.5px solid #838ca7;
   border-radius: 4px;
   text-align: center;
-  font-size: 16px;
+  transition: background-color 0.5s ease;
+
+  font: $paragraph-font;
+  @media screen and (max-width: $medium) {
+    display: none;
+  }
 }

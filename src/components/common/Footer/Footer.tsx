@@ -8,10 +8,21 @@ const Footer = () => {
   const set: string = useAppSelector((state) => state.language.lang);
   return (
     <div className={classes.container}>
-      <img src="" alt="RS Logo" />
-      {TEAM_MEMBERS.map((item, index) => (
-        <GitProfile name={item.name[set as keyof typeof item.name]} key={index} />
-      ))}
+      <div className={classes.content}>
+        <img
+          className={classes.logo}
+          width={'100px'}
+          height={'37px'}
+          src="../../home/rs_logo.svg"
+          alt="RS Logo"
+        />
+        <div className={classes.profiles}>
+          {TEAM_MEMBERS.map((item, index) => (
+            <GitProfile name={item.name[set as keyof typeof item.name]} key={index} />
+          ))}
+        </div>
+        <span className={classes.date}>2022</span>
+      </div>
     </div>
   );
 };
