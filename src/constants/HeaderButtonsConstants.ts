@@ -1,5 +1,7 @@
-export const HEADER_BUTTONS = {
+export const BUTTONS = {
   login: 'Login',
   registration: 'Registration',
   start: 'Start',
+  SignupAction: 'SignupAction',
+  SigninAction: 'SigninAction',
 };

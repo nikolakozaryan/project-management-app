@@ -8,6 +8,7 @@ import { send } from '../../features/signup/signupSlice';
 import FormError from '../../components/common/FormError/FormError';
 import { Link } from 'react-router-dom';
 import FormInput from '../../components/common/FormInput/FormInput';
+import { BUTTONS } from '../../constants/HeaderButtonsConstants';
 
 const Register = () => {
   const methods = useForm<FormInputs>({ reValidateMode: 'onChange' });
@@ -32,7 +33,7 @@ const Register = () => {
             <FormInput type="name" validate={true} />
             <FormInput type="login" validate={true} />
             <FormInput type="password" validate={true} />
-            <Button value="зарегистрироваться" />
+            <Button type={BUTTONS.SignupAction} link={true} color={'blue'} />
           </form>
         </FormProvider>
       </div>

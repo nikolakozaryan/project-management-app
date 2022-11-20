@@ -1,5 +1,5 @@
 import React from 'react';
-import { HEADER_BUTTONS } from '../../../../../constants/HeaderButtonsConstants';
+import { BUTTONS } from '../../../../../constants/HeaderButtonsConstants';
 import classes from './StartDescription.module.scss';
 import Button from '../../../../common/Button/Button';
 import { useAppSelector } from '../../../../../app/hooks';
@@ -14,7 +14,7 @@ const StartDescription = () => {
       <p className={classes.description}>
         {DICTIONARY.Description[lang as keyof typeof dictionarySection]}
       </p>
-      <Button type={HEADER_BUTTONS.start} link={true} color={'blue'} />
+      <Button type={BUTTONS.start} link={true} color={'blue'} />
     </div>
   );
 };

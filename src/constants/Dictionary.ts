@@ -30,4 +30,12 @@ export const DICTIONARY: Dictionary = {
     ru: 'Наша команда',
     en: 'Our Team',
   },
+  SignupAction: {
+    ru: 'зарегистрироваться',
+    en: 'sign up',
+  },
+  LoginAction: {
+    ru: 'войти',
+    en: 'sign in',
+  },
 };

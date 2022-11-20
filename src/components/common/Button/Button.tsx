@@ -3,13 +3,9 @@ import classes from './Button.module.scss';
 import { DICTIONARY } from '../../../constants/Dictionary';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../app/hooks';
+import { MyProps } from './types';
 
-const Button: React.FC<{ type: string; link: boolean; color?: string; header?: boolean }> = ({
-  type,
-  link,
-  color,
-  header,
-}) => {
+const Button: React.FC<MyProps> = ({ type, link, color, header }) => {
   const set: string = useAppSelector((state) => state.language.lang);
   const dictionarySection = DICTIONARY[type];
 

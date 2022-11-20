@@ -1,4 +1,4 @@
-@import '../../../../common/style/abstract/variables';
+@import '../../../../common/style/abstracts/variables';
 
 .burger_button {
   display: none;
@@ -8,6 +8,7 @@
   position: relative;
   cursor: pointer;
   transition: 1s;
+
   &:after {
     content: '';
     position: absolute;
@@ -16,6 +17,7 @@
     background-color: black;
     height: 2px;
   }
+
   &:before {
     content: '';
     position: absolute;
@@ -24,6 +26,7 @@
     background-color: black;
     height: 2px;
   }
+
   span {
     position: absolute;
     top: 15px;
@@ -31,35 +34,43 @@
     background-color: black;
     height: 2px;
   }
+
   @media screen and (max-width: $medium) {
     display: block;
   }
 }
+
 .active {
   transform: translateX(-100%);
+
   &:after {
     transition: 1s;
     transform: rotate(90deg) translateY(650%) translateX(75%);
   }
+
   span {
     transition: 1s;
     transform: rotate(90deg);
   }
+
   &:before {
     transition: 1s;
     transform: rotate(90deg) translateY(-650%) translateX(-75%);
   }
 }
+
 .not_active {
   &:after {
     transition: 1s;
     transform: rotate(0deg);
     transform: translateX(0%);
   }
+
   &:before {
     transition: 1s;
     transform: rotate(0deg);
   }
+
   span {
     transition: 1s;
     transform: rotate(0deg);

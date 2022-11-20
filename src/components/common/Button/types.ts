@@ -1,3 +1,6 @@
 export type MyProps = {
-  value: string;
+  type: string;
+  link: boolean;
+  color?: string;
+  header?: boolean;
 };

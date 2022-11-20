@@ -1,4 +1,4 @@
-@import '../../../../common/style/abstract/_variables.scss';
+@import '../../../../common/style/abstracts/_variables.scss';
 
 .container {
   text-align: center;
@@ -8,12 +8,15 @@
   box-sizing: border-box;
   margin: auto;
   margin-bottom: 100px;
+
   @media screen and (max-width: $medium) {
     padding: 0 50px;
   }
+
   @media screen and (max-width: $small) {
     padding: 0 10px;
   }
+
   h2 {
     font: $paragraph-font;
     font-size: 28px;

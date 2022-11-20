@@ -6,7 +6,7 @@ import Header from './components/common/Header/Header';
 import Footer from './components/common/Footer/Footer';
 
 const App = () => (
-  <div className="App">
+  <div className="app">
     <Header />
     <Router />
     <Footer />

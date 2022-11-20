@@ -1,4 +1,4 @@
-@import '../../../../../common/style/abstract/variables';
+@import '../../../../../common/style/abstracts/variables';
 
 .container {
   display: flex;
@@ -7,17 +7,21 @@
   max-width: 340px;
   height: 240px;
   width: 100%;
+
   @media screen and (max-width: $large) {
     width: 100%;
     max-width: 100%;
     align-items: center;
   }
+
   h1 {
     font: $h1-font;
+
     @media screen and (max-width: $small) {
       text-align: center;
     }
   }
+
   .description {
     font: $text-font;
     color: #7b7f8b;

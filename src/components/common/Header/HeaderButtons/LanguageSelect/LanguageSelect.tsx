@@ -21,6 +21,7 @@ const LanguageSelect = () => {
       }}
       className={classes.container}
       name="language"
+      defaultValue={LANGUAGES.ru}
     >
       <option value={LANGUAGES.ru} selected={language === LANGUAGES.ru}>
         {LANGUAGES.ru.toLocaleUpperCase()}
