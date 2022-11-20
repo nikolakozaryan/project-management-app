@@ -8,11 +8,11 @@ const MenuBurger: React.FC<{ active: boolean }> = ({ active }) => {
     <div className={[classes.menu, active ? classes.active : ''].join(' ')}>
       <div className={classes.content}>
         <ul>
-          <Link to={`/${BUTTONS.login}`}>
-            <li>{BUTTONS.login}</li>
+          <Link to={`/${BUTTONS.signin}`}>
+            <li>{BUTTONS.signin}</li>
           </Link>
-          <Link to={`/${BUTTONS.registration}`}>
-            <li>{BUTTONS.registration}</li>
+          <Link to={`/${BUTTONS.signup}`}>
+            <li>{BUTTONS.signup}</li>
           </Link>
         </ul>
       </div>

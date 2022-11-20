@@ -12,12 +12,10 @@
   }
 
   &__section {
-    margin: 20rem auto;
-    max-width: 32rem;
-
-    @media (max-width: 480px) {
-      max-width: 30rem;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   &__heading {

@@ -3,4 +3,4 @@ export type MyProps = {
   validate: boolean;
 };
 
-type InputType = 'login' | 'name' | 'password';
+export type InputType = 'login' | 'name' | 'password';

@@ -1,4 +1,4 @@
-import { API_URL } from '../../common/constants';
+import { API_URL } from '../../constants/API';
 import { SIGNUP_DATA } from './interface';
 import axios, { AxiosError } from 'axios';
 

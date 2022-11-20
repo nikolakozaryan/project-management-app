@@ -4,7 +4,7 @@ import Start from '../../components/pages/home/Start/Start';
 import Team from '../../components/pages/home/Team/Team';
 
 const Home = () => (
-  <section>
+  <section className="section">
     <Start />
     <Guide />
     <Team />

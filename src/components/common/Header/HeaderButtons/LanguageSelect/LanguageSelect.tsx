@@ -1,12 +1,13 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../../app/hooks';
+import { Languages } from '../../../../../constants/Dictionary';
 import { LANGUAGES } from '../../../../../constants/Languages';
 import { changeLanguage } from '../../../../../features/language/languageSlice';
 import classes from './LanguageSelect.module.scss';
 
 const LanguageSelect = () => {
   const languageChange = useAppDispatch();
-  const language = useAppSelector((state) => state.language.lang);
+  const language: Languages = useAppSelector((state) => state.language.lang);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
@@ -16,9 +17,7 @@ const LanguageSelect = () => {
 
   return (
     <select
-      onChange={(e) => {
-        handleChange(e);
-      }}
+      onChange={handleChange}
       className={classes.container}
       name="language"
       defaultValue={LANGUAGES.ru}

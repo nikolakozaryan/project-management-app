@@ -1,22 +1,15 @@
-export type Dictionary = {
-  [key: string]: {
-    ru: string;
-    en: string;
-  };
-};
-
-export const DICTIONARY: Dictionary = {
-  Login: {
-    ru: 'Вход',
-    en: 'Login',
+export const DICTIONARY = {
+  signin: {
+    ru: 'Войти',
+    en: 'Sign In',
   },
-  Registration: {
+  signup: {
     ru: 'Регистрация',
-    en: 'Registration',
+    en: 'Sign Up',
   },
   Start: {
-    ru: 'Начать',
-    en: 'Start',
+    ru: 'НАЧАТЬ',
+    en: 'START',
   },
   HowToWork: {
     ru: 'Как работать с сервисом',
@@ -30,12 +23,27 @@ export const DICTIONARY: Dictionary = {
     ru: 'Наша команда',
     en: 'Our Team',
   },
-  SignupAction: {
+  signup_action: {
     ru: 'зарегистрироваться',
     en: 'sign up',
   },
-  LoginAction: {
+  signin_action: {
     ru: 'войти',
     en: 'sign in',
   },
+  login: {
+    ru: 'Логин',
+    en: 'Login',
+  },
+  name: {
+    ru: 'Имя',
+    en: 'Name',
+  },
+  password: {
+    ru: 'Пароль',
+    en: 'Password',
+  },
 };
+
+export type Languages = 'ru' | 'en';
+export type DictionaryKeys = keyof typeof DICTIONARY;

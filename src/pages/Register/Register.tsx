@@ -9,6 +9,7 @@ import FormError from '../../components/common/FormError/FormError';
 import { Link } from 'react-router-dom';
 import FormInput from '../../components/common/FormInput/FormInput';
 import { BUTTONS } from '../../constants/HeaderButtonsConstants';
+import { DictionaryKeys } from '../../constants/Dictionary';
 
 const Register = () => {
   const methods = useForm<FormInputs>({ reValidateMode: 'onChange' });
@@ -21,7 +22,7 @@ const Register = () => {
   };
 
   return (
-    <section className={classes.register__section}>
+    <section className={`${classes.register__section} section`}>
       <div className={classes.register}>
         <h2 className={classes.register__heading}>Регистрация</h2>
         {errorMessage ? <FormError value={errorMessage} /> : null}
@@ -33,7 +34,7 @@ const Register = () => {
             <FormInput type="name" validate={true} />
             <FormInput type="login" validate={true} />
             <FormInput type="password" validate={true} />
-            <Button type={BUTTONS.SignupAction} link={true} color={'blue'} />
+            <Button type={BUTTONS.signup_action as DictionaryKeys} link={false} color={'blue'} />
           </form>
         </FormProvider>
       </div>

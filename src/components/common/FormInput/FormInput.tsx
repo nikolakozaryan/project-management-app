@@ -1,16 +1,17 @@
 import React, { FC, useState } from 'react';
-import { useInput } from '../../../app/hooks';
+import { useAppSelector, useInput } from '../../../app/hooks';
+import { DICTIONARY, Languages } from '../../../constants/Dictionary';
 import classes from './FormInput.module.scss';
-import { MyProps } from './types';
+import { InputType, MyProps } from './types';
 import validation from './validation';
 
 const FormInput: FC<MyProps> = ({ type, validate }) => {
   const { methods, invalid, error } = useInput(type);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const lang = useAppSelector((state) => state.language.lang) as Languages;
 
-  const getInputType = (type: string): string => {
-    return type !== 'password' || isPasswordVisible ? 'text' : 'password';
-  };
+  const getInputType = (type: InputType): string =>
+    type !== 'password' || isPasswordVisible ? 'text' : 'password';
 
   const VisibilityToggler: JSX.Element = (
     <span
@@ -26,14 +27,14 @@ const FormInput: FC<MyProps> = ({ type, validate }) => {
     <div className={classes.input__wrapper}>
       <input
         {...methods.register(type, validate ? validation[type] : {})}
-        placeholder={type}
+        placeholder={DICTIONARY[type][lang]}
         type={getInputType(type)}
         className={`${classes.input} ${invalid ? classes.input_invalid : ''}`}
       />
       {type === 'password' && VisibilityToggler}
       {invalid && (
         <p className={classes.error}>
-          {type} должен {error}
+          {DICTIONARY[type][lang]} должен {error}
         </p>
       )}
     </div>
