@@ -18,7 +18,11 @@ const Footer = () => {
         />
         <div className={classes.profiles}>
           {TEAM_MEMBERS.map((item, index) => (
-            <GitProfile name={item.name[set as keyof typeof item.name]} key={index} />
+            <GitProfile
+              name={item.name[set as keyof typeof item.name]}
+              link={item.link}
+              key={index}
+            />
           ))}
         </div>
         <span className={classes.date}>2022</span>

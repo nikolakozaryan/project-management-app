@@ -7,6 +7,7 @@ type TeamMember = {
     ru: string;
     en: string;
   };
+  link: string;
 };
 export const TEAM_MEMBERS: TeamMember[] = [
   {
@@ -18,6 +19,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       ru: 'Пока ничего...',
       en: 'Did nothing yet...',
     },
+    link: 'https://github.com/YaGrig',
   },
   {
     name: { ru: 'Козарян Николай', en: 'Nikolay Kozaryan' },
@@ -25,6 +27,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       ru: 'Пока ничего...',
       en: 'Did nothing yet...',
     },
+    link: 'https://github.com/nikolakozaryan',
   },
   {
     name: { ru: 'Козарян Николай', en: 'Nikolay Kozaryan' },
@@ -32,5 +35,6 @@ export const TEAM_MEMBERS: TeamMember[] = [
       ru: 'Пока ничего...',
       en: 'Did nothing yet...',
     },
+    link: 'https://github.com/nikolakozaryan',
   },
 ];
