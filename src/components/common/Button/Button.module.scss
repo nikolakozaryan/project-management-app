@@ -1,24 +1,31 @@
-@import '../../../common/style/abstracts/variables';
-@import '../../../common/style/abstracts/mixins';
+@import '../../../common/style/abstract/_variables.scss';
 
-.button {
-  width: 26rem;
-  padding: 1.5rem 0;
-  text-transform: uppercase;
+.container {
   text-align: center;
-  border: none;
-  border-radius: .4rem;
-  background: $main-color;
+  padding: 10px 24px;
+  font: $paragraph-font;
+  border-radius: 4px;
+  background: none;
+  border: solid #838ca7 0.5px;
   cursor: pointer;
-  @include font(1.6rem, 1.96rem, 600, #FFF);
-  transition: .5s;
-
+  transition: 0.5s;
   &:hover {
-    background: $main-color-hover;
+    background-color: #8dbffa;
   }
-
-  &:focus {
-    outline: none;
-    background: $main-color-hover;
+}
+.blue {
+  background-color: #5f96e9;
+  width: 260px;
+  height: 44px;
+  color: #ffffff;
+  transition: 0.5s;
+  &:hover {
+    background-color: #8dbffa;
   }
+}
+.header {
+  width: 145px;
+  height: 40px;
+  background-color: #5f96e9;
+  color: #ffffff;
 }

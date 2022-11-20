@@ -1,8 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import languageSlice from '../features/language/languageSlice';
 import signupSlice from '../features/signup/signupSlice';
 
 export const store = configureStore({
   reducer: {
+    language: languageSlice,
     signup: signupSlice,
   },
 });

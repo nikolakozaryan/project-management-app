@@ -1,0 +1,18 @@
+@import '../../../../common/style/abstract/_variables.scss';
+
+.container {
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  @media screen and (max-width: $small) {
+    display: none;
+  }
+  font: $paragraph-font;
+  padding: 0 100px;
+  box-sizing: border-box;
+  margin: auto;
+  .header {
+    font-size: 28px;
+    margin-bottom: 50px;
+  }
+}

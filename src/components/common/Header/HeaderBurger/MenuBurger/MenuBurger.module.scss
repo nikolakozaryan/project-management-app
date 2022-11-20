@@ -1,0 +1,30 @@
+@import '../../../../../common/style/abstract/_variables.scss';
+
+.menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: 1s;
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font: $paragraph-font;
+  font-size: 24px;
+  background-color: #edf7ff;
+  z-index: 100;
+  li {
+    line-height: 50px;
+    list-style: none;
+  }
+  a:visited {
+    text-decoration: none;
+    color: black;
+  }
+}
+.active {
+  visibility: visible;
+  transform: translateX(0%);
+}
