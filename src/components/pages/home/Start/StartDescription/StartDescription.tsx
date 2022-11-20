@@ -14,7 +14,7 @@ const StartDescription = () => {
       <p className={classes.description}>
         {DICTIONARY.Description[lang as keyof typeof dictionarySection]}
       </p>
-      <Button type={HEADER_BUTTONS.start} />
+      <Button type={HEADER_BUTTONS.start} link={true} color={'blue'} />
     </div>
   );
 };

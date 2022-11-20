@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../../app/hooks';
 import { LANGUAGES } from '../../../../../constants/Languages';
-import { changeLanguage } from '../../../../../redux/reducers/languageReducer';
+import { changeLanguage } from '../../../../../features/language/languageSlice';
 import classes from './LanguageSelect.module.scss';
 
 const LanguageSelect = () => {
