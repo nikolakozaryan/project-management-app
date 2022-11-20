@@ -8,7 +8,6 @@ const HeaderButtons = () => (
   <div className={classes.container}>
     <Button type={HEADER_BUTTONS.login} link={true} />
     <Button type={HEADER_BUTTONS.registration} link={true} header={true} />
-    {/* <Button type={HEADER_BUTTONS.registration} link={false} header={true} color={'blue'} /> */}
     <LanguageSelect />
   </div>
 );
