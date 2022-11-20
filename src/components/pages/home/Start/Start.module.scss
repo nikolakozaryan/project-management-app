@@ -1,0 +1,22 @@
+@import '../../../../common/style/abstract/_variables.scss';
+
+.container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 100px 100px;
+  margin: auto;
+  @media screen and (max-width: $small) {
+    padding: 100px 50px;
+  }
+  @media screen and (max-width: $extra-small) {
+    padding: 100px 20px;
+  }
+  img {
+    @media screen and (max-width: $large) {
+      display: none;
+    }
+  }
+}

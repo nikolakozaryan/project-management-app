@@ -1,0 +1,45 @@
+@import '../../../common/style/abstract/_variables.scss';
+.container {
+  width: 100%;
+  background: #edf7ff;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+}
+.content {
+  height: 100px;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 100px;
+  box-sizing: border-box;
+  font: $text-font;
+  @media screen and (max-width: $small) {
+    justify-content: center;
+    align-items: center;
+  }
+  .profiles {
+    display: flex;
+    width: 100%;
+    max-width: 515px;
+    justify-content: space-between;
+    @media screen and (max-width: $small) {
+      display: none;
+    }
+  }
+  .date {
+    @media screen and (max-width: $medium) {
+      display: none;
+    }
+  }
+  .logo {
+    @media screen and (max-width: $medium) {
+      display: none;
+    }
+    @media screen and (max-width: $small) {
+      display: block;
+    }
+  }
+}

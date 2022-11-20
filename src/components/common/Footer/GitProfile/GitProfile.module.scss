@@ -1,0 +1,9 @@
+@import '../../../../common/style/abstract/_variables.scss';
+
+.container {
+  display: flex;
+
+  img {
+    margin-right: 10px;
+  }
+}

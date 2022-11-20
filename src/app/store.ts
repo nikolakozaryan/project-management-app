@@ -1,7 +1,10 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/toolkit';
+import languageSlice from '../features/language/languageSlice';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    language: languageSlice,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;
