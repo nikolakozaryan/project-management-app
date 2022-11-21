@@ -5,7 +5,7 @@ import classes from './Footer.module.scss';
 import { useAppSelector } from '../../../app/hooks';
 
 const Footer = () => {
-  const set: string = useAppSelector((state) => state.language.lang);
+  const lang: string = useAppSelector((state) => state.language.lang);
   return (
     <div className={classes.container}>
       <div className={classes.content}>
@@ -19,7 +19,7 @@ const Footer = () => {
         <div className={classes.profiles}>
           {TEAM_MEMBERS.map((item, index) => (
             <GitProfile
-              name={item.name[set as keyof typeof item.name]}
+              name={item.name[lang as keyof typeof item.name]}
               link={item.link}
               key={index}
             />

@@ -1,16 +1,16 @@
 import React from 'react';
 import { useAppSelector } from '../../../../app/hooks';
-import { DICTIONARY } from '../../../../constants/Dictionary';
+import { DICTIONARY, Languages } from '../../../../constants/Dictionary/Dictionary';
 import classes from './Guide.module.scss';
 import Video from './Video/Video';
 
 const Guide = () => {
-  const set: string = useAppSelector((state) => state.language.lang);
+  const lang: Languages = useAppSelector((state) => state.language.lang);
   const dictionarySection = DICTIONARY.HowToWork;
   return (
     <div className={classes.container}>
-      <h2 className={classes.header}>{dictionarySection[set as keyof typeof dictionarySection]}</h2>
-      <Video embedId="Sy0A0pQmGPM"></Video>
+      <h2 className={classes.header}>{dictionarySection[lang]}</h2>
+      <Video embedId="Sy0A0pQmGPM" />
     </div>
   );
 };
