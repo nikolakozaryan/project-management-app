@@ -9,12 +9,13 @@ import FormError from '../../components/common/FormError/FormError';
 import { Link } from 'react-router-dom';
 import FormInput from '../../components/common/FormInput/FormInput';
 import { BUTTONS } from '../../constants/HeaderButtonsConstants';
-import { DictionaryKeys } from '../../constants/Dictionary';
+import { DICTIONARY, DictionaryKeys, Languages } from '../../constants/Dictionary/Dictionary';
 
 const Register = () => {
   const methods = useForm<FormInputs>({ reValidateMode: 'onChange' });
   const errorMessage = useAppSelector((state) => state.signup.message);
   const dispatch = useAppDispatch();
+  const lang = useAppSelector((state) => state.language.lang) as Languages;
 
   const formSubmitHandler: SubmitHandler<FormInputs> = (data, event) => {
     event?.preventDefault();
@@ -24,7 +25,7 @@ const Register = () => {
   return (
     <section className={`${classes.register__section} section`}>
       <div className={classes.register}>
-        <h2 className={classes.register__heading}>Регистрация</h2>
+        <h2 className={classes.register__heading}>{DICTIONARY.registration[lang]}</h2>
         {errorMessage ? <FormError value={errorMessage} /> : null}
         <FormProvider {...methods}>
           <form
@@ -34,14 +35,14 @@ const Register = () => {
             <FormInput type="name" validate={true} />
             <FormInput type="login" validate={true} />
             <FormInput type="password" validate={true} />
-            <Button type={BUTTONS.signup_action as DictionaryKeys} link={false} color={'blue'} />
+            <Button type={BUTTONS.signup_uc as DictionaryKeys} link={false} color={'blue'} />
           </form>
         </FormProvider>
       </div>
       <p className={classes.signin}>
-        Уже есть аккаунт?{' '}
+        {DICTIONARY.have_account[lang]}{' '}
         <Link className={classes.link} to="/signin">
-          Войти
+          {DICTIONARY.signin[lang]}
         </Link>
       </p>
     </section>
