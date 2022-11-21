@@ -1,8 +1,9 @@
-@import '../../../../common/style/abstract/variables';
+@import '../../../../common/style/abstracts/variables';
 
 .container {
   display: flex;
   gap: 30px;
+
   @media screen and (max-width: $medium) {
     display: none;
   }

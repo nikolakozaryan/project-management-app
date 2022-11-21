@@ -1,7 +1,8 @@
-@import '../../../../common/style/abstract/_variables.scss';
+@import '../../../../common/style/abstracts/_variables.scss';
 
 .container {
   display: flex;
+
   h2 {
     font: $paragraph-font;
     color: #30323d;
@@ -11,6 +12,7 @@
     margin-left: 10px;
   }
 }
+
 a {
   text-decoration: none;
 }

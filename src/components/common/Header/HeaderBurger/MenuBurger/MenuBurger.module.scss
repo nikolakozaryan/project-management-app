@@ -1,4 +1,4 @@
-@import '../../../../../common/style/abstract/_variables.scss';
+@import '../../../../../common/style/abstracts/_variables.scss';
 
 .menu {
   position: fixed;
@@ -15,15 +15,18 @@
   font-size: 24px;
   background-color: #edf7ff;
   z-index: 100;
+
   li {
     line-height: 50px;
     list-style: none;
   }
+
   a:visited {
     text-decoration: none;
     color: black;
   }
 }
+
 .active {
   visibility: visible;
   transform: translateX(0%);

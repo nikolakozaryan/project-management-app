@@ -1,4 +1,5 @@
-@import '../../../../../common/style/abstract/_variables.scss';
+@import '../../../../../common/style/abstracts/_variables.scss';
+
 .container {
   width: 320px;
   height: 250px;
@@ -8,11 +9,13 @@
   padding: 20px;
   padding-right: 65px;
   box-sizing: border-box;
+
   img {
     width: 80px;
     height: 80px;
     border-radius: 70px;
   }
+
   .content {
     height: 80px;
     width: 100%;
@@ -20,6 +23,7 @@
     justify-content: space-between;
     align-items: center;
   }
+
   h3 {
     margin-bottom: 18px;
   }

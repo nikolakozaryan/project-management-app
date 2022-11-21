@@ -1,0 +1,10 @@
+.app {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 10rem;
+}
+
+.section {
+  margin-top: 8rem;
+}
