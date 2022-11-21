@@ -3,7 +3,7 @@ import { BUTTONS } from '../../../../constants/HeaderButtonsConstants';
 import Button from '../../Button/Button';
 import LanguageSelect from './LanguageSelect/LanguageSelect';
 import classes from './HeaderButtons.module.scss';
-import { DictionaryKeys } from '../../../../constants/Dictionary';
+import { DictionaryKeys } from '../../../../constants/Dictionary/Dictionary';
 
 const HeaderButtons = () => (
   <div className={classes.container}>

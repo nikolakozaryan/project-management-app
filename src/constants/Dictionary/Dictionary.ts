@@ -7,6 +7,14 @@ export const DICTIONARY = {
     ru: 'Регистрация',
     en: 'Sign Up',
   },
+  signup_uc: {
+    ru: 'ЗАРЕГИСТРИРОВАТЬСЯ',
+    en: 'SIGN UP',
+  },
+  signin_uc: {
+    ru: 'ВОЙТИ',
+    en: 'SIGN IN',
+  },
   Start: {
     ru: 'НАЧАТЬ',
     en: 'START',
@@ -23,13 +31,17 @@ export const DICTIONARY = {
     ru: 'Наша команда',
     en: 'Our Team',
   },
-  signup_action: {
-    ru: 'зарегистрироваться',
-    en: 'sign up',
+  show_password: {
+    ru: 'Показать пароль',
+    en: 'Show password',
   },
-  signin_action: {
-    ru: 'войти',
-    en: 'sign in',
+  have_account: {
+    ru: 'Уже есть аккаунт?',
+    en: 'Already have an account?',
+  },
+  registration: {
+    ru: 'Регистрация',
+    en: 'Create account',
   },
   login: {
     ru: 'Логин',

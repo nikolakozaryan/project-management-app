@@ -3,7 +3,7 @@ import { BUTTONS } from '../../../../../constants/HeaderButtonsConstants';
 import classes from './StartDescription.module.scss';
 import Button from '../../../../common/Button/Button';
 import { useAppSelector } from '../../../../../app/hooks';
-import { DICTIONARY, DictionaryKeys } from '../../../../../constants/Dictionary';
+import { DICTIONARY, DictionaryKeys } from '../../../../../constants/Dictionary/Dictionary';
 
 const StartDescription = () => {
   const lang: string = useAppSelector((state) => state.language.lang);

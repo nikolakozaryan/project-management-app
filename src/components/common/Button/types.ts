@@ -1,4 +1,4 @@
-import { DictionaryKeys } from '../../../constants/Dictionary';
+import { DictionaryKeys } from '../../../constants/Dictionary/Dictionary';
 
 export type MyProps = {
   type: DictionaryKeys;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../../app/hooks';
-import { Languages } from '../../../../../constants/Dictionary';
+import { Languages } from '../../../../../constants/Dictionary/Dictionary';
 import { LANGUAGES } from '../../../../../constants/Languages';
 import { changeLanguage } from '../../../../../features/language/languageSlice';
 import classes from './LanguageSelect.module.scss';
@@ -20,7 +20,7 @@ const LanguageSelect = () => {
       onChange={handleChange}
       className={classes.container}
       name="language"
-      defaultValue={LANGUAGES.ru}
+      defaultValue={language}
     >
       <option value={LANGUAGES.ru} selected={language === LANGUAGES.ru}>
         {LANGUAGES.ru.toLocaleUpperCase()}

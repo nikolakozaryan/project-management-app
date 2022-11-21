@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Button.module.scss';
-import { DICTIONARY, Languages } from '../../../constants/Dictionary';
+import { DICTIONARY, Languages } from '../../../constants/Dictionary/Dictionary';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../app/hooks';
 import { MyProps } from './types';

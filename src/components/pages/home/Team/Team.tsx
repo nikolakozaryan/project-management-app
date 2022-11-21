@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector } from '../../../../app/hooks';
-import { DICTIONARY } from '../../../../constants/Dictionary';
+import { DICTIONARY } from '../../../../constants/Dictionary/Dictionary';
 import classes from './Team.module.scss';
 import TeamCards from './TeamCards/TeamCards';
 
