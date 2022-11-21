@@ -31,25 +31,6 @@
   } 
 }
 
-.toggler {
-  cursor: pointer;
-  position: absolute;
-  z-index: 5;
-  right: 1.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 2rem;
-  height: 2rem;
-
-  &_invisible {
-    background: url('../../../../public/assets/icons/VisibilityToggler/invisible.svg') no-repeat center;
-  }
-
-  &_visible {
-    background: url('../../../../public/assets/icons/VisibilityToggler/visible.svg') no-repeat center;
-  }
-}
-
 .error {
   @include font(1.1rem, 1, 400, $error-color);
   position: absolute;
