@@ -4,4 +4,5 @@ export const BUTTONS = {
   start: 'Start',
   signup_uc: 'signup_uc',
   signin_uc: 'signup_uc',
+  main: 'main',
 };

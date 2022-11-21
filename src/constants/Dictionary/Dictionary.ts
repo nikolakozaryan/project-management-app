@@ -3,6 +3,10 @@ export const DICTIONARY = {
     ru: 'Войти',
     en: 'Sign In',
   },
+  main: {
+    ru: 'На главную',
+    en: 'Main',
+  },
   signup: {
     ru: 'Регистрация',
     en: 'Sign Up',
