@@ -22,7 +22,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     link: 'https://github.com/YaGrig',
   },
   {
-    name: { ru: 'Козарян Николай', en: 'Nikolay Kozaryan' },
+    name: { ru: 'Козырев Николай', en: 'Nikolay Kozyrev' },
     done: {
       ru: 'Пока ничего...',
       en: 'Did nothing yet...',
@@ -30,7 +30,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     link: 'https://github.com/nikolakozaryan',
   },
   {
-    name: { ru: 'Козарян Николай', en: 'Nikolay Kozaryan' },
+    name: { ru: 'Козырев Николай', en: 'Nikolay Kozyrev' },
     done: {
       ru: 'Пока ничего...',
       en: 'Did nothing yet...',
