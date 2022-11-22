@@ -5,17 +5,21 @@ import MenuBurger from './MenuBurger/MenuBurger';
 const HeaderBurger = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+  const handleClick = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
   return (
     <>
       <div
-        onClick={() => setIsMenuOpen((prev) => !prev)}
+        onClick={handleClick}
         className={[classes.burger_button, isMenuOpen ? classes.active : classes.not_active].join(
           ' '
         )}
       >
         <span />
       </div>
-      <MenuBurger active={isMenuOpen} />
+      <MenuBurger active={isMenuOpen} handleClick={handleClick} />
     </>
   );
 };
