@@ -1,21 +1,19 @@
-@import '../../../../common/style/abstracts/_variables.scss';
+@import '../../../../common/style/abstracts/variables';
+@import '../../../../common/style/abstracts/mixins';
 
 .container {
+  @include main-font;
   text-align: center;
+  margin: auto;
   width: 100%;
-  max-width: 1200px;
+  max-width: 100rem;
 
   @media screen and (max-width: $small) {
     display: none;
   }
 
-  font: $paragraph-font;
-  padding: 0 100px;
-  box-sizing: border-box;
-  margin: auto;
-
   .header {
-    font-size: 28px;
-    margin-bottom: 50px;
+    @include h2;
+    margin-bottom: 5rem;
   }
 }
