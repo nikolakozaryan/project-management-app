@@ -3,6 +3,10 @@ export const DICTIONARY = {
     ru: 'Войти',
     en: 'Sign In',
   },
+  home: {
+    ru: 'На главную',
+    en: 'Home',
+  },
   signup: {
     ru: 'Регистрация',
     en: 'Sign Up',
@@ -22,6 +26,14 @@ export const DICTIONARY = {
   HowToWork: {
     ru: 'Как работать с сервисом',
     en: 'How to utilize ',
+  },
+  ErrorPageHeader: {
+    ru: 'Страница не найдена...',
+    en: 'Page is not found',
+  },
+  ErrorPageDescription: {
+    ru: 'Видимо, где-то вы повернули не туда. Не волнуйтесь, такое случается с каждым.',
+    en: "it seems like you took a wrong turn. Don't worry, this happens to everyone. ",
   },
   Description: {
     ru: 'Сервис, позволяющий собрать все рабочие задания команды в едином пространстве и достичь новых высот продуктивности.',

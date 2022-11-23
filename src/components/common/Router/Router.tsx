@@ -9,7 +9,7 @@ import Register from '../../../pages/Register/Register';
 const Router = () => (
   <Routes>
     <Route index element={<Home />} />
-    <Route path="home" element={<Home />} />
+    <Route path="/home" element={<Home />} />
     <Route path="dashboard" element={<Dashboard />} />
     <Route path="signin" element={<Login />} />
     <Route path="signup" element={<Register />} />

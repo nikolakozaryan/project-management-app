@@ -3,5 +3,6 @@ export const BUTTONS = {
   signup: 'signup',
   start: 'Start',
   signup_uc: 'signup_uc',
-  signin_uc: 'signin_uc',
+  signin_uc: 'signup_uc',
+  home: 'home',
 };
