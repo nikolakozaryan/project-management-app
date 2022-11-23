@@ -1,15 +1,15 @@
-@import '../../../../../common/style/abstracts/_variables.scss';
+@import '../../../../../common/style/abstracts/variables';
+@import '../../../../../common/style/abstracts/mixins';
 
 .container {
+  @include main-font;
   display: block;
-  width: 65px;
-  height: 40px;
-  border: 0.5px solid #838ca7;
-  border-radius: 4px;
+  width: 6.5rem;
+  height: 4rem;
+  border: 0.05rem solid $font-second-color;
+  border-radius: 0.4rem;
   text-align: center;
   transition: background-color 0.5s ease;
-
-  font: $paragraph-font;
 
   @media screen and (max-width: $medium) {
     display: none;

@@ -1,4 +1,4 @@
-@import '../../../../../common/style/abstracts/_variables.scss';
+@import '../../../../../common/style/abstracts/variables';
 
 .responsive {
   overflow: hidden;
@@ -8,9 +8,9 @@
 }
 
 .iframe {
+  position: absolute;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
-  position: absolute;
 }

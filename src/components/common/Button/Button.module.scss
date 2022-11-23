@@ -1,35 +1,36 @@
-@import '../../../common/style/abstracts/_variables.scss';
+@import '../../../common/style/abstracts/variables';
+@import '../../../common/style/abstracts/mixins';
 
 .container {
+  @include button-font;
   text-align: center;
-  padding: 10px 24px;
-  font: $paragraph-font;
-  border-radius: 4px;
+  padding: 1rem 2.4rem;
+  border-radius: 0.4rem;
   background: none;
-  border: solid #838ca7 0.5px;
+  border: solid $font-second-color 0.05rem;
   cursor: pointer;
   transition: 0.5s;
 
   &:hover {
-    background-color: #8dbffa;
+    background-color: $main-color-hover;
   }
 }
 
 .blue {
-  background-color: #5f96e9;
-  width: 260px;
-  height: 44px;
-  color: #ffffff;
+  background-color: $main-color;
+  width: 26rem;
+  height: 4.4rem;
+  color: white;
   transition: 0.5s;
 
   &:hover {
-    background-color: #8dbffa;
+    background-color: $main-color-hover;
   }
 }
 
 .header {
-  width: 145px;
-  height: 40px;
-  background-color: #5f96e9;
-  color: #ffffff;
+  width: 14.5rem;
+  height: 4rem;
+  background-color: $main-color;
+  color: white;
 }

@@ -1,32 +1,37 @@
 @import '../../../../../common/style/abstracts/variables';
+@import '../../../../../common/style/abstracts/mixins';
 
 .container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 340px;
-  height: 240px;
-  width: 100%;
+  max-width: 34rem;
+  height: 24rem;
   margin-top: 4.5rem;
 
   @media screen and (max-width: $large) {
     width: 100%;
     max-width: 100%;
+    height: auto;
     align-items: center;
+    margin: 0;
   }
 
   h1 {
-    font: $h1-font;
+    @include h1;
     margin: 0;
 
-    @media screen and (max-width: $small) {
+    @media screen and (max-width: $large) {
       text-align: center;
     }
   }
 
   .description {
-    font: $text-font;
-    color: #7b7f8b;
+    @include main-font($font-second-color);
     margin: 2rem 0 4rem;
+
+    @media screen and (max-width: $large) {
+      text-align: center;
+    }
   }
 }

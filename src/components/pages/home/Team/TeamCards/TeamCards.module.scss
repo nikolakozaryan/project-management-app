@@ -1,13 +1,13 @@
-@import '../../../../../common/style/abstracts/_variables.scss';
+@import '../../../../../common/style/abstracts/variables';
 
 .container {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 100px;
+  margin-bottom: 10rem;
 
   @media screen and (max-width: $large) {
     align-items: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 2rem;
   }
 }

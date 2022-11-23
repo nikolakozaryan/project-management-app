@@ -2,12 +2,12 @@
 @import '../../../common/style/abstracts/mixins';
 
 .input {
+  @include main-font;
   width: 100%;
   height: 4.8rem;
   padding: 1.5rem 2rem;
-  border: .1rem solid $form-border-color;
+  border: .1rem solid $font-second-color;
   border-radius: .4rem;
-  @include font(1.6rem, 1.7rem, 400);
   transition: .5s;
 
   &:focus {
@@ -17,7 +17,7 @@
   }
 
   &::placeholder {
-    color: $placeholder-color;
+    color: $font-second-color;
   }
 
   &_invalid {
@@ -28,7 +28,7 @@
   &__wrapper {
     position: relative;
     width: 100%;
-  } 
+  }
 }
 
 .error {
