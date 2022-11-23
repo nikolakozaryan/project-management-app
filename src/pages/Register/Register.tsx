@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { FormInputs } from './types';
 import classes from './Register.module.scss';
 import Button from '../../components/common/Button/Button';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { send } from '../../features/signup/signupSlice';
+import { sendSignupData } from '../../features/signup/signupSlice';
+import { sendSigninData } from '../../features/signin/signinSlice';
 import FormError from '../../components/common/FormError/FormError';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import FormInput from '../../components/common/FormInput/FormInput';
 import { BUTTONS } from '../../constants/HeaderButtonsConstants';
 import { DICTIONARY, DictionaryKeys, Languages } from '../../constants/Dictionary/Dictionary';
@@ -16,10 +17,24 @@ const Register = () => {
   const errorMessage = useAppSelector((state) => state.signup.message);
   const dispatch = useAppDispatch();
   const lang = useAppSelector((state) => state.language.lang) as Languages;
+  const isAuth = useAppSelector((state) => state.signin.login);
+  const isLoading = useAppSelector((state) => state.signin.loading);
+  const [submitAmount, setSubmitAmount] = useState(0);
 
-  const formSubmitHandler: SubmitHandler<FormInputs> = (data, event) => {
+  useEffect(() => {
+    const { login, password } = methods.getValues();
+    if (!errorMessage && !isLoading && submitAmount > 0)
+      dispatch(sendSigninData({ login, password }));
+  }, [errorMessage, isLoading, submitAmount]);
+
+  if (isAuth) {
+    return <Navigate to="/home" />;
+  }
+
+  const formSubmitHandler: SubmitHandler<FormInputs> = async (data, event) => {
     event?.preventDefault();
-    dispatch(send(data));
+    await dispatch(sendSignupData(data));
+    setSubmitAmount(submitAmount + 1);
   };
 
   return (

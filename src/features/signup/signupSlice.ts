@@ -17,10 +17,10 @@ export const signupSlice = createSlice({
     resetSignupState: () => initialState,
   },
   extraReducers: (builder) => {
-    builder.addCase(send.pending, (state) => {
+    builder.addCase(sendSignupData.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(send.fulfilled, (state, action) => {
+    builder.addCase(sendSignupData.fulfilled, (state, action) => {
       const { _id, name, login } = action.payload as IData;
       state._id = _id;
       state.login = login;
@@ -28,7 +28,7 @@ export const signupSlice = createSlice({
       state.message = '';
       state.loading = false;
     });
-    builder.addCase(send.rejected, (state, action) => {
+    builder.addCase(sendSignupData.rejected, (state, action) => {
       const message = (
         action.error.message === 'Rejected'
           ? 'Server error. Try later, please.'
@@ -41,7 +41,7 @@ export const signupSlice = createSlice({
   },
 });
 
-export const send = createAsyncThunk('signup/send', signup);
+export const sendSignupData = createAsyncThunk('signup/send', signup);
 
 export const { resetSignupState } = signupSlice.actions;
 
