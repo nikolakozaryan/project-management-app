@@ -51,6 +51,10 @@ export const DICTIONARY = {
     ru: 'Уже есть аккаунт?',
     en: 'Already have an account?',
   },
+  not_have_account: {
+    ru: 'Ещё нет аккаунта?',
+    en: "Still don't have an account?",
+  },
   registration: {
     ru: 'Регистрация',
     en: 'Create account',

@@ -1,19 +1,13 @@
 // COLORS
-
 $main-color: #5F96E9;
 $main-color-hover: #8DBFFA;
-$font-color: #30323D;
-$form-border-color: #838CA7;
-$placeholder-color: #A5A5A5;
-$error-color: #C96666;
-$error-background-color: #FFE7E7;
-
-//FONTS
-$h1-font: 600 42px / 1.15 'Gilroy', sans-serif;
-$h2-font: 600 4.2rem / 1.2 'Gilroy', sans-serif;
-$h3-font: 600 2.6rem / 1.2 'Gilroy', sans-serif;
-$paragraph-font: 600 16px 'Gilroy', sans-serif;
-$text-font: 400 16px 'Gilroy', sans-serif;
+$header-bg-color: #EDF7FF;
+$font-main-color: #30323D;
+$font-second-color: #838CA7;
+$error-color: #DD5A5A;
+$error-bg-color: #FFE7E7;
+$border-bg-color: #F8F9FD;
+$overlay-color: #00000080;
 
 // MEDIA
 $extra-small: 378px;

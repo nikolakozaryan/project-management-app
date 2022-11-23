@@ -1,7 +1,7 @@
 @import '../../common/style/abstracts/variables';
 @import '../../common/style/abstracts/mixins';
 
-.register {
+.login {
   border: .1rem solid $font-second-color;
   border-radius: .6rem;
   padding: 3rem;
@@ -32,10 +32,10 @@
   }
 }
 
-.signin {
+.signup {
   margin-top: 2rem;
   text-align: center;
-  @include main-font;
+  @include main-font
 }
 
 .link {
