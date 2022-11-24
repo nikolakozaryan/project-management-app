@@ -33,7 +33,7 @@ export const DICTIONARY = {
   },
   ErrorPageDescription: {
     ru: 'Видимо, где-то вы повернули не туда. Не волнуйтесь, такое случается с каждым.',
-    en: "it seems like you took a wrong turn. Don't worry, this happens to everyone. ",
+    en: "It seems like you took a wrong turn. Don't worry, this happens to everyone. ",
   },
   Description: {
     ru: 'Сервис, позволяющий собрать все рабочие задания команды в едином пространстве и достичь новых высот продуктивности.',
