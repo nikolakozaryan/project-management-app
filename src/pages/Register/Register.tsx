@@ -11,14 +11,15 @@ import { Link, Navigate } from 'react-router-dom';
 import FormInput from '../../components/common/FormInput/FormInput';
 import { BUTTONS } from '../../constants/HeaderButtonsConstants';
 import { DICTIONARY, DictionaryKeys, Languages } from '../../constants/Dictionary/Dictionary';
+import Loader from '../../components/common/Loader/Loader';
 
 const Register = () => {
   const methods = useForm<FormInputs>({ reValidateMode: 'onChange' });
   const errorMessage = useAppSelector((state) => state.signup.message);
-  const dispatch = useAppDispatch();
+  const isLoading = useAppSelector((state) => state.signup.loading);
   const lang = useAppSelector((state) => state.language.lang) as Languages;
   const isAuth = useAppSelector((state) => state.signin.login);
-  const isLoading = useAppSelector((state) => state.signin.loading);
+  const dispatch = useAppDispatch();
   const [submitAmount, setSubmitAmount] = useState(0);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const Register = () => {
   }, [errorMessage, isLoading, submitAmount]);
 
   if (isAuth) {
-    return <Navigate to="/home" />;
+    return <Navigate to="/dashboard" />;
   }
 
   const formSubmitHandler: SubmitHandler<FormInputs> = async (data, event) => {
@@ -39,6 +40,7 @@ const Register = () => {
 
   return (
     <section className={`${classes.register__section} section`}>
+      {isLoading ? <Loader /> : null}
       <div className={classes.register}>
         <h2 className={classes.register__heading}>{DICTIONARY.registration[lang]}</h2>
         {errorMessage ? <FormError value={errorMessage} /> : null}

@@ -10,16 +10,18 @@ import { BUTTONS } from '../../constants/HeaderButtonsConstants';
 import { FormInputs } from './types';
 import classes from './Login.module.scss';
 import { sendSigninData } from '../../features/signin/signinSlice';
+import Loader from '../../components/common/Loader/Loader';
 
 const Login = () => {
   const methods = useForm<FormInputs>({ reValidateMode: 'onChange' });
   const errorMessage = useAppSelector((state) => state.signin.message);
-  const dispatch = useAppDispatch();
-  const lang = useAppSelector((state) => state.language.lang) as Languages;
+  const isLoading = useAppSelector((state) => state.signin.loading);
   const isAuth = useAppSelector((state) => state.signin.login);
+  const lang = useAppSelector((state) => state.language.lang) as Languages;
+  const dispatch = useAppDispatch();
 
   if (isAuth) {
-    return <Navigate to="/home" />;
+    return <Navigate to="/dashboard" />;
   }
 
   const formSubmitHandler: SubmitHandler<FormInputs> = (data, event) => {
@@ -29,6 +31,7 @@ const Login = () => {
 
   return (
     <section className={`${classes.login__section} section`}>
+      {isLoading ? <Loader /> : null}
       <div className={classes.login}>
         <h2 className={classes.login__heading}>{DICTIONARY.signin[lang]}</h2>
         {errorMessage ? <FormError value={errorMessage} /> : null}
