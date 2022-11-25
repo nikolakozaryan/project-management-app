@@ -23,8 +23,10 @@ const Register = () => {
 
   useEffect(() => {
     const { login, password } = methods.getValues();
-    if (!errorMessage && !isLoading && submitAmount > 0)
+    if (!errorMessage && !isLoading && submitAmount > 0) {
       dispatch(sendSigninData({ login, password }));
+      setSubmitAmount(0);
+    }
   }, [errorMessage, isLoading, submitAmount]);
 
   if (isAuth) {
