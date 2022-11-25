@@ -1,10 +1,12 @@
 import { FC, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 import { useLocation } from 'react-router-dom';
-import { MyState, ParsedToken } from './types';
+import { ParsedToken } from './types';
+import { useLogout } from '../../../app/hooks';
 
-const AuthVerify: FC<MyState> = ({ logout }) => {
+const AuthVerify: FC = () => {
   const location = useLocation();
+  const logout = useLogout();
 
   useEffect(() => {
     const token = localStorage.getItem('user_token');

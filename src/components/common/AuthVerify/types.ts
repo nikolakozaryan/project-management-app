@@ -3,5 +3,3 @@ export type ParsedToken = {
   login: string;
   exp: number;
 };
-
-export type MyState = { logout: () => void };
