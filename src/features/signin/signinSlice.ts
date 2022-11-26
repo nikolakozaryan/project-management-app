@@ -46,6 +46,6 @@ export const signupSlice = createSlice({
 
 export const sendSigninData = createAsyncThunk('signin/send', signin);
 
-export const { resetSigninState: resetSignupState } = signupSlice.actions;
+export const { resetSigninState } = signupSlice.actions;
 
 export default signupSlice.reducer;
