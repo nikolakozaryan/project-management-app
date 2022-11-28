@@ -3,6 +3,7 @@ import dashboardSlice from '../features/dashboard/dashboardSlice';
 import languageSlice from '../features/language/languageSlice';
 import signinSlice from '../features/signin/signinSlice';
 import signupSlice from '../features/signup/signupSlice';
+import usersSlice from '../features/users/usersSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     signup: signupSlice,
     signin: signinSlice,
     dashboard: dashboardSlice,
+    users: usersSlice,
   },
 });
 
