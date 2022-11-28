@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { resetBoards } from '../features/dashboard/dashboardSlice';
 import { resetSigninState } from '../features/signin/signinSlice';
 import { resetSignupState } from '../features/signup/signupSlice';
 import type { RootState, AppDispatch } from './store';
@@ -37,5 +38,6 @@ export const useLogout = () => {
     localStorage.removeItem('user_login');
     dispatch(resetSignupState());
     dispatch(resetSigninState());
+    dispatch(resetBoards());
   };
 };
