@@ -9,28 +9,56 @@
   background: none;
   border: solid $font-second-color 0.05rem;
   cursor: pointer;
+  width: 100%;
   transition: 0.5s;
 
   &:hover {
-    background-color: $main-color-hover;
+    background: $main-color-hover;
   }
 }
 
+.red,
+.white,
 .blue {
-  background-color: $main-color;
-  width: 26rem;
+  width: 100%;
   height: 4.4rem;
-  color: white;
   transition: 0.5s;
+}
+
+.blue {
+  background: $main-color;
+  color: white;
+  border: none;
 
   &:hover {
-    background-color: $main-color-hover;
+    background: $main-color-hover;
+  }
+}
+
+.red {
+  background: $error-color;
+  color: white;
+  border: none;
+
+  &:hover {
+    background: $main-color-hover;
+  }
+}
+
+.white {
+  background: white;
+  color: $error-color;
+  border-color: $error-color;
+
+  &:hover {
+    color: white;
+    background: $error-color;
   }
 }
 
 .header {
   width: 14.5rem;
   height: 4rem;
-  background-color: $main-color;
+  background: $main-color;
   color: white;
 }

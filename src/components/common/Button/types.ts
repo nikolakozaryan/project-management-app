@@ -5,4 +5,6 @@ export type MyProps = {
   link: boolean;
   color?: string;
   header?: boolean;
+  formID?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
