@@ -2,6 +2,7 @@
 @import '../../common/style/abstracts/mixins';
 
 .login {
+  min-width: 32rem;
   border: .1rem solid $font-second-color;
   border-radius: .6rem;
   padding: 3rem;
