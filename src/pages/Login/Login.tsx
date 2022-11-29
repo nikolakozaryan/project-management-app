@@ -11,6 +11,7 @@ import { FormInputs } from './types';
 import classes from './Login.module.scss';
 import { sendSigninData } from '../../features/signin/signinSlice';
 import Loader from '../../components/common/Loader/Loader';
+import { fetchUsers } from '../../features/users/usersSlice';
 
 const Login = () => {
   const methods = useForm<FormInputs>({ reValidateMode: 'onChange' });
@@ -24,9 +25,10 @@ const Login = () => {
     return <Navigate to="/dashboard" />;
   }
 
-  const formSubmitHandler: SubmitHandler<FormInputs> = (data, event) => {
+  const formSubmitHandler: SubmitHandler<FormInputs> = async (data, event) => {
     event?.preventDefault();
-    dispatch(sendSigninData(data));
+    await dispatch(sendSigninData(data));
+    await dispatch(fetchUsers());
   };
 
   return (
