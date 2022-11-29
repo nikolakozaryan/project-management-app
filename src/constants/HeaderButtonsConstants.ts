@@ -5,4 +5,7 @@ export const BUTTONS = {
   signup_uc: 'signup_uc',
   signin_uc: 'signin_uc',
   home: 'home',
+  add: 'add',
+  cancel: 'cancel',
+  delete: 'delete',
 };

@@ -7,9 +7,61 @@ export const DICTIONARY = {
     ru: 'На главную',
     en: 'Home',
   },
+  delete: {
+    ru: 'Удалить',
+    en: 'Delete',
+  },
   signup: {
     ru: 'Регистрация',
     en: 'Sign Up',
+  },
+  deleteColumn: {
+    ru: 'колонку',
+    en: 'column',
+  },
+  deleteBoard: {
+    ru: 'доску',
+    en: 'board',
+  },
+  deleteTask: {
+    ru: 'задачу',
+    en: 'task',
+  },
+  addBoard: {
+    ru: 'Добавить',
+    en: 'Add',
+  },
+  deleteQuestion: {
+    ru: 'Вы уверены, что хотите безвозвратно удалить',
+    en: 'Are sure that you want to delete',
+  },
+  addBoardText: {
+    ru: 'Добавить доску',
+    en: 'Add board',
+  },
+  newBoard: {
+    ru: 'New Desk',
+    en: 'New Desk',
+  },
+  boards: {
+    ru: 'Доски',
+    en: 'Boards',
+  },
+  deskName: {
+    ru: 'Название доски',
+    en: 'Desk Name',
+  },
+  deskDescription: {
+    ru: 'Описание доски',
+    en: 'Desk description',
+  },
+  editBoard: {
+    ru: 'Редактировать доску',
+    en: 'Edit desk',
+  },
+  add: {
+    ru: 'Добавить',
+    en: 'Add',
   },
   signup_uc: {
     ru: 'ЗАРЕГИСТРИРОВАТЬСЯ',
@@ -70,6 +122,10 @@ export const DICTIONARY = {
   password: {
     ru: 'Пароль',
     en: 'Password',
+  },
+  cancel: {
+    ru: 'Отмена',
+    en: 'Cancel',
   },
 };
 

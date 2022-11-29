@@ -10,3 +10,8 @@ export interface IState {
   errorMessage: string;
   loading: boolean;
 }
+
+export interface IBoardWithId {
+  id: string;
+  data: IBoard;
+}
