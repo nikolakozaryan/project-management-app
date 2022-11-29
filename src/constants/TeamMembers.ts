@@ -11,8 +11,16 @@ type TeamMember = {
 };
 export const TEAM_MEMBERS: TeamMember[] = [
   {
+    name: { ru: 'Козырев Николай', en: 'Nikolay Kozyrev' },
+    done: {
+      ru: 'Пока ничего...',
+      en: 'Did nothing yet...',
+    },
+    link: 'https://github.com/nikolakozaryan',
+  },
+  {
     name: {
-      ru: 'Григорьев Яша',
+      ru: 'Григорьев Яков',
       en: 'Yakov Grigorev',
     },
     done: {
@@ -20,21 +28,5 @@ export const TEAM_MEMBERS: TeamMember[] = [
       en: 'Did nothing yet...',
     },
     link: 'https://github.com/YaGrig',
-  },
-  {
-    name: { ru: 'Козырев Николай', en: 'Nikolay Kozyrev' },
-    done: {
-      ru: 'Пока ничего...',
-      en: 'Did nothing yet...',
-    },
-    link: 'https://github.com/nikolakozaryan',
-  },
-  {
-    name: { ru: 'Козырев Николай', en: 'Nikolay Kozyrev' },
-    done: {
-      ru: 'Пока ничего...',
-      en: 'Did nothing yet...',
-    },
-    link: 'https://github.com/nikolakozaryan',
   },
 ];
