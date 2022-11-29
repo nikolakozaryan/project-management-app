@@ -11,10 +11,13 @@ const initialState: IState = {
 };
 
 export const deleteUserSlice = createSlice({
-  name: 'editUser',
+  name: 'deleteUser',
   initialState,
   reducers: {
     resetDeleteUserState: () => initialState,
+    resetDeleteUserError: (state) => {
+      state.errorMessage = '';
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(deleteCurrentUser.pending, (state) => {
@@ -25,6 +28,7 @@ export const deleteUserSlice = createSlice({
       state._id = _id;
       state.name = name;
       state.login = login;
+      state.errorMessage = 'success';
       state.loading = false;
     });
     builder.addCase(deleteCurrentUser.rejected, (state) => {
@@ -36,6 +40,6 @@ export const deleteUserSlice = createSlice({
 
 export const deleteCurrentUser = createAsyncThunk('deleteUser/deleteCurrentUser', deleteUser);
 
-export const { resetDeleteUserState } = deleteUserSlice.actions;
+export const { resetDeleteUserState, resetDeleteUserError } = deleteUserSlice.actions;
 
 export default deleteUserSlice.reducer;

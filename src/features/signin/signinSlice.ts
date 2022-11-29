@@ -10,11 +10,21 @@ const initialState: IState = {
   loading: false,
 };
 
+const resetState: IState = {
+  _id: '',
+  login: '',
+  message: '',
+  loading: false,
+};
+
 export const signupSlice = createSlice({
   name: 'signin',
   initialState,
   reducers: {
-    resetSigninState: () => initialState,
+    resetSigninState: () => resetState,
+    resetSigninError: (state) => {
+      state.message = '';
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(sendSigninData.pending, (state) => {
@@ -46,6 +56,6 @@ export const signupSlice = createSlice({
 
 export const sendSigninData = createAsyncThunk('signin/send', signin);
 
-export const { resetSigninState } = signupSlice.actions;
+export const { resetSigninState, resetSigninError } = signupSlice.actions;
 
 export default signupSlice.reducer;
