@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { resetBoards } from '../features/dashboard/dashboardSlice';
-import { resetDeleteUserState } from '../features/deleteUser/deleteUserSlice';
-import { resetEditUserState } from '../features/editUser/editUserSlice';
-import { resetSigninState } from '../features/signin/signinSlice';
-import { resetSignupState } from '../features/signup/signupSlice';
+import { clearLocalStorage } from '../common/functions/clearLocalStorage';
+import { clearReduxStore } from '../common/functions/clearReduxStore';
 import type { RootState, AppDispatch } from './store';
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
@@ -35,13 +32,13 @@ export const useInput = (name: string) => {
 export const useLogout = () => {
   const dispatch = useAppDispatch();
   return () => {
-    localStorage.removeItem('user_token');
-    localStorage.removeItem('user_id');
-    localStorage.removeItem('user_login');
-    dispatch(resetSignupState());
-    dispatch(resetSigninState());
-    dispatch(resetDeleteUserState());
-    dispatch(resetEditUserState());
-    dispatch(resetBoards());
+    clearLocalStorage();
+    clearReduxStore(dispatch);
   };
+};
+
+export const useCurrentUser = () => {
+  const _id = localStorage.getItem('user_id');
+  const user = useAppSelector((state) => state.users.users.find((user) => user._id === _id));
+  return user;
 };
