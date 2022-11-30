@@ -6,6 +6,7 @@ import Home from '../../../pages/Home/Home';
 import Login from '../../../pages/Login/Login';
 import NotFound from '../../../pages/NotFound/NotFound';
 import Register from '../../../pages/Register/Register';
+import Start from '../Start/Start';
 
 const Router = () => (
   <Routes>
@@ -14,6 +15,7 @@ const Router = () => (
     <Route path="dashboard" element={<Dashboard />} />
     <Route path="signin" element={<Login />} />
     <Route path="signup" element={<Register />} />
+    <Route path="start" element={<Start />} />
     <Route path="edit" element={<Edit />} />
     <Route path="*" element={<NotFound />} />
   </Routes>
