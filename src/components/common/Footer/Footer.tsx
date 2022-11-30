@@ -9,13 +9,14 @@ const Footer = () => {
   return (
     <div className={classes.container}>
       <div className={classes.content}>
-        <img
+        <a
           className={classes.logo}
-          width={'100px'}
-          height={'37px'}
-          src="../../home/rs_logo.svg"
-          alt="RS Logo"
-        />
+          href="https://rs.school/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img width="100" height="37" src="../../home/rs_logo.svg" alt="RS Logo" />
+        </a>
         <div className={classes.profiles}>
           {TEAM_MEMBERS.map((item, index) => (
             <GitProfile
