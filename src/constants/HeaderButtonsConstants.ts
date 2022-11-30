@@ -1,7 +1,7 @@
 export const BUTTONS = {
   signin: 'signin',
   signup: 'signup',
-  start: 'Start',
+  start: 'start',
   signup_uc: 'signup_uc',
   signin_uc: 'signin_uc',
   delete_user: 'delete_user',

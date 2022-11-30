@@ -71,7 +71,7 @@ export const DICTIONARY = {
     ru: 'ВОЙТИ',
     en: 'SIGN IN',
   },
-  Start: {
+  start: {
     ru: 'НАЧАТЬ',
     en: 'START',
   },
