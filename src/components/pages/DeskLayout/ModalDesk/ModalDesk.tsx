@@ -7,6 +7,7 @@ import { DICTIONARY, DictionaryKeys, Languages } from '../../../../constants/Dic
 import { createBoard } from '../../../../features/dashboard/dashboardSlice';
 import { editBoard } from '../../../../features/dashboard/dashboardSlice';
 import { MODAL_NEW_TYPES } from '../../../../constants/Modal';
+import UserSelect from '../../../common/userSelect/userSelect';
 
 const ModalDesk: React.FC<{
   type: string;
@@ -54,7 +55,7 @@ const ModalDesk: React.FC<{
           x
         </div>
       </div>
-
+      <UserSelect />
       <form onSubmit={handleSubmit(onSubmit)} id="form">
         <input className={classes.deskName} {...register('deskName')} type="text" />
         <input className={classes.deskDescription} {...register('deskDescription')} type="text" />

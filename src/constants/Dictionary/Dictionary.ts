@@ -134,6 +134,7 @@ export const DICTIONARY = {
   save_profile: {
     ru: 'СОХРАНИТЬ',
     en: 'SAVE',
+  },
   cancel: {
     ru: 'Отмена',
     en: 'Cancel',
