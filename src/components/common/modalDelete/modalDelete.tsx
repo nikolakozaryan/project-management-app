@@ -6,12 +6,10 @@ import { DICTIONARY, DictionaryKeys, Languages } from '../../../constants/Dictio
 import { removeBoard } from '../../../features/dashboard/dashboardSlice';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { MODAL_DELETE_TYPES } from '../../../constants/Modal';
+import { MyProps } from './types';
+import Overlay from '../Overlay/Overlay';
 
-const ModalDelete: React.FC<{
-  id: string;
-  type: string;
-  setmodal: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ id, type, setmodal }) => {
+const ModalDelete: React.FC<MyProps> = ({ id, type, setModal }) => {
   const dispatch = useAppDispatch();
   const lang: Languages = useAppSelector((state) => state.language.lang);
 
@@ -35,33 +33,31 @@ const ModalDelete: React.FC<{
   };
 
   return (
-    <div className={classes.container}>
-      <div className={classes.header}>
-        <h2>
+    <Overlay>
+      <div className={classes.container}>
+        <div onClick={() => setModal(false)} className={classes.exit} />
+        <h2 className={classes.heading}>
           {DICTIONARY.deleteQuestion[lang as Languages]}{' '}
           {DICTIONARY[type as DictionaryKeys][lang as Languages]}?
         </h2>
-        <div onClick={() => setmodal(false)} className={classes.exit}>
-          x
+        <div className={classes.buttons}>
+          <Button
+            type={BUTTONS.cancel as DictionaryKeys}
+            link={false}
+            onClick={() => setModal(false)}
+          />
+          <Button
+            type={BUTTONS.delete as DictionaryKeys}
+            link={false}
+            color={'red'}
+            onClick={() => {
+              setModal(false);
+              handleClick();
+            }}
+          />
         </div>
       </div>
-      <div className={classes.buttons}>
-        <Button
-          type={BUTTONS.cancel as DictionaryKeys}
-          link={false}
-          onClick={() => setmodal(false)}
-        />
-        <Button
-          type={BUTTONS.delete as DictionaryKeys}
-          link={false}
-          color={'red'}
-          onClick={() => {
-            setmodal(false);
-            handleClick();
-          }}
-        />
-      </div>
-    </div>
+    </Overlay>
   );
 };
 
