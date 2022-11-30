@@ -4,9 +4,9 @@ import { FormInputs } from './types';
 import classes from './Register.module.scss';
 import Button from '../../components/common/Button/Button';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { sendSignupData } from '../../features/signup/signupSlice';
+import { resetSignupError, sendSignupData } from '../../features/signup/signupSlice';
 import { sendSigninData } from '../../features/signin/signinSlice';
-import FormError from '../../components/common/FormError/FormError';
+import FormMessage from '../../components/common/FormMessage/FormMessage';
 import { Link, Navigate } from 'react-router-dom';
 import FormInput from '../../components/common/FormInput/FormInput';
 import { BUTTONS } from '../../constants/HeaderButtonsConstants';
@@ -16,19 +16,24 @@ import Loader from '../../components/common/Loader/Loader';
 const Register = () => {
   const methods = useForm<FormInputs>({ reValidateMode: 'onChange' });
   const errorMessage = useAppSelector((state) => state.signup.message);
-  const isLoading = useAppSelector((state) => state.signup.loading);
+  const isRegisterLoading = useAppSelector((state) => state.signup.loading);
+  const isLoginLoading = useAppSelector((state) => state.signin.loading);
   const lang = useAppSelector((state) => state.language.lang) as Languages;
   const isAuth = useAppSelector((state) => state.signin.login);
   const dispatch = useAppDispatch();
   const [submitAmount, setSubmitAmount] = useState(0);
 
   useEffect(() => {
+    dispatch(resetSignupError());
+  }, [dispatch]);
+
+  useEffect(() => {
     const { login, password } = methods.getValues();
-    if (!errorMessage && !isLoading && submitAmount > 0) {
+    if (!errorMessage && !isRegisterLoading && submitAmount > 0) {
       dispatch(sendSigninData({ login, password }));
       setSubmitAmount(0);
     }
-  }, [errorMessage, isLoading, submitAmount]);
+  }, [errorMessage, isRegisterLoading, submitAmount]);
 
   if (isAuth) {
     return <Navigate to="/dashboard" />;
@@ -42,10 +47,10 @@ const Register = () => {
 
   return (
     <section className={`${classes.register__section} section`}>
-      {isLoading ? <Loader /> : null}
+      {isRegisterLoading || isLoginLoading ? <Loader /> : null}
       <div className={classes.register}>
         <h2 className={classes.register__heading}>{DICTIONARY.registration[lang]}</h2>
-        {errorMessage ? <FormError value={errorMessage} /> : null}
+        {errorMessage ? <FormMessage value={errorMessage} type="failed" /> : null}
         <FormProvider {...methods}>
           <form
             onSubmit={methods.handleSubmit(formSubmitHandler)}

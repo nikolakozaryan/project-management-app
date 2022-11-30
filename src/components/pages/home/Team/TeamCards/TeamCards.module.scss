@@ -1,13 +1,19 @@
 @import '../../../../../common/style/abstracts/variables';
 
 .container {
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4rem;
   margin-bottom: 10rem;
 
   @media screen and (max-width: $large) {
-    align-items: center;
-    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: $large) {
     gap: 2rem;
   }
 }

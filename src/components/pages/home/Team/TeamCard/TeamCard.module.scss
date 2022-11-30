@@ -3,9 +3,10 @@
 
 .card {
   @include main-font;
-  width: 32rem;
-  height: 25rem;
-  border: 0.05rem solid $font-main-color;
+  max-width: 48rem;
+  width: 100%;
+  min-height: 25rem;
+  border: 0.05rem solid $font-second-color;
   border-radius: 1rem;
   padding: 2rem;
 

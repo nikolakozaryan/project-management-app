@@ -5,11 +5,11 @@
   @include main-font;
   text-align: center;
   margin: auto;
-  width: 100%;
   max-width: 100rem;
+  width: 100%;
 
-  @media screen and (max-width: $small) {
-    display: none;
+  @media screen and (max-width: $large) {
+    padding: 0 2rem;
   }
 
   .header {

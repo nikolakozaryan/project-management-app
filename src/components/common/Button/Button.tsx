@@ -15,7 +15,13 @@ const Button: React.FC<MyProps> = ({ type, link, color, header, formID, onClick 
       form={formID}
       className={[
         classes.container,
-        color === 'blue' ? classes.blue : '' || color === 'red' ? classes.red : '',
+        color === 'blue'
+          ? classes.blue
+          : '' || color === 'red'
+          ? classes.red
+          : '' || color === 'white'
+          ? classes.white
+          : '',
         header ? classes.header : '',
       ].join(' ')}
     >

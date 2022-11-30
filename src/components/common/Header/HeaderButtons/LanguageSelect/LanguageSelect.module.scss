@@ -3,6 +3,7 @@
 
 .container {
   @include main-font;
+  font-weight: 600;
   display: block;
   width: 6.5rem;
   height: 4rem;
@@ -13,5 +14,9 @@
 
   @media screen and (max-width: $medium) {
     display: none;
+  }
+
+  &:focus {
+    outline: none;
   }
 }

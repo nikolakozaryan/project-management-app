@@ -1,0 +1,44 @@
+@import '../../../common/style/abstracts/variables';
+@import '../../../common/style/abstracts/mixins';
+
+.failed,
+.success {
+  width: 100%;
+  height: 4rem;
+  border-radius: .4rem;
+  padding: 1rem 2.2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.failed {
+  background: $error-bg-color;
+
+  &__icon {
+    background: url('../../../../public/assets/icons/FormMessage/404.svg') center no-repeat;
+  }
+
+  &__message {
+    @include second-font($error-color)
+  }
+}
+
+.success {
+  background: $success-bg-color;
+
+  &__icon {
+    background: url('../../../../public//assets/icons/FormMessage/Success.svg') center no-repeat;
+  }
+
+  &__message {
+    @include second-font($success-color);
+    text-transform: capitalize;
+  }
+}

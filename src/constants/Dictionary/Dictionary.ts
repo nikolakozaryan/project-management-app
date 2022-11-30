@@ -77,7 +77,7 @@ export const DICTIONARY = {
   },
   HowToWork: {
     ru: 'Как работать с сервисом',
-    en: 'How to utilize ',
+    en: 'How to use',
   },
   ErrorPageHeader: {
     ru: 'Страница не найдена...',
@@ -123,6 +123,17 @@ export const DICTIONARY = {
     ru: 'Пароль',
     en: 'Password',
   },
+  edit_user: {
+    ru: 'Редактировать профиль',
+    en: 'Edit profile',
+  },
+  delete_user: {
+    ru: 'УДАЛИТЬ АККАУНТ',
+    en: 'DELETE PROFILE',
+  },
+  save_profile: {
+    ru: 'СОХРАНИТЬ',
+    en: 'SAVE',
   cancel: {
     ru: 'Отмена',
     en: 'Cancel',

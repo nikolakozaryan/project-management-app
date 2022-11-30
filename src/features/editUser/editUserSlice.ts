@@ -15,6 +15,9 @@ export const editUserSlice = createSlice({
   initialState,
   reducers: {
     resetEditUserState: () => initialState,
+    resetEditUserError: (state) => {
+      state.errorMessage = '';
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(editCurrentUser.pending, (state) => {
@@ -25,6 +28,7 @@ export const editUserSlice = createSlice({
       state._id = _id;
       state.name = name;
       state.login = login;
+      state.errorMessage = 'success';
       state.loading = false;
     });
     builder.addCase(editCurrentUser.rejected, (state, action) => {
@@ -42,6 +46,6 @@ export const editUserSlice = createSlice({
 
 export const editCurrentUser = createAsyncThunk('editUser/editCurrentUser', editUser);
 
-export const { resetEditUserState } = editUserSlice.actions;
+export const { resetEditUserState, resetEditUserError } = editUserSlice.actions;
 
 export default editUserSlice.reducer;
