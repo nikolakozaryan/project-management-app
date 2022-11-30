@@ -56,6 +56,18 @@
   }
 }
 
+.red {
+  background-color: $error-color;
+  width: 14.4rem;
+  height: 4.4rem;
+  color: white;
+  transition: 0.5s;
+
+  &:hover {
+    background-color: $main-color-hover;
+  }
+}
+
 .header {
   width: 14.5rem;
   height: 4rem;

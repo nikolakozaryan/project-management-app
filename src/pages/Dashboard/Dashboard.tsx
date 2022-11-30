@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Loader from '../../components/common/Loader/Loader';
 import { getBoardsList } from '../../features/dashboard/dashboardSlice';
+import DeskLayout from '../../components/pages/DeskLayout/DeskLayout';
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
@@ -13,10 +14,17 @@ const Dashboard = () => {
     if (!boards.length && message !== 'success') dispatch(getBoardsList());
   }, [boards.length, dispatch, message]);
 
+  useEffect(() => {
+    console.log(boards, 'change');
+  }, [boards]);
+
   return (
     <>
       {isLoading ? <Loader /> : null}
-      <div>Dashboard</div>;
+      <div>
+        <DeskLayout boards={boards} />
+      </div>
+      ;
     </>
   );
 };

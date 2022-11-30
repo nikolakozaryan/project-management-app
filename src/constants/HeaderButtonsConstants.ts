@@ -7,4 +7,7 @@ export const BUTTONS = {
   delete_user: 'delete_user',
   save_profile: 'save_profile',
   home: 'home',
+  add: 'add',
+  cancel: 'cancel',
+  delete: 'delete',
 };

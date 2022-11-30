@@ -4,7 +4,7 @@ export type MyProps = {
   type: DictionaryKeys;
   link: boolean;
   color?: string;
-  header?: boolean;
   formID?: string;
+  header?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
