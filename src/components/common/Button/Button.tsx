@@ -8,7 +8,7 @@ import { MyProps } from './types';
 const Button: React.FC<MyProps> = ({ type, link, color, header, formID, onClick }) => {
   const lang = useAppSelector((state) => state.language.lang) as Languages;
   const content = DICTIONARY[type][lang];
-  console.log(content, type, DICTIONARY[type]);
+
   const button = (
     <button
       onClick={onClick}
@@ -29,7 +29,7 @@ const Button: React.FC<MyProps> = ({ type, link, color, header, formID, onClick 
     </button>
   );
 
-  return <>{link ? <Link to={`/${type}`}>{button}</Link> : button}</>;
+  return link ? <Link to={`/${type}`}>{button}</Link> : button;
 };
 
 export default Button;
