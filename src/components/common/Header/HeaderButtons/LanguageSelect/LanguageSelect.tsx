@@ -22,12 +22,8 @@ const LanguageSelect = () => {
       name="language"
       defaultValue={lang}
     >
-      <option value={LANGUAGES.ru} selected={lang === LANGUAGES.ru}>
-        {LANGUAGES.ru.toLocaleUpperCase()}
-      </option>
-      <option value={LANGUAGES.en} selected={lang === LANGUAGES.en}>
-        {LANGUAGES.en.toLocaleUpperCase()}
-      </option>
+      <option value={LANGUAGES.ru}>{LANGUAGES.ru.toLocaleUpperCase()}</option>
+      <option value={LANGUAGES.en}>{LANGUAGES.en.toLocaleUpperCase()}</option>
     </select>
   );
 };
