@@ -1,22 +1,15 @@
-import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
-import { DICTIONARY, DictionaryKeys, Languages } from '../../../../constants/Dictionary/Dictionary';
-import { getBoardsList, removeBoard } from '../../../../features/dashboard/dashboardSlice';
-import { IBoard } from '../../../../features/dashboard/interface';
+import React, { useEffect, useState } from 'react';
+import { useAppSelector } from '../../../../app/hooks';
+import { DICTIONARY, Languages } from '../../../../constants/Dictionary/Dictionary';
 import classes from './Desk.module.scss';
-import { deleteBoard } from '../../../../features/dashboard/helpers';
+import { MyProps } from './types';
 
-const Desk: React.FC<{
-  edit: React.Dispatch<React.SetStateAction<boolean>>;
-  info?: IBoard;
-  changeId: React.Dispatch<React.SetStateAction<string>>;
-  setDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ edit, info, changeId, setDeleteModal }) => {
-  const [deskName, setDeskName] = React.useState('');
-  const [deskDescription, setDeskDescription] = React.useState('');
+const Desk: React.FC<MyProps> = ({ edit, info, changeId, setDeleteModal }) => {
+  const [deskName, setDeskName] = useState('');
+  const [deskDescription, setDeskDescription] = useState('');
   const lang: Languages = useAppSelector((state) => state.language.lang);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (info) {
       const nameAndDescription: { name: string; description: string } = JSON.parse(info.title);
       const name = nameAndDescription.name;
@@ -27,34 +20,32 @@ const Desk: React.FC<{
       setDeskName(DICTIONARY.deskName[lang as Languages]);
       setDeskDescription(DICTIONARY.deskDescription[lang as Languages]);
     }
-  }, [info]);
+  }, [info, lang]);
 
   return (
-    <div className={classes.container}>
-      <div className={classes.header}>
-        <h2>{deskName}</h2>
-
-        <img
-          onClick={() => {
-            changeId(info?._id as string);
-            edit(true);
-          }}
-          src="./assets/icons/deskLayout/pen.svg"
-          alt="asd"
-        />
+    <div className={classes.card}>
+      <div className={classes.card__content}>
+        <h2 className={classes.card__content__heading}>{deskName}</h2>
+        <p className={classes.card__content__description}>{deskDescription}</p>
       </div>
-      <div className={classes.description}>
-        <p>{deskDescription}</p>
-
-        <img
-          onClick={() => {
-            changeId(info?._id as string);
-            setDeleteModal(true);
-          }}
-          src="./assets/icons/deskLayout/garbage.svg"
-          alt="asd"
-        />
-      </div>
+      <img
+        className={classes.card__icon_edit}
+        onClick={() => {
+          changeId(info?._id as string);
+          edit(true);
+        }}
+        src="./assets/icons/deskLayout/pen.svg"
+        alt="edit icon"
+      />
+      <img
+        className={classes.card__icon_delete}
+        onClick={() => {
+          changeId(info?._id as string);
+          setDeleteModal(true);
+        }}
+        src="./assets/icons/deskLayout/garbage.svg"
+        alt="delete icon"
+      />
     </div>
   );
 };
