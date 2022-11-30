@@ -2,19 +2,18 @@
 
 .container {
   display: flex;
-  max-width: 100rem;
+  max-width: 110rem;
+  padding: 0 5rem;
   justify-content: space-between;
   margin: auto;
   margin-bottom: 10rem;
 
   @media screen and (max-width: $large) {
-    padding: 0 5rem;
     margin-bottom: 5rem;
   }
 
-  @media screen and (max-width: $medium) {
-    padding-left: 5rem;
-    padding-right: 5rem;
+  @media screen and (max-width: $small) {
+    padding: 0 2rem;
   }
 
   img {

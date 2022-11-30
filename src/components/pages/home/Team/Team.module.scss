@@ -5,10 +5,11 @@
   @include main-font;
   text-align: center;
   margin: auto;
-  max-width: 100rem;
+  max-width: 110rem;
+  padding: 0 5rem;
   width: 100%;
 
-  @media screen and (max-width: $large) {
+  @media screen and (max-width: $small) {
     padding: 0 2rem;
   }
 

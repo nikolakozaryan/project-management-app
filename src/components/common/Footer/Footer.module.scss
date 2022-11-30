@@ -12,18 +12,16 @@
 .content {
   @include main-font;
   width: 100%;
-  max-width: 100rem;
+  max-width: 110rem;
+  padding: 0 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  @media screen and (max-width: $large) {
-    padding: 0 2rem;
-  }
-
   @media screen and (max-width: $small) {
     justify-content: center;
     align-items: center;
+    padding: 0 2rem;
   }
 
   .profiles {

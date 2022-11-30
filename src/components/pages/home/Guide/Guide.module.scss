@@ -4,12 +4,12 @@
 .container {
   text-align: center;
   width: 100%;
-  max-width: 100rem;
+  max-width: 110rem;
+  padding: 0 5rem;
   margin: auto;
   margin-bottom: 10rem;
 
   @media screen and (max-width: $large) {
-    padding: 0 5rem;
     margin-bottom: 5rem;
   }
 

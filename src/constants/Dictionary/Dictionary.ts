@@ -60,8 +60,8 @@ export const DICTIONARY = {
     en: 'Edit desk',
   },
   add: {
-    ru: 'Добавить',
-    en: 'Add',
+    ru: 'ДОБАВИТЬ',
+    en: 'ADD',
   },
   signup_uc: {
     ru: 'ЗАРЕГИСТРИРОВАТЬСЯ',
@@ -138,6 +138,12 @@ export const DICTIONARY = {
   cancel: {
     ru: 'Отмена',
     en: 'Cancel',
+  },
+  title: { ru: 'Название', en: 'Title' },
+  description: { ru: 'Описание', en: 'Description' },
+  description_placeholder: {
+    ru: 'Описание (не более 150 символов)',
+    en: 'Description (no more than 150 characters)',
   },
 };
 

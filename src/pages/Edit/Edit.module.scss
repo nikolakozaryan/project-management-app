@@ -6,16 +6,15 @@
   border-radius: .6rem;
   padding: 3rem;
   transition: .5s;
-  min-width: 48rem;
+  max-width: 48rem;
+  width: 100%;
 
   @media (max-width: $small) {
-    min-width: auto;
+    min-width: 28rem;
     padding: 2rem;
   }
 
   @media (max-width: $extra-small) {
-    min-width: auto;
-    width: 30rem;
     padding: 1rem;
   }
 
@@ -24,6 +23,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 0 5rem;
+
+    @media (max-width: $small) {
+      padding: 0 2rem;
+    }
   }
 
   &__heading {
