@@ -1,4 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import boardSlice from '../features/board/boardSlice';
 import dashboardSlice from '../features/dashboard/dashboardSlice';
 import deleteUserSlice from '../features/deleteUser/deleteUserSlice';
 import editUserSlice from '../features/editUser/editUserSlice';
@@ -16,6 +17,7 @@ export const store = configureStore({
     users: usersSlice,
     deleteUser: deleteUserSlice,
     editUser: editUserSlice,
+    board: boardSlice,
   },
 });
 
