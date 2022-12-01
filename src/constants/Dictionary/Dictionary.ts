@@ -43,9 +43,17 @@ export const DICTIONARY = {
     ru: 'Добавить доску',
     en: 'Add board',
   },
+  addColumnText: {
+    ru: 'Добавить колонку',
+    en: 'Add column',
+  },
   newBoard: {
     ru: 'Новая доска',
     en: 'New Desk',
+  },
+  newColumn: {
+    ru: 'Новая колонка',
+    en: 'New column',
   },
   boards: {
     ru: 'Доски',
