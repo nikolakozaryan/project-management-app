@@ -4,15 +4,17 @@ import Button from '../Button/Button';
 import { BUTTONS } from '../../../constants/HeaderButtonsConstants';
 import { DICTIONARY, DictionaryKeys, Languages } from '../../../constants/Dictionary/Dictionary';
 import { removeBoard } from '../../../features/dashboard/dashboardSlice';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector, useBoardID } from '../../../app/hooks';
 import { MODAL_DELETE_TYPES } from '../../../constants/Modal';
 import { MyProps } from './types';
 import Overlay from '../Overlay/Overlay';
 import { deleteCurrentUser } from '../../../features/deleteUser/deleteUserSlice';
+import { deleteColumn } from '../../../features/board/boardSlice';
 
 const ModalDelete: React.FC<MyProps> = ({ id, type, setModal }) => {
   const dispatch = useAppDispatch();
   const lang: Languages = useAppSelector((state) => state.language.lang);
+  const boardId = useBoardID();
 
   const handleClick = () => {
     switch (type) {
@@ -25,7 +27,7 @@ const ModalDelete: React.FC<MyProps> = ({ id, type, setModal }) => {
         break;
       }
       case MODAL_DELETE_TYPES.deleteColumn: {
-        console.log(dispatch);
+        dispatch(deleteColumn({ boardId, columnId: id }));
         break;
       }
       case MODAL_DELETE_TYPES.deleteTask: {
