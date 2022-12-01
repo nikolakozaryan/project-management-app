@@ -27,6 +27,10 @@ export const DICTIONARY = {
     ru: 'задачу',
     en: 'task',
   },
+  deleteUser: {
+    ru: 'профиль',
+    en: 'profile',
+  },
   addBoard: {
     ru: 'Добавить',
     en: 'Add',

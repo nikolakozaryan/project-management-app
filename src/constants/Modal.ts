@@ -8,4 +8,5 @@ export const MODAL_DELETE_TYPES = {
   deleteColumn: 'deleteColumn',
   deleteBoard: 'deleteBoard',
   deleteTask: 'deleteTask',
+  deleteUser: 'deleteUser',
 };
