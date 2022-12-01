@@ -1,4 +1,3 @@
-@import '../../../common/style/abstracts/variables';
 @import '../../../common/style/abstracts/mixins';
 
 .container {
@@ -19,7 +18,6 @@
 
   .heading {
     @include h5;
-    max-width: 25.4rem;
     width: 100%;
   }
 

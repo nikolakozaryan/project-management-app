@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { MODAL_DELETE_TYPES } from '../../../constants/Modal';
 import { MyProps } from './types';
 import Overlay from '../Overlay/Overlay';
+import { deleteCurrentUser } from '../../../features/deleteUser/deleteUserSlice';
 
 const ModalDelete: React.FC<MyProps> = ({ id, type, setModal }) => {
   const dispatch = useAppDispatch();
@@ -17,6 +18,10 @@ const ModalDelete: React.FC<MyProps> = ({ id, type, setModal }) => {
     switch (type) {
       case MODAL_DELETE_TYPES.deleteBoard: {
         dispatch(removeBoard(id));
+        break;
+      }
+      case MODAL_DELETE_TYPES.deleteUser: {
+        dispatch(deleteCurrentUser(id));
         break;
       }
       case MODAL_DELETE_TYPES.deleteColumn: {
@@ -37,8 +42,7 @@ const ModalDelete: React.FC<MyProps> = ({ id, type, setModal }) => {
       <div className={classes.container}>
         <div onClick={() => setModal(false)} className={classes.exit} />
         <h2 className={classes.heading}>
-          {DICTIONARY.deleteQuestion[lang as Languages]}{' '}
-          {DICTIONARY[type as DictionaryKeys][lang as Languages]}?
+          {DICTIONARY.deleteQuestion[lang]} {DICTIONARY[type as DictionaryKeys][lang]}?
         </h2>
         <div className={classes.buttons}>
           <Button

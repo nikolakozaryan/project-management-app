@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector, useCurrentUser, useLogout } from '../../app/hooks';
@@ -8,11 +8,13 @@ import FormInput from '../../components/common/FormInput/FormInput';
 import Loader from '../../components/common/Loader/Loader';
 import { DICTIONARY, DictionaryKeys, Languages } from '../../constants/Dictionary/Dictionary';
 import { BUTTONS } from '../../constants/HeaderButtonsConstants';
-import { deleteCurrentUser, resetDeleteUserError } from '../../features/deleteUser/deleteUserSlice';
+import { resetDeleteUserError } from '../../features/deleteUser/deleteUserSlice';
 import { editCurrentUser, resetEditUserError } from '../../features/editUser/editUserSlice';
 import { fetchUsers } from '../../features/users/usersSlice';
 import classes from './Edit.module.scss';
 import { FormInputs } from './types';
+import ModalDelete from '../../components/common/modalDelete/modalDelete';
+import { MODAL_DELETE_TYPES } from '../../constants/Modal';
 
 const Edit = () => {
   const logout = useLogout();
@@ -26,6 +28,8 @@ const Edit = () => {
 
   const editErrorMessage = useAppSelector((state) => state.editUser.errorMessage);
   const deleteErrorMessage = useAppSelector((state) => state.deleteUser.errorMessage);
+  const userId = localStorage.getItem('user_id') as string;
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     dispatch(resetEditUserError());
@@ -51,11 +55,6 @@ const Edit = () => {
     await dispatch(fetchUsers());
   };
 
-  const deleteHandler = () => {
-    const userId = localStorage.getItem('user_id') as string;
-    dispatch(deleteCurrentUser(userId));
-  };
-
   const showFormMessage = (editMessage: string, deleteMessage: string) => {
     if (!editMessage && !deleteMessage) return null;
     const message = editMessage || deleteMessage;
@@ -69,6 +68,9 @@ const Edit = () => {
   return (
     <section className={`${classes.edit__section} section`}>
       {isLoading ? <Loader /> : null}
+      {showModal ? (
+        <ModalDelete id={userId} setModal={setShowModal} type={MODAL_DELETE_TYPES.deleteUser} />
+      ) : null}
       <div className={classes.edit}>
         <h2 className={classes.edit__heading}>{DICTIONARY.edit_user[lang]}</h2>
         {showFormMessage(editErrorMessage, deleteErrorMessage)}
@@ -78,25 +80,25 @@ const Edit = () => {
             onSubmit={methods.handleSubmit(formSubmitHandler)}
             className={classes.edit__form}
           >
-            <p className={classes.input__label}>
+            <div className={classes.input__label}>
               <span>{DICTIONARY.name[lang]}</span>
               <FormInput type="name" validate={true} />
-            </p>
-            <p className={classes.input__label}>
+            </div>
+            <div className={classes.input__label}>
               <span>{DICTIONARY.login[lang]}</span>
               <FormInput type="login" validate={true} />
-            </p>
-            <p className={classes.input__label}>
+            </div>
+            <div className={classes.input__label}>
               <span>{DICTIONARY.password[lang]}</span>
               <FormInput type="password" validate={true} />
-            </p>
+            </div>
           </form>
           <div className={classes.buttons}>
             <Button
               type={BUTTONS.delete_user as DictionaryKeys}
               link={false}
               color="white"
-              onClick={() => deleteHandler()}
+              onClick={() => setShowModal(true)}
             />
             <Button
               type={BUTTONS.save_profile as DictionaryKeys}
