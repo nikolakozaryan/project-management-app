@@ -1,5 +1,4 @@
-@import '../../../../common/style/abstracts/variables';
-@import '../../../../common/style/abstracts/mixins';
+@import '../../../common/style/abstracts/mixins';
 
 .container {
   width: 23.5rem;
@@ -21,4 +20,10 @@
   h3 {
     @include button-font($main-color);
   }
+}
+
+.icon {
+  width: 4rem;
+  height: 4rem;
+  background: url('../../../../public/assets/icons/deskLayout/plus.svg');
 }
