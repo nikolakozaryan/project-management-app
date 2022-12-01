@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { clearLocalStorage } from '../common/functions/clearLocalStorage';
 import { clearReduxStore } from '../common/functions/clearReduxStore';
 import type { RootState, AppDispatch } from './store';
@@ -41,4 +42,10 @@ export const useCurrentUser = () => {
   const _id = localStorage.getItem('user_id');
   const user = useAppSelector((state) => state.users.users.find((user) => user._id === _id));
   return user;
+};
+
+export const useBoardID = () => {
+  const { pathname } = useLocation();
+  const boardId = pathname.split('/').at(-1);
+  return boardId || '';
 };
