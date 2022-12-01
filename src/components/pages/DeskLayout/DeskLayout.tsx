@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './DeskLayout.module.scss';
 import Desk from './Desk/Desk';
 import ModalDesk from './ModalDesk/ModalDesk';
@@ -11,45 +11,33 @@ import { useAppSelector } from '../../../app/hooks';
 
 const DeskLayout: React.FC<{ boards: IBoard[] }> = ({ boards }) => {
   const lang: string = useAppSelector((state) => state.language.lang);
-  const [isModalAdd, setIsModalAdd] = React.useState(false);
-  const [isModalEdit, setIsModalEdit] = React.useState(false);
-  const [isModalDelete, setIsModalDelete] = React.useState(false);
-  const [id, setId] = React.useState('');
+  const [isModalAdd, setIsModalAdd] = useState(false);
+  const [isModalEdit, setIsModalEdit] = useState(false);
+  const [isModalDelete, setIsModalDelete] = useState(false);
+  const [id, setId] = useState('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     isModalAdd
       ? (document.body.style.overflow = 'hidden')
       : (document.body.style.overflow = 'visible');
   }, [isModalAdd]);
 
-  React.useEffect(() => {
-    console.log('here', boards);
-  }, [boards]);
-
   return (
-    <>
-      <div
-        onClick={() => {
-          setIsModalAdd(false);
-          setIsModalEdit(false);
-          setIsModalDelete(false);
-        }}
-        className={isModalAdd || isModalEdit || isModalDelete ? classes.shadowContaner : ''}
-      ></div>
+    <section className={`${classes.dashboard} section`}>
       {isModalAdd && <ModalDesk setModal={setIsModalAdd} type={MODAL_NEW_TYPES.newBoard} id={id} />}
       {isModalEdit && (
         <ModalDesk setModal={setIsModalEdit} type={MODAL_NEW_TYPES.editBoard} id={id} />
       )}
       {isModalDelete && (
-        <ModalDelete type={MODAL_DELETE_TYPES.deleteBoard} id={id} setmodal={setIsModalDelete} />
+        <ModalDelete type={MODAL_DELETE_TYPES.deleteBoard} id={id} setModal={setIsModalDelete} />
       )}
 
-      <div className={classes.container}>
-        <h1>{DICTIONARY.boards[lang as Languages]}</h1>
-        <div className={classes.layout}>
-          {boards.map((item) => {
-            console.log(item, 'item');
-            return (
+      <div className={classes.dashboard__container}>
+        <h2 className={classes.dashboard__heading}>{DICTIONARY.boards[lang as Languages]}</h2>
+        <div className={classes.boards__container}>
+          <div className={classes.boards}>
+            <NewDesk setIsModalAdd={setIsModalAdd} />
+            {boards.map((item) => (
               <Desk
                 edit={setIsModalEdit}
                 info={item}
@@ -57,12 +45,11 @@ const DeskLayout: React.FC<{ boards: IBoard[] }> = ({ boards }) => {
                 changeId={setId}
                 setDeleteModal={setIsModalDelete}
               />
-            );
-          })}
-          <NewDesk setIsModalAdd={setIsModalAdd} />
+            ))}
+          </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

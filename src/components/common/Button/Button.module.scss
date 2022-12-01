@@ -23,6 +23,10 @@
   width: 100%;
   height: 4.4rem;
   transition: 0.5s;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .blue {
@@ -30,7 +34,8 @@
   color: white;
   border: none;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: $main-color-hover;
   }
 }
@@ -40,8 +45,9 @@
   color: white;
   border: none;
 
-  &:hover {
-    background: $main-color-hover;
+  &:hover,
+  &:focus {
+    background: #F38989;
   }
 }
 
@@ -50,21 +56,10 @@
   color: $error-color;
   border-color: $error-color;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: white;
     background: $error-color;
-  }
-}
-
-.red {
-  background-color: $error-color;
-  width: 14.4rem;
-  height: 4.4rem;
-  color: white;
-  transition: 0.5s;
-
-  &:hover {
-    background-color: $main-color-hover;
   }
 }
 

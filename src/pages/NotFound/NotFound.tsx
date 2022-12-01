@@ -10,7 +10,7 @@ const NotFound = () => {
         <h1 className={classes.description__heading}>{DICTIONARY.ErrorPageHeader[lang]} </h1>
         <p className={classes.description__message}>{DICTIONARY.ErrorPageDescription[lang]}</p>
       </div>
-      <img src="../errorPage/404.svg" alt="404" />
+      <img src="../assets/images/ErrorPage/404.png" alt="404" />
     </section>
   );
 };

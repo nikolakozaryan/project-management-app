@@ -1,15 +1,24 @@
+@import '../../../../common/style/abstracts/variables';
+@import '../../../../common/style/abstracts/mixins';
+
 .container {
-  width: 255px;
-  height: 150px;
+  width: 23.5rem;
+  height: 15rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 1.2rem;
+  border: 0.1rem dashed $main-color;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: .5s;
 
-  border: 1px dashed #5f96e9;
-  border-radius: 4px;
+  &:hover {
+    background: white;
+  }
 
-  color: #5f96e9;
-  font-size: 16px;
+  h3 {
+    @include button-font($main-color);
+  }
 }

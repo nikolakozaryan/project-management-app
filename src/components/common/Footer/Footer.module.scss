@@ -6,27 +6,28 @@
   background: $header-bg-color;
   display: flex;
   justify-content: center;
+  align-items: center
 }
 
 .content {
   @include main-font;
-  height: 10rem;
   width: 100%;
-  max-width: 120rem;
+  max-width: 110rem;
+  padding: 0 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4rem 10rem;
 
   @media screen and (max-width: $small) {
     justify-content: center;
     align-items: center;
+    padding: 0 2rem;
   }
 
   .profiles {
     display: flex;
     width: 100%;
-    max-width: 51.5rem;
+    max-width: fit-content;
     justify-content: center;
     align-items: center;
     gap: 5rem;
@@ -43,10 +44,6 @@
   }
 
   .logo {
-    @media screen and (max-width: $medium) {
-      display: none;
-    }
-
     @media screen and (max-width: $small) {
       display: block;
     }

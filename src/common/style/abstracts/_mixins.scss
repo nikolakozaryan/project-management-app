@@ -1,3 +1,5 @@
+@import './variables';
+
 @mixin font($s, $lh, $w, $c) {
   font-size: $s;
   line-height: $lh;

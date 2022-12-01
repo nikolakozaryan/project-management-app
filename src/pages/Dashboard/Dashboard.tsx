@@ -14,17 +14,10 @@ const Dashboard = () => {
     if (!boards.length && message !== 'success') dispatch(getBoardsList());
   }, [boards.length, dispatch, message]);
 
-  useEffect(() => {
-    console.log(boards, 'change');
-  }, [boards]);
-
   return (
     <>
       {isLoading ? <Loader /> : null}
-      <div>
-        <DeskLayout boards={boards} />
-      </div>
-      ;
+      <DeskLayout boards={boards} />
     </>
   );
 };

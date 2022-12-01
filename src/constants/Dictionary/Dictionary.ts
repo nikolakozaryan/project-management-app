@@ -40,7 +40,7 @@ export const DICTIONARY = {
     en: 'Add board',
   },
   newBoard: {
-    ru: 'New Desk',
+    ru: 'Новая доска',
     en: 'New Desk',
   },
   boards: {
@@ -60,8 +60,8 @@ export const DICTIONARY = {
     en: 'Edit desk',
   },
   add: {
-    ru: 'Добавить',
-    en: 'Add',
+    ru: 'ДОБАВИТЬ',
+    en: 'ADD',
   },
   signup_uc: {
     ru: 'ЗАРЕГИСТРИРОВАТЬСЯ',
@@ -71,7 +71,7 @@ export const DICTIONARY = {
     ru: 'ВОЙТИ',
     en: 'SIGN IN',
   },
-  Start: {
+  start: {
     ru: 'НАЧАТЬ',
     en: 'START',
   },
@@ -138,6 +138,12 @@ export const DICTIONARY = {
   cancel: {
     ru: 'Отмена',
     en: 'Cancel',
+  },
+  title: { ru: 'Название', en: 'Title' },
+  description: { ru: 'Описание', en: 'Description' },
+  description_placeholder: {
+    ru: 'Описание (не более 150 символов)',
+    en: 'Description (no more than 150 characters)',
   },
 };
 

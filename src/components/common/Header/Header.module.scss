@@ -10,19 +10,15 @@
 }
 
 .header {
-  max-width: 120rem;
+  max-width: 110rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10rem;
+  padding: 0 5rem;
   margin: 2rem auto;
   z-index: inherit;
 
   @media screen and (max-width: $small) {
-    padding: 0 5rem;
-  }
-
-  @media screen and (max-width: $extra-small) {
     padding: 0 2rem;
   }
 }
