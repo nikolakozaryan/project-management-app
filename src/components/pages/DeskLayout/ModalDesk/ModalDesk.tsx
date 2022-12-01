@@ -33,6 +33,7 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
     const name = watch('deskName');
     const description = watch('deskDescription');
     const title = { name, description };
+
     switch (type) {
       case MODAL_NEW_TYPES.newBoard: {
         dispatch(createBoard({ title: JSON.stringify(title), owner: userId, users: [] }));
@@ -53,6 +54,7 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
       default:
         return;
     }
+
     setModal(false);
   };
 

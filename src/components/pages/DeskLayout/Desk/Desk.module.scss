@@ -42,6 +42,12 @@
   &__icon_delete {
     position: absolute;
     right: 2.2rem;
+    padding: .2rem;
+    transition: .3s;
+
+    &:hover {
+      transform: scale(1.3);
+    }
   }
 
   &__icon_edit {
@@ -50,15 +56,5 @@
 
   &__icon_delete {
     bottom: 2.2rem;
-  }
-
-  .description {
-    height: 65%;
-
-    img {
-      position: absolute;
-      right: 0px;
-      bottom: 0px;
-    }
   }
 }

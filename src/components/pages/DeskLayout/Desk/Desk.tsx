@@ -22,6 +22,12 @@ const Desk: React.FC<MyProps> = ({ edit, info, changeId, setDeleteModal }) => {
     }
   }, [info, lang]);
 
+  const handleClick = (e: React.MouseEvent, type: string) => {
+    e.stopPropagation();
+    changeId(info?._id as string);
+    type === 'edit' ? edit(true) : setDeleteModal(true);
+  };
+
   return (
     <div className={classes.card}>
       <div className={classes.card__content}>
@@ -30,18 +36,16 @@ const Desk: React.FC<MyProps> = ({ edit, info, changeId, setDeleteModal }) => {
       </div>
       <img
         className={classes.card__icon_edit}
-        onClick={() => {
-          changeId(info?._id as string);
-          edit(true);
+        onClick={(e) => {
+          handleClick(e, 'edit');
         }}
         src="./assets/icons/deskLayout/pen.svg"
         alt="edit icon"
       />
       <img
         className={classes.card__icon_delete}
-        onClick={() => {
-          changeId(info?._id as string);
-          setDeleteModal(true);
+        onClick={(e) => {
+          handleClick(e, 'delete');
         }}
         src="./assets/icons/deskLayout/garbage.svg"
         alt="delete icon"

@@ -90,18 +90,16 @@
 
   &::-webkit-scrollbar {
     position: absolute;
-    top: 0;
-    right: 0;
     width: .5rem;
   }
 
   &::-webkit-scrollbar-track {
-    background: #bbbbbb;
+    background: white;
     border-radius: .25rem;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #dadada;
+    background: $main-color-hover;
     border-radius: .25rem;
   }
 }

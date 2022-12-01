@@ -32,26 +32,28 @@
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  gap: 2rem;
+  gap: 2rem 1.5rem;
+
+  @media screen and (max-width: $small) {
+    justify-content: center;
+  }
 
   &__container {
     position: relative;
-    overflow-y: auto;
+    overflow-y: overlay;
 
     &::-webkit-scrollbar {
       position: absolute;
-      top: 0;
-      right: 0;
       width: .5rem;
     }
 
     &::-webkit-scrollbar-track {
-      background: #bbbbbb;
+      background: white;
       border-radius: .25rem;
     }
 
     &::-webkit-scrollbar-thumb {
-      background: #dadada;
+      background: $main-color-hover;
       border-radius: .25rem;
     }
   }

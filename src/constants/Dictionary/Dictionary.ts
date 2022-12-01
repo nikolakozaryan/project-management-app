@@ -40,7 +40,7 @@ export const DICTIONARY = {
     en: 'Add board',
   },
   newBoard: {
-    ru: 'New Desk',
+    ru: 'Новая доска',
     en: 'New Desk',
   },
   boards: {
