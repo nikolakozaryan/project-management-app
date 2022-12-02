@@ -53,7 +53,7 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
         break;
       }
       case MODAL_NEW_TYPES.newColumn: {
-        dispatch(createColumn({ boardId: id, order: columnsAmount, title: name }));
+        dispatch(createColumn({ boardId: id, order: columnsAmount + 1, title: name }));
         break;
       }
       case MODAL_NEW_TYPES.newTask: {
