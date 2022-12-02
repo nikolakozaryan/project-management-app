@@ -5,8 +5,7 @@ export interface IColumn {
   boardId: string;
 }
 
-export interface ITask {
-  _id: string;
+export interface ICreateTask {
   title: string;
   order: number;
   boardId: string;
@@ -14,6 +13,10 @@ export interface ITask {
   description: string;
   userId: string;
   users: string[];
+}
+
+export interface ITask extends ICreateTask {
+  _id: string;
 }
 
 export interface IState {

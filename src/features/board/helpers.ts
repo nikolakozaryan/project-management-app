@@ -2,6 +2,7 @@ import { API_URL } from '../../constants/API';
 import axios, { AxiosError } from 'axios';
 import {
   IColumnCreateData,
+  ICreateTask,
   Identificators,
   IEditColumnData,
   IEditColumnOrderData,
@@ -82,6 +83,42 @@ export const updateColumnsOrder = (data: IEditColumnOrderData[]) => {
     .patch(URL, data, {
       headers: { Authorization: `Bearer ${token}` },
     })
+    .then(
+      (resp) => resp.data,
+      (err: AxiosError) => Promise.reject(err.response?.data)
+    );
+};
+
+export const getBoardTasks = (boardId: string) => {
+  const token = localStorage.getItem('user_token');
+
+  const URL = `${API_URL}/tasksSet/${boardId}`;
+
+  return axios
+    .get(URL, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(
+      (resp) => resp.data,
+      (err: AxiosError) => Promise.reject(err.response?.data)
+    );
+};
+
+export const createNewTask = (data: ICreateTask) => {
+  const { boardId, columnId } = data;
+  const { title, order, description, userId, users } = data;
+  const token = localStorage.getItem('user_token');
+
+  const URL = `${API_URL}/boards/${boardId}/columns/${columnId}/tasks`;
+
+  return axios
+    .post(
+      URL,
+      { title, order, description, userId, users },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
     .then(
       (resp) => resp.data,
       (err: AxiosError) => Promise.reject(err.response?.data)

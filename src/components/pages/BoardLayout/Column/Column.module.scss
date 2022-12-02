@@ -3,7 +3,10 @@
 .column {
   position: relative;
   width: 23.5rem;
-  max-height: 100%;
+  min-height: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: white;
   box-shadow: 0 .4rem 0.6rem #b7c8e040;
   border-radius: .4rem;

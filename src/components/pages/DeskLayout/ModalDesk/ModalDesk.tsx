@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import classes from './ModalDesk.module.scss';
 import { useForm } from 'react-hook-form';
 import Button from '../../../common/Button/Button';
-import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
+import { useAppDispatch, useAppSelector, useBoardID } from '../../../../app/hooks';
 import { DICTIONARY, DictionaryKeys, Languages } from '../../../../constants/Dictionary/Dictionary';
 import { createBoard } from '../../../../features/dashboard/dashboardSlice';
 import { editBoard } from '../../../../features/dashboard/dashboardSlice';
@@ -10,9 +10,10 @@ import { MODAL_NEW_TYPES } from '../../../../constants/Modal';
 import UserSelect from '../../../common/userSelect/userSelect';
 import Overlay from '../../../common/Overlay/Overlay';
 import { BoardContent, MyProps } from './types';
-import { createColumn } from '../../../../features/board/boardSlice';
+import { createColumn, createTask } from '../../../../features/board/boardSlice';
 
 const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
+  const boardId = useBoardID();
   const userId = localStorage.getItem('user_id') as string;
   const lang: Languages = useAppSelector((state) => state.language.lang);
   const dispatch = useAppDispatch();
@@ -59,6 +60,17 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
         break;
       }
       case MODAL_NEW_TYPES.newTask: {
+        dispatch(
+          createTask({
+            userId,
+            description,
+            boardId,
+            columnId: id,
+            title: name,
+            order: 0,
+            users: [],
+          })
+        );
         break;
       }
       default:

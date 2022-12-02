@@ -1,12 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   createNewColumn,
+  createNewTask,
   deleteOneColumn,
   editOneColumn,
+  getBoardTasks,
   getColumnsList,
   updateColumnsOrder,
 } from './helpers';
-import { IColumn, IState } from './interface';
+import { IColumn, IState, ITask } from './interface';
 
 const initialState: IState = {
   columns: [],
@@ -19,7 +21,10 @@ export const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
-    resetColumns: () => initialState,
+    resetState: () => initialState,
+    stopLoading: (state) => {
+      state.loading = false;
+    },
   },
   extraReducers: (builder) => {
     //GET COLUMNS
@@ -30,7 +35,6 @@ export const boardSlice = createSlice({
       const sortedColumns = action.payload.sort((a, b) => a.order - b.order);
       state.columns = sortedColumns;
       state.errorMessage = 'success';
-      state.loading = false;
     });
     builder.addCase(getColumns.rejected, (state) => {
       state.errorMessage = 'Server error. Try later, please.';
@@ -67,26 +71,18 @@ export const boardSlice = createSlice({
     });
 
     //EDIT COLUMN
-    builder.addCase(editColumn.pending, (state) => {
-      state.loading = true;
-    });
     builder.addCase(editColumn.fulfilled, (state, action: PayloadAction<IColumn>) => {
       state.columns = [
         ...state.columns.filter((column) => column._id !== action.payload._id),
         action.payload,
       ].sort((a, b) => a.order - b.order);
       state.errorMessage = 'success';
-      state.loading = false;
     });
     builder.addCase(editColumn.rejected, (state, action) => {
       state.errorMessage = action.error.message || 'Server error. Try later, please.';
-      state.loading = false;
     });
 
     //EDIT COLUMNS ORDER
-    builder.addCase(editColumnsOrder.pending, (state) => {
-      state.loading = true;
-    });
     builder.addCase(editColumnsOrder.fulfilled, (state, action: PayloadAction<IColumn[]>) => {
       const updatedColumns = action.payload;
       const borderId = updatedColumns[0].boardId;
@@ -94,9 +90,37 @@ export const boardSlice = createSlice({
 
       state.columns = [...filteredColumns, ...updatedColumns];
       state.errorMessage = 'success';
-      state.loading = false;
     });
     builder.addCase(editColumnsOrder.rejected, (state, action) => {
+      state.errorMessage = action.error.message || 'Server error. Try later, please.';
+    });
+
+    //GET BOARD TASKS
+    builder.addCase(getTasks.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getTasks.fulfilled, (state, action: PayloadAction<ITask[]>) => {
+      state.tasks = action.payload;
+
+      state.errorMessage = 'success';
+      state.loading = false;
+    });
+    builder.addCase(getTasks.rejected, (state, action) => {
+      state.errorMessage = action.error.message || 'Server error. Try later, please.';
+      state.loading = false;
+    });
+
+    //CREATE TASK
+    builder.addCase(createTask.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(createTask.fulfilled, (state, action: PayloadAction<ITask>) => {
+      state.tasks = [...state.tasks, action.payload];
+
+      state.errorMessage = 'success';
+      state.loading = false;
+    });
+    builder.addCase(createTask.rejected, (state, action) => {
       state.errorMessage = action.error.message || 'Server error. Try later, please.';
       state.loading = false;
     });
@@ -108,7 +132,9 @@ export const createColumn = createAsyncThunk('board/createColumn', createNewColu
 export const deleteColumn = createAsyncThunk('board/deleteColumn', deleteOneColumn);
 export const editColumn = createAsyncThunk('board/editColumn', editOneColumn);
 export const editColumnsOrder = createAsyncThunk('board/editColumnsOrder', updateColumnsOrder);
+export const getTasks = createAsyncThunk('board/getTasks', getBoardTasks);
+export const createTask = createAsyncThunk('board/createTask', createNewTask);
 
-export const { resetColumns } = boardSlice.actions;
+export const { resetState } = boardSlice.actions;
 
 export default boardSlice.reducer;
