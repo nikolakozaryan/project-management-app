@@ -1,5 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { createNewColumn, deleteOneColumn, editOneColumn, getColumnsList } from './helpers';
+import {
+  changeColumnsList,
+  createNewColumn,
+  deleteOneColumn,
+  editOneColumn,
+  getColumnsList,
+} from './helpers';
 import { IColumn, IState } from './interface';
 
 const initialState: IState = {
@@ -76,6 +82,20 @@ export const boardSlice = createSlice({
       state.errorMessage = action.error.message || 'Server error. Try later, please.';
       state.loading = false;
     });
+
+    //CHANGE ALL COLUMNS
+    builder.addCase(changeAllColumns.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(changeAllColumns.fulfilled, (state, action: PayloadAction<IColumn[]>) => {
+      state.columns = action.payload;
+      state.errorMessage = 'success';
+      state.loading = false;
+    });
+    builder.addCase(changeAllColumns.rejected, (state, action) => {
+      state.errorMessage = action.error.message || 'Server error. Try later, please.';
+      state.loading = false;
+    });
   },
 });
 
@@ -83,6 +103,7 @@ export const getColumns = createAsyncThunk('board/getColumns', getColumnsList);
 export const createColumn = createAsyncThunk('board/createColumn', createNewColumn);
 export const deleteColumn = createAsyncThunk('board/deleteColumn', deleteOneColumn);
 export const editColumn = createAsyncThunk('board/editColumn', editOneColumn);
+export const changeAllColumns = createAsyncThunk('board/changeAllColumns', changeColumnsList);
 
 export const { resetColumns } = boardSlice.actions;
 

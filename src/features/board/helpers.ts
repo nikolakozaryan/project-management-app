@@ -11,7 +11,26 @@ export const getColumnsList = (boardId: string) => {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then(
-      (resp) => resp.data,
+      (resp) => {
+        console.log(resp, 'resp');
+        return resp.data;
+      },
+      (err: AxiosError) => Promise.reject(err.response?.data)
+    );
+};
+export const changeColumnsList = (id: string) => {
+  const token = localStorage.getItem('user_token');
+  const URL = `${API_URL}/columnsSet?userId=${id}`;
+
+  return axios
+    .patch(URL, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(
+      (resp) => {
+        console.log(resp, 'resp');
+        return resp.data;
+      },
       (err: AxiosError) => Promise.reject(err.response?.data)
     );
 };

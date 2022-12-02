@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { MyProps } from './types';
 import classes from './CurrentBoard.module.scss';
 import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
-import { getColumns } from '../../../../features/board/boardSlice';
+import { changeAllColumns, getColumns } from '../../../../features/board/boardSlice';
 import NewItem from '../../../common/NewItem/NewItem';
 import ModalDesk from '../../DeskLayout/ModalDesk/ModalDesk';
 import Column from '../Column/Column';
@@ -35,8 +35,11 @@ const CurrentBoard: FC<MyProps> = ({ id }) => {
     const newBoardIds = allColumns.map((item) => item._id);
     newBoardIds.splice(source.index, 1);
     newBoardIds.splice(destination.index, 0, draggableId);
-
-    console.log(newBoardIds);
+    const newColumn = newBoardIds
+      .map((item) => allColumns.filter((column) => column._id === item))
+      .flat(1);
+    console.log(newColumn);
+    setAllColumns(newColumn);
   };
 
   return (
@@ -51,7 +54,7 @@ const CurrentBoard: FC<MyProps> = ({ id }) => {
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
-                {columns.map((column, index) => (
+                {allColumns.map((column, index) => (
                   <Column
                     key={column._id}
                     title={column.title}
