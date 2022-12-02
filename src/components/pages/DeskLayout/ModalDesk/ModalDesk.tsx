@@ -23,22 +23,9 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
     state.dashboard.boards.find((board) => board._id === id)
   );
 
-  const columnMaxOrder = useAppSelector((state) => {
-    const borderColumns = state.board.columns.filter((column) => column.boardId === id);
-    const length = borderColumns.length;
-    switch (length) {
-      case 0:
-        return 0;
-        break;
-      case 1:
-        return borderColumns[0].order;
-        break;
-      default:
-        const sortedByOrder = borderColumns.sort((a, b) => b.order - a.order);
-        const maxOrder = sortedByOrder[0].order;
-        return maxOrder;
-    }
-  });
+  const columnMaxOrder = useAppSelector(
+    (state) => state.board.columns.filter((column) => column.boardId === id).length
+  );
 
   useEffect(() => {
     if (boardData && isEdit) {

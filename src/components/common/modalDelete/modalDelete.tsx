@@ -9,14 +9,17 @@ import { MODAL_DELETE_TYPES } from '../../../constants/Modal';
 import { MyProps } from './types';
 import Overlay from '../Overlay/Overlay';
 import { deleteCurrentUser } from '../../../features/deleteUser/deleteUserSlice';
-import { deleteColumn } from '../../../features/board/boardSlice';
+import { deleteColumn, editColumnsOrder } from '../../../features/board/boardSlice';
 
 const ModalDelete: React.FC<MyProps> = ({ id, type, setModal }) => {
   const dispatch = useAppDispatch();
   const lang: Languages = useAppSelector((state) => state.language.lang);
   const boardId = useBoardID();
+  const boardColumns = useAppSelector((state) =>
+    state.board.columns.filter((column) => column.boardId === boardId)
+  );
 
-  const handleClick = () => {
+  const handleClick = async () => {
     switch (type) {
       case MODAL_DELETE_TYPES.deleteBoard: {
         dispatch(removeBoard(id));
@@ -27,11 +30,14 @@ const ModalDelete: React.FC<MyProps> = ({ id, type, setModal }) => {
         break;
       }
       case MODAL_DELETE_TYPES.deleteColumn: {
-        dispatch(deleteColumn({ boardId, columnId: id }));
+        await dispatch(deleteColumn({ boardId, columnId: id }));
+        const columnsToEdit = boardColumns
+          .filter((column) => column._id !== id)
+          .map((column, index) => ({ _id: column._id, order: index + 1 }));
+        if (columnsToEdit.length) dispatch(editColumnsOrder(columnsToEdit));
         break;
       }
       case MODAL_DELETE_TYPES.deleteTask: {
-        console.log(dispatch);
         break;
       }
       default:
