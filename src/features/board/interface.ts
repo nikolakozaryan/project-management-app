@@ -38,3 +38,8 @@ export interface IEditColumnData extends Identificators {
   title: string;
   order: number;
 }
+
+export interface IEditColumnOrderData {
+  order: number;
+  _id: string;
+}

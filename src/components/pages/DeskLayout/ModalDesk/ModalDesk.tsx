@@ -23,7 +23,9 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
     state.dashboard.boards.find((board) => board._id === id)
   );
 
-  const columnsAmount = useAppSelector((state) => state.board.columns.length);
+  const columnMaxOrder = useAppSelector(
+    (state) => state.board.columns.filter((column) => column.boardId === id).length
+  );
 
   useEffect(() => {
     if (boardData && isEdit) {
@@ -53,7 +55,7 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
         break;
       }
       case MODAL_NEW_TYPES.newColumn: {
-        dispatch(createColumn({ boardId: id, order: columnsAmount, title: name }));
+        dispatch(createColumn({ boardId: id, order: columnMaxOrder + 1, title: name }));
         break;
       }
       case MODAL_NEW_TYPES.newTask: {

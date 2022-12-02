@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { MyProps } from './types';
 import classes from './CurrentBoard.module.scss';
 import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
-import { changeAllColumns, getColumns } from '../../../../features/board/boardSlice';
+import { getColumns } from '../../../../features/board/boardSlice';
 import NewItem from '../../../common/NewItem/NewItem';
 import ModalDesk from '../../DeskLayout/ModalDesk/ModalDesk';
 import Column from '../Column/Column';
@@ -47,7 +47,7 @@ const CurrentBoard: FC<MyProps> = ({ id }) => {
       <div className={classes.board}>
         {showAddModal ? <ModalDesk type="newColumn" id={id} setModal={setShowAddModal} /> : null}
         <div className={classes.columns}>
-          <Droppable droppableId={id}>
+          <Droppable droppableId={id} direction="horizontal">
             {(provided) => (
               <div
                 className={classes.columns__container}

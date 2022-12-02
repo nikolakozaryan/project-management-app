@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import ModalDelete from '../../../common/modalDelete/modalDelete';
 import classes from './Column.module.scss';
+import ColumnHeading from './ColumnHeading/ColumnHeading';
 
 type MyProps = {
   title: string;
