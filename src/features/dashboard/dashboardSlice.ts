@@ -60,7 +60,6 @@ export const dashboardSlice = createSlice({
       const item = state.boards[index];
       Object.keys(item).forEach((key) => {
         item[key as keyof typeof item] = action.payload[key];
-        console.log(item[key as keyof typeof item], action.payload[key], 'tog');
       });
       state.errorMessage = 'success';
     });

@@ -1,4 +1,4 @@
-@import '../../../../../common/style/abstracts/mixins';
+@import '../../../../../../common/style/abstracts/mixins';
 
 .task {
   width: 100%;
@@ -7,12 +7,15 @@
   background: $header-bg-color;
   border-radius: .2rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   cursor: pointer;
 
   &__title {
     @include main-font;
+    width: 17.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &:hover &__delete {
@@ -22,7 +25,7 @@
   &__delete {
     width: 1rem;
     height: 1rem;
-    background: url('../../../../../../public/assets/icons/Board/Cross.svg') no-repeat center;
+    background: url('../../../../../../../public/assets/icons/Board/Cross.svg') no-repeat center;
     transition: .3s;
     opacity: 0;
 

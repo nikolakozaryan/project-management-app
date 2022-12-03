@@ -47,6 +47,10 @@ export const DICTIONARY = {
     ru: 'Добавить колонку',
     en: 'Add column',
   },
+  add_task: {
+    ru: 'Добавить задачу',
+    en: 'Add task',
+  },
   newBoard: {
     ru: 'Новая доска',
     en: 'New Desk',
@@ -74,6 +78,10 @@ export const DICTIONARY = {
   editBoard: {
     ru: 'Редактировать доску',
     en: 'Edit desk',
+  },
+  editTask: {
+    ru: 'Редактировать задачу',
+    en: 'Edit task',
   },
   add: {
     ru: 'ДОБАВИТЬ',

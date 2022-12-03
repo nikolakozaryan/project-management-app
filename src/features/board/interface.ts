@@ -5,16 +5,6 @@ export interface IColumn {
   boardId: string;
 }
 
-export interface ICreateTask {
-  title: string;
-  order: number;
-  boardId: string;
-  columnId: string;
-  description: string;
-  userId: string;
-  users: string[];
-}
-
 export interface ITask extends ICreateTask {
   _id: string;
 }
@@ -24,6 +14,16 @@ export interface IState {
   tasks: ITask[];
   errorMessage: string;
   loading: boolean;
+}
+
+export interface ICreateTask {
+  title: string;
+  order: number;
+  boardId: string;
+  columnId: string;
+  description: string;
+  userId: string;
+  users: string[];
 }
 
 export interface IColumnCreateData {
@@ -46,3 +46,13 @@ export interface IEditColumnOrderData {
   order: number;
   _id: string;
 }
+
+export interface IEditTaskOrderData extends IEditColumnOrderData {
+  columnId: string;
+}
+
+export type deleteTaskIds = {
+  taskId: string;
+  columnId: string;
+  boardId: string;
+};

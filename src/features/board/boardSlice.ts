@@ -3,10 +3,13 @@ import {
   createNewColumn,
   createNewTask,
   deleteOneColumn,
+  deleteOneTask,
   editOneColumn,
+  editOneTask,
   getBoardTasks,
   getColumnsList,
   updateColumnsOrder,
+  updateTasksOrder,
 } from './helpers';
 import { IColumn, IState, ITask } from './interface';
 
@@ -85,8 +88,8 @@ export const boardSlice = createSlice({
     //EDIT COLUMNS ORDER
     builder.addCase(editColumnsOrder.fulfilled, (state, action: PayloadAction<IColumn[]>) => {
       const updatedColumns = action.payload;
-      const borderId = updatedColumns[0].boardId;
-      const filteredColumns = state.columns.filter((column) => column.boardId !== borderId);
+      const boardId = updatedColumns[0].boardId;
+      const filteredColumns = state.columns.filter((column) => column.boardId !== boardId);
 
       state.columns = [...filteredColumns, ...updatedColumns];
       state.errorMessage = 'success';
@@ -124,6 +127,43 @@ export const boardSlice = createSlice({
       state.errorMessage = action.error.message || 'Server error. Try later, please.';
       state.loading = false;
     });
+
+    //DELETE TASK
+    builder.addCase(deleteTask.fulfilled, (state, action: PayloadAction<ITask>) => {
+      state.tasks = state.tasks.filter((task) => task._id !== action.payload._id);
+      state.errorMessage = 'success';
+    });
+    builder.addCase(deleteTask.rejected, (state, action) => {
+      state.errorMessage = action.error.message || 'Server error. Try later, please.';
+    });
+
+    //UPDATE TASKS ORDER
+    builder.addCase(editTasksOrder.fulfilled, (state, action: PayloadAction<ITask[]>) => {
+      const updatedTasks = action.payload;
+      const columnId = updatedTasks[0].columnId;
+
+      state.tasks = [...state.tasks.filter((task) => task.columnId !== columnId), ...updatedTasks];
+    });
+    builder.addCase(editTasksOrder.rejected, (state, action) => {
+      state.errorMessage = action.error.message || 'Server error. Try later, please.';
+    });
+
+    //EDIT TASK
+    builder.addCase(editTask.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(editTask.fulfilled, (state, action: PayloadAction<ITask>) => {
+      const editedTask = action.payload;
+      const { _id } = editedTask;
+
+      state.tasks = [...state.tasks.filter((task) => task._id !== _id), editedTask];
+      state.errorMessage = 'success';
+      state.loading = false;
+    });
+    builder.addCase(editTask.rejected, (state, action) => {
+      state.errorMessage = action.error.message || 'Server error. Try later, please.';
+      state.loading = false;
+    });
   },
 });
 
@@ -132,9 +172,13 @@ export const createColumn = createAsyncThunk('board/createColumn', createNewColu
 export const deleteColumn = createAsyncThunk('board/deleteColumn', deleteOneColumn);
 export const editColumn = createAsyncThunk('board/editColumn', editOneColumn);
 export const editColumnsOrder = createAsyncThunk('board/editColumnsOrder', updateColumnsOrder);
+
 export const getTasks = createAsyncThunk('board/getTasks', getBoardTasks);
 export const createTask = createAsyncThunk('board/createTask', createNewTask);
+export const editTask = createAsyncThunk('board/editTask', editOneTask);
+export const deleteTask = createAsyncThunk('board/deleteTask', deleteOneTask);
+export const editTasksOrder = createAsyncThunk('board/editTasksOrder', updateTasksOrder);
 
-export const { resetState } = boardSlice.actions;
+export const { resetState, stopLoading } = boardSlice.actions;
 
 export default boardSlice.reducer;

@@ -4,7 +4,7 @@ import ModalDesk from '../../DeskLayout/ModalDesk/ModalDesk';
 import AddTask from './AddTask/AddTask';
 import classes from './Column.module.scss';
 import ColumnHeading from './ColumnHeading/ColumnHeading';
-import Task from './Task/Task';
+import Task from './TasksContainer/Task/Task';
 import TasksContainer from './TasksContainer/TasksContainer';
 
 type MyProps = {
@@ -28,7 +28,7 @@ const Column: FC<MyProps> = ({ title, columnId }) => {
         <TasksContainer>
           <>
             {tasks.map((task) => (
-              <Task key={task._id} title={task.title} />
+              <Task key={task._id} id={task._id} title={task.title} />
             ))}
           </>
         </TasksContainer>
