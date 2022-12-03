@@ -27,9 +27,11 @@ const Column: FC<MyProps> = ({ title, columnId }) => {
         <ColumnHeading title={title} id={columnId} />
         <TasksContainer>
           <>
-            {tasks.map((task) => (
-              <Task key={task._id} id={task._id} title={task.title} />
-            ))}
+            {tasks
+              .sort((task1, task2) => task1.order - task2.order)
+              .map((task) => (
+                <Task key={task._id} id={task._id} title={task.title} />
+              ))}
           </>
         </TasksContainer>
         <AddTask setModal={setModalAddVisible} />
