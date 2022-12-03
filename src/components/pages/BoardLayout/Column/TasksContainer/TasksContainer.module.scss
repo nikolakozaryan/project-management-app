@@ -1,0 +1,28 @@
+@import '../../../../../common/style/abstracts/mixins';
+
+.tasks {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &__container {
+    max-height: calc(100% - 8.6rem);
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      position: absolute;
+      width: 2rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: white;
+      border-radius: .25rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $main-color-hover;
+      box-shadow: .8rem 0 white inset, -0.8rem 0 white inset, ;
+    }
+  }
+}
