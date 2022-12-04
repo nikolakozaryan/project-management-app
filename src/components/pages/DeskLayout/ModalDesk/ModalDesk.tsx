@@ -1,33 +1,57 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './ModalDesk.module.scss';
 import { useForm } from 'react-hook-form';
 import Button from '../../../common/Button/Button';
-import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
+import { useAppDispatch, useAppSelector, useBoardID } from '../../../../app/hooks';
 import { DICTIONARY, DictionaryKeys, Languages } from '../../../../constants/Dictionary/Dictionary';
 import { createBoard } from '../../../../features/dashboard/dashboardSlice';
 import { editBoard } from '../../../../features/dashboard/dashboardSlice';
 import { MODAL_NEW_TYPES } from '../../../../constants/Modal';
 import UserSelect from '../../../common/userSelect/userSelect';
 import Overlay from '../../../common/Overlay/Overlay';
-import { BoardContent, MyProps } from './types';
+import { MyProps } from './types';
+import { createColumn, createTask, editTask } from '../../../../features/board/boardSlice';
+import { parseBoardDescription } from '../../../../common/functions/parseBoardDescription';
 
 const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
-  const lang: Languages = useAppSelector((state) => state.language.lang);
-  const dispatch = useAppDispatch();
-  const userId = localStorage.getItem('user_id') as string;
   const { register, handleSubmit, watch, setValue } = useForm();
-  const isEdit = type === 'editBoard';
+  const userId = localStorage.getItem('user_id') as string;
+  const isEdit = type.startsWith('edit');
+  const boardId = useBoardID();
+
+  const dispatch = useAppDispatch();
+  const lang: Languages = useAppSelector((state) => state.language.lang);
+  const columns = useAppSelector((state) => state.board.columns);
+  const tasks = useAppSelector((state) => state.board.tasks);
+
+  const [columnMaxOrder, setColumnMaxOrder] = useState(0);
+  const [taskMaxOrder, setTaskMaxOrder] = useState(0);
+
   const boardData = useAppSelector((state) =>
     state.dashboard.boards.find((board) => board._id === id)
   );
 
   useEffect(() => {
-    if (boardData && isEdit) {
-      const data = JSON.parse(boardData.title) as BoardContent;
+    const order = columns.filter((column) => column.boardId === id).length;
+    setColumnMaxOrder(order);
+  }, [columns, id]);
+
+  useEffect(() => {
+    const order = tasks.filter((task) => task.columnId === id).length;
+    setTaskMaxOrder(order);
+  }, [id, tasks]);
+
+  useEffect(() => {
+    if (boardData && type === 'editDesk') {
+      const data = parseBoardDescription(boardData);
       setValue('deskName', data.name);
       setValue('deskDescription', data.description);
+    } else {
+      const task = tasks.find((task) => task._id === id);
+      setValue('deskName', task?.title);
+      setValue('deskDescription', task?.description);
     }
-  }, [boardData, isEdit, setValue]);
+  }, [boardData, type, setValue]);
 
   const onSubmit = () => {
     const name = watch('deskName');
@@ -48,7 +72,43 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
         );
         break;
       }
+      case MODAL_NEW_TYPES.newColumn: {
+        dispatch(createColumn({ boardId: id, order: columnMaxOrder + 1, title: name }));
+        break;
+      }
       case MODAL_NEW_TYPES.newTask: {
+        dispatch(
+          createTask({
+            userId,
+            description: description,
+            boardId,
+            columnId: id,
+            title: name,
+            order: taskMaxOrder + 1,
+            // DON'T FORGET TO PASS USERS ARRAY HERE
+            users: [],
+          })
+        );
+        break;
+      }
+      case MODAL_NEW_TYPES.editTask: {
+        const task = tasks.find((task) => task._id === id);
+        if (task) {
+          const { order, boardId, columnId } = task;
+          dispatch(
+            editTask({
+              _id: id,
+              title: name,
+              description: description,
+              userId,
+              order,
+              boardId,
+              columnId,
+              // DON'T FORGET TO PASS USERS ARRAY HERE
+              users: [],
+            })
+          );
+        }
         break;
       }
       default:
@@ -62,8 +122,9 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
     <Overlay>
       <div className={classes.container}>
         <div onClick={() => setModal(false)} className={classes.exit} />
-        <h2 className={classes.heading}>{DICTIONARY[type as DictionaryKeys][lang as Languages]}</h2>
+        <h2 className={classes.heading}>{DICTIONARY[type as DictionaryKeys][lang]}</h2>
         <UserSelect />
+
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)} id="form">
           <div className={classes.input__wrapper}>
             {isEdit ? <span>{DICTIONARY.title[lang]}</span> : null}
@@ -72,19 +133,24 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
               {...register('deskName')}
               type="text"
               placeholder={isEdit ? '' : DICTIONARY.title[lang]}
+              required
             />
           </div>
-          <div className={classes.input__wrapper}>
-            {isEdit ? <span>{DICTIONARY.description_placeholder[lang]}</span> : null}
-            <textarea
-              className={`${classes.input} ${classes.textarea}`}
-              {...register('deskDescription')}
-              placeholder={isEdit ? '' : DICTIONARY.description_placeholder[lang]}
-              maxLength={150}
-            />
-          </div>
+          {type === 'newColumn' ? null : (
+            <div className={classes.input__wrapper}>
+              {isEdit ? <span>{DICTIONARY.description_placeholder[lang]}</span> : null}
+              <textarea
+                className={`${classes.input} ${classes.textarea}`}
+                {...register('deskDescription')}
+                placeholder={isEdit ? '' : DICTIONARY.description_placeholder[lang]}
+                maxLength={150}
+                required={type === 'newTask'}
+              />
+            </div>
+          )}
         </form>
-        <Button formID="form" type="add" link={false} color={'blue'} />
+
+        <Button formID="form" type={isEdit ? 'save_profile' : 'add'} link={false} color={'blue'} />
       </div>
     </Overlay>
   );

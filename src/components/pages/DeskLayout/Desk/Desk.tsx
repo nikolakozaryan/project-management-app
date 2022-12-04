@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../../app/hooks';
 import { DICTIONARY, Languages } from '../../../../constants/Dictionary/Dictionary';
 import classes from './Desk.module.scss';
@@ -23,13 +24,13 @@ const Desk: React.FC<MyProps> = ({ edit, info, changeId, setDeleteModal }) => {
   }, [info, lang]);
 
   const handleClick = (e: React.MouseEvent, type: string) => {
-    e.stopPropagation();
+    e.preventDefault();
     changeId(info?._id as string);
     type === 'edit' ? edit(true) : setDeleteModal(true);
   };
 
   return (
-    <div className={classes.card}>
+    <Link to={`/board/${info?._id}`} className={classes.card}>
       <div className={classes.card__content}>
         <h2 className={classes.card__content__heading}>{deskName}</h2>
         <p className={classes.card__content__description}>{deskDescription}</p>
@@ -50,7 +51,7 @@ const Desk: React.FC<MyProps> = ({ edit, info, changeId, setDeleteModal }) => {
         src="./assets/icons/deskLayout/garbage.svg"
         alt="delete icon"
       />
-    </div>
+    </Link>
   );
 };
 

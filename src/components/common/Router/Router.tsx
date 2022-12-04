@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Board from '../../../pages/Board/Board';
 import Dashboard from '../../../pages/Dashboard/Dashboard';
 import Edit from '../../../pages/Edit/Edit';
 import Home from '../../../pages/Home/Home';
@@ -12,6 +13,7 @@ const Router = () => (
   <Routes>
     <Route index element={<Home />} />
     <Route path="home" element={<Home />} />
+    <Route path="board/:id" element={<Board />} />
     <Route path="dashboard" element={<Dashboard />} />
     <Route path="signin" element={<Login />} />
     <Route path="signup" element={<Register />} />

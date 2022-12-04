@@ -1,0 +1,36 @@
+@import '../../../common/style/abstracts/mixins';
+
+.board {
+  background: #F8F9FD;
+
+  &__container {
+    width: 100%;
+    max-width: 110rem;
+    padding: 0 5rem;
+    height: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-rows: 6.4rem 1fr;
+
+    @media screen and (max-width: $small) {
+      padding: 0 2rem;
+    }
+  }
+
+  &__headingContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  &__heading {
+    @include h2;
+    margin-left: 2rem;
+  }
+
+  &__link {
+    width: 3rem;
+    height: 3rem;
+    background: url('../../../../public/assets/icons/Board/Arrow.svg') no-repeat center;
+  }
+}

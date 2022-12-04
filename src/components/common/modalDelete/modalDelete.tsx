@@ -4,17 +4,27 @@ import Button from '../Button/Button';
 import { BUTTONS } from '../../../constants/HeaderButtonsConstants';
 import { DICTIONARY, DictionaryKeys, Languages } from '../../../constants/Dictionary/Dictionary';
 import { removeBoard } from '../../../features/dashboard/dashboardSlice';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector, useBoardID } from '../../../app/hooks';
 import { MODAL_DELETE_TYPES } from '../../../constants/Modal';
 import { MyProps } from './types';
 import Overlay from '../Overlay/Overlay';
 import { deleteCurrentUser } from '../../../features/deleteUser/deleteUserSlice';
+import {
+  deleteColumn,
+  deleteTask,
+  editColumnsOrder,
+  editTasksOrder,
+} from '../../../features/board/boardSlice';
+import { ITask } from '../../../features/board/interface';
 
 const ModalDelete: React.FC<MyProps> = ({ id, type, setModal }) => {
   const dispatch = useAppDispatch();
   const lang: Languages = useAppSelector((state) => state.language.lang);
+  const boardId = useBoardID();
+  const columns = useAppSelector((state) => state.board.columns);
+  const tasks = useAppSelector((state) => state.board.tasks);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     switch (type) {
       case MODAL_DELETE_TYPES.deleteBoard: {
         dispatch(removeBoard(id));
@@ -25,11 +35,22 @@ const ModalDelete: React.FC<MyProps> = ({ id, type, setModal }) => {
         break;
       }
       case MODAL_DELETE_TYPES.deleteColumn: {
-        console.log(dispatch);
+        await dispatch(deleteColumn({ boardId, columnId: id }));
+        const columnsToEdit = columns
+          .filter((column) => column.boardId === boardId && column._id !== id)
+          .map((column, index) => ({ _id: column._id, order: index + 1 }));
+        if (columnsToEdit.length) dispatch(editColumnsOrder(columnsToEdit));
         break;
       }
       case MODAL_DELETE_TYPES.deleteTask: {
-        console.log(dispatch);
+        const targetTask = tasks.find((task) => task._id === id) as ITask;
+        const { columnId } = targetTask;
+        await dispatch(deleteTask({ boardId, columnId, taskId: id }));
+
+        const tasksToEdit = tasks
+          .filter((task) => task.columnId === columnId && task._id !== id)
+          .map((task, index) => ({ columnId, _id: task._id, order: index + 1 }));
+        if (tasksToEdit.length) dispatch(editTasksOrder(tasksToEdit));
         break;
       }
       default:

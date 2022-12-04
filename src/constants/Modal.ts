@@ -1,7 +1,9 @@
 export const MODAL_NEW_TYPES = {
   newBoard: 'newBoard',
   editBoard: 'editBoard',
+  editTask: 'editTask',
   newTask: 'newTask',
+  newColumn: 'newColumn',
 };
 
 export const MODAL_DELETE_TYPES = {

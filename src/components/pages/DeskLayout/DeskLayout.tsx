@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import classes from './DeskLayout.module.scss';
 import Desk from './Desk/Desk';
 import ModalDesk from './ModalDesk/ModalDesk';
-import NewDesk from './NewDesk/NewDesk';
 import { IBoard } from '../../../features/dashboard/interface';
 import ModalDelete from '../../common/modalDelete/modalDelete';
 import { DICTIONARY, Languages } from '../../../constants/Dictionary/Dictionary';
 import { MODAL_NEW_TYPES, MODAL_DELETE_TYPES } from '../../../constants/Modal';
 import { useAppSelector } from '../../../app/hooks';
+import NewItem from '../../common/NewItem/NewItem';
 
 const DeskLayout: React.FC<{ boards: IBoard[] }> = ({ boards }) => {
   const lang: string = useAppSelector((state) => state.language.lang);
@@ -36,7 +36,7 @@ const DeskLayout: React.FC<{ boards: IBoard[] }> = ({ boards }) => {
         <h2 className={classes.dashboard__heading}>{DICTIONARY.boards[lang as Languages]}</h2>
         <div className={classes.boards__container}>
           <div className={classes.boards}>
-            <NewDesk setIsModalAdd={setIsModalAdd} />
+            <NewItem setIsModalAdd={setIsModalAdd} type="desk" />
             {boards.map((item) => (
               <Desk
                 edit={setIsModalEdit}
