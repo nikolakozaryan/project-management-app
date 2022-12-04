@@ -9,15 +9,20 @@ import { MODAL_DELETE_TYPES } from '../../../constants/Modal';
 import { MyProps } from './types';
 import Overlay from '../Overlay/Overlay';
 import { deleteCurrentUser } from '../../../features/deleteUser/deleteUserSlice';
-import { deleteColumn, editColumnsOrder } from '../../../features/board/boardSlice';
+import {
+  deleteColumn,
+  deleteTask,
+  editColumnsOrder,
+  editTasksOrder,
+} from '../../../features/board/boardSlice';
+import { ITask } from '../../../features/board/interface';
 
 const ModalDelete: React.FC<MyProps> = ({ id, type, setModal }) => {
   const dispatch = useAppDispatch();
   const lang: Languages = useAppSelector((state) => state.language.lang);
   const boardId = useBoardID();
-  const boardColumns = useAppSelector((state) =>
-    state.board.columns.filter((column) => column.boardId === boardId)
-  );
+  const columns = useAppSelector((state) => state.board.columns);
+  const tasks = useAppSelector((state) => state.board.tasks);
 
   const handleClick = async () => {
     switch (type) {
@@ -31,13 +36,21 @@ const ModalDelete: React.FC<MyProps> = ({ id, type, setModal }) => {
       }
       case MODAL_DELETE_TYPES.deleteColumn: {
         await dispatch(deleteColumn({ boardId, columnId: id }));
-        const columnsToEdit = boardColumns
-          .filter((column) => column._id !== id)
+        const columnsToEdit = columns
+          .filter((column) => column.boardId === boardId && column._id !== id)
           .map((column, index) => ({ _id: column._id, order: index + 1 }));
         if (columnsToEdit.length) dispatch(editColumnsOrder(columnsToEdit));
         break;
       }
       case MODAL_DELETE_TYPES.deleteTask: {
+        const targetTask = tasks.find((task) => task._id === id) as ITask;
+        const { columnId } = targetTask;
+        await dispatch(deleteTask({ boardId, columnId, taskId: id }));
+
+        const tasksToEdit = tasks
+          .filter((task) => task.columnId === columnId && task._id !== id)
+          .map((task, index) => ({ columnId, _id: task._id, order: index + 1 }));
+        if (tasksToEdit.length) dispatch(editTasksOrder(tasksToEdit));
         break;
       }
       default:

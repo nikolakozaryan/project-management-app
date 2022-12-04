@@ -6,7 +6,7 @@ import { DragDropContext, DropResult, OnDragEndResponder } from 'react-beautiful
 import { useAppDispatch, useAppSelector, useBoardID } from '../../../app/hooks';
 import { getBoardsList } from '../../../features/dashboard/dashboardSlice';
 import { parseBoardDescription } from '../../../common/functions/parseBoardDescription';
-import { resetColumns } from '../../../features/board/boardSlice';
+import { resetState } from '../../../features/board/boardSlice';
 
 const BoardLayout = () => {
   const [title, setTitle] = useState('');
@@ -24,7 +24,7 @@ const BoardLayout = () => {
       const { name } = parseBoardDescription(boardData);
       setTitle(name);
     }
-  }, [boardData]);
+  }, [boardData, dispatch]);
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
@@ -34,11 +34,11 @@ const BoardLayout = () => {
             <Link
               to="/dashboard"
               className={classes.board__link}
-              onClick={() => dispatch(resetColumns())}
+              onClick={() => dispatch(resetState())}
             />
             <h2 className={classes.board__heading}>{title}</h2>
           </div>
-          <CurrentBoard id={boardId} />
+          <CurrentBoard />
         </div>
       </section>
     </DragDropContext>

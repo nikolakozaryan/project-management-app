@@ -26,7 +26,13 @@ const HeadingForm: FC<MyProps> = ({ title, handleEditMode, columnId }) => {
   return (
     <>
       <form onSubmit={methods.handleSubmit(formSubmitHandler)} id="column-form">
-        <input className={classes.input} {...methods.register('title')} type="text" autoFocus />
+        <input
+          className={classes.input}
+          {...methods.register('title')}
+          type="text"
+          autoFocus
+          required
+        />
       </form>
       <div className={classes.buttons__container}>
         <button className={`${classes.button} ${classes.button_send} `} form="column-form" />

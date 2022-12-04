@@ -1,8 +1,13 @@
 import React, { FC, useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import ModalDelete from '../../../common/modalDelete/modalDelete';
+import { useAppSelector } from '../../../../app/hooks';
+import ModalDesk from '../../DeskLayout/ModalDesk/ModalDesk';
+import AddTask from './AddTask/AddTask';
 import classes from './Column.module.scss';
 import ColumnHeading from './ColumnHeading/ColumnHeading';
+import Task from './TasksContainer/Task/Task';
+import TasksContainer from './TasksContainer/TasksContainer';
 
 type MyProps = {
   title: string;
@@ -11,32 +16,39 @@ type MyProps = {
 };
 
 const Column: FC<MyProps> = ({ title, columnId, index }) => {
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-
-  const handleDeleteClick = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
-    e.preventDefault();
-    setShowDeleteModal(true);
-  };
+  const [modalAddVisible, setModalAddVisible] = useState(false);
+  const tasks = useAppSelector((state) =>
+    state.board.tasks.filter((task) => task.columnId === columnId)
+  );
 
   return (
-    <Draggable draggableId={columnId} index={index}>
-      {(provided) => (
-        <div
-          className={classes.column}
-          {...provided.dragHandleProps}
-          {...provided.draggableProps}
-          ref={provided.innerRef}
-        >
-          {showDeleteModal ? (
-            <ModalDelete type="deleteColumn" id={columnId} setModal={setShowDeleteModal} />
-          ) : null}
-          <span onClick={handleDeleteClick} className={classes.column__delete} />
-          <h5 className={classes.column__heading} title={title}>
-            {title}
-          </h5>
-        </div>
-      )}
-    </Draggable>
+    <>
+      {modalAddVisible ? (
+        <ModalDesk type="newTask" id={columnId} setModal={setModalAddVisible} />
+      ) : null}
+      <Draggable draggableId={columnId} index={index}>
+        {(provided) => (
+          <div
+            className={classes.column}
+            {...provided.dragHandleProps}
+            {...provided.draggableProps}
+            ref={provided.innerRef}
+          >
+            <ColumnHeading title={title} id={columnId} />
+            <TasksContainer>
+              <>
+                {tasks
+                  .sort((task1, task2) => task1.order - task2.order)
+                  .map((task) => (
+                    <Task key={task._id} id={task._id} title={task.title} />
+                  ))}
+              </>
+            </TasksContainer>
+            <AddTask setModal={setModalAddVisible} />
+          </div>
+        )}
+      </Draggable>
+    </>
   );
 };
 
