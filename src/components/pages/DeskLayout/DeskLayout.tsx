@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import classes from './DeskLayout.module.scss';
 import Desk from './Desk/Desk';
 import ModalDesk from './ModalDesk/ModalDesk';
@@ -15,12 +15,6 @@ const DeskLayout: React.FC<{ boards: IBoard[] }> = ({ boards }) => {
   const [isModalEdit, setIsModalEdit] = useState(false);
   const [isModalDelete, setIsModalDelete] = useState(false);
   const [id, setId] = useState('');
-
-  useEffect(() => {
-    isModalAdd
-      ? (document.body.style.overflow = 'hidden')
-      : (document.body.style.overflow = 'visible');
-  }, [isModalAdd]);
 
   return (
     <section className={`${classes.dashboard} section`}>

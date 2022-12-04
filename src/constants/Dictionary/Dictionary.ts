@@ -37,7 +37,7 @@ export const DICTIONARY = {
   },
   deleteQuestion: {
     ru: 'Вы уверены, что хотите безвозвратно удалить',
-    en: 'Are sure that you want to delete',
+    en: 'Are you sure you want to delete',
   },
   addBoardText: {
     ru: 'Добавить доску',

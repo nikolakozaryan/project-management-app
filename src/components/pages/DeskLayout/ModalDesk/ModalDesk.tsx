@@ -39,14 +39,15 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
   useEffect(() => {
     const order = tasks.filter((task) => task.columnId === id).length;
     setTaskMaxOrder(order);
-  }, [id, tasks]);
+  }, [tasks, id]);
 
   useEffect(() => {
-    if (boardData && type === 'editDesk') {
+    if (boardData && type === 'editBoard') {
       const data = parseBoardDescription(boardData);
       setValue('deskName', data.name);
       setValue('deskDescription', data.description);
-    } else {
+    }
+    if (type === 'editTask') {
       const task = tasks.find((task) => task._id === id);
       setValue('deskName', task?.title);
       setValue('deskDescription', task?.description);
