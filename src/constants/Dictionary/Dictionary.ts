@@ -63,6 +63,10 @@ export const DICTIONARY = {
     ru: 'Новая задача',
     en: 'New task',
   },
+  newBoard: {
+    ru: 'Новая доска',
+    en: 'New board',
+  },
   boards: {
     ru: 'Доски',
     en: 'Boards',
