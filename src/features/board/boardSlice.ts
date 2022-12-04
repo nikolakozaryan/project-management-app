@@ -141,7 +141,7 @@ export const boardSlice = createSlice({
     builder.addCase(editTasksOrder.fulfilled, (state, action: PayloadAction<ITask[]>) => {
       const updatedTasks = action.payload;
       const columnId = updatedTasks[0].columnId;
-
+      console.log('lbarhoa', updatedTasks, state.tasks);
       state.tasks = [...state.tasks.filter((task) => task.columnId !== columnId), ...updatedTasks];
     });
     builder.addCase(editTasksOrder.rejected, (state, action) => {

@@ -169,7 +169,7 @@ export const editOneTask = (data: ITask) => {
   return axios
     .put(
       URL,
-      { title, order, description, userId, users, columnId },
+      { title, order, description, columnId, userId, users },
       {
         headers: { Authorization: `Bearer ${token}` },
       }

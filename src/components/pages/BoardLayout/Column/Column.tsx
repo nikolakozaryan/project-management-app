@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Draggable } from 'react-beautiful-dnd';
+import { Draggable, DropResult } from 'react-beautiful-dnd';
 import ModalDelete from '../../../common/modalDelete/modalDelete';
 import { useAppSelector } from '../../../../app/hooks';
 import ModalDesk from '../../DeskLayout/ModalDesk/ModalDesk';
@@ -8,18 +8,20 @@ import classes from './Column.module.scss';
 import ColumnHeading from './ColumnHeading/ColumnHeading';
 import Task from './TasksContainer/Task/Task';
 import TasksContainer from './TasksContainer/TasksContainer';
+import { ITask } from '../../../../features/board/interface';
 
 type MyProps = {
   title: string;
   columnId: string;
   index: number;
+  boardId: string;
+  tasks: ITask[];
 };
 
-const Column: FC<MyProps> = ({ title, columnId, index }) => {
+const Column: FC<MyProps> = ({ title, columnId, index, tasks }) => {
   const [modalAddVisible, setModalAddVisible] = useState(false);
-  const tasks = useAppSelector((state) =>
-    state.board.tasks.filter((task) => task.columnId === columnId)
-  );
+  console.log(tasks, 'checkwhat');
+  const tasksColumn = tasks.filter((task) => task.columnId === columnId);
 
   return (
     <>
@@ -35,13 +37,11 @@ const Column: FC<MyProps> = ({ title, columnId, index }) => {
             ref={provided.innerRef}
           >
             <ColumnHeading title={title} id={columnId} />
-            <TasksContainer>
+            <TasksContainer id={columnId}>
               <>
-                {tasks
-                  .sort((task1, task2) => task1.order - task2.order)
-                  .map((task) => (
-                    <Task key={task._id} id={task._id} title={task.title} />
-                  ))}
+                {tasksColumn.map((task, index) => (
+                  <Task key={task._id} id={task._id} title={task.title} index={index} />
+                ))}
               </>
             </TasksContainer>
             <AddTask setModal={setModalAddVisible} />
