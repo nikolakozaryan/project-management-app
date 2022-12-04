@@ -51,9 +51,9 @@ export const DICTIONARY = {
     ru: 'Добавить задачу',
     en: 'Add task',
   },
-  newBoard: {
-    ru: 'Новая доска',
-    en: 'New Desk',
+  my_boards: {
+    ru: 'Мои доски',
+    en: 'My boards',
   },
   newColumn: {
     ru: 'Новая колонка',
@@ -169,6 +169,9 @@ export const DICTIONARY = {
     ru: 'Описание (не более 150 символов)',
     en: 'Description (no more than 150 characters)',
   },
+  edit: { ru: 'Редактировать', en: 'Edit' },
+  edit_profile: { ru: 'Редактировать профиль', en: 'Edit profile' },
+  signout: { ru: 'Выйти', en: 'Sign Out' },
 };
 
 export type Languages = 'ru' | 'en';

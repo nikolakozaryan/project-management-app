@@ -1,0 +1,120 @@
+@import '../../../../../common/style/abstracts/mixins';
+
+.button {
+  @include button-font;
+  position: relative;
+  height: 4rem;
+  border-radius: .4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .3s;
+  cursor: pointer;
+  border: none;
+
+  &_new {
+    background: $main-color;
+    color: white;
+    padding: 0 2.4rem;
+
+    &:hover {
+      background: $main-color-hover;
+    }
+  }
+
+  &_user {
+    padding: 0 1.2rem;
+    border: 0.05rem solid $font-second-color;
+    background: transparent;
+
+    &_active {
+      background: $main-color-hover;
+      border-color: $main-color-hover;
+    }
+
+    .person {
+      width: 2rem;
+      height: 2rem;
+      background: url('../../../../../../public/assets/icons/Header/Person.svg');
+      margin-right: .8rem;
+
+      &_active {
+        background: url('../../../../../../public/assets/icons/Header/Person_active.svg');
+      }
+    }
+
+    .arrow {
+      margin-left: .8rem;
+      width: .6rem;
+      height: .4rem;
+      background: url('../../../../../../public/assets/icons/Header/Arrow_down.svg');
+      transition: .5s;
+
+      &_active {
+        transform: rotate(-180deg);
+      }
+    }
+
+    .name {
+      max-width: 10rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .user__options {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3rem;
+      bottom: -12rem;
+      border: 0.05rem solid $font-second-color;
+      border-radius: .4rem;
+      padding: 2rem;
+      background: white;
+      opacity: 0;
+      visibility: hidden;
+
+      &_active {
+        animation: options .5s forwards;
+      }
+
+      .user__option {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: .8rem;
+
+        & span:nth-child(2) {
+          text-align: start;
+          min-width: 8rem;
+        }
+      }
+
+      .edit {
+        width: 1.6rem;
+        height: 1.6rem;
+        background: url('../../../../../../public/assets/icons/Header/Edit.svg') center no-repeat;
+      }
+
+      .signout {
+        width: 1.6rem;
+        height: 1.6rem;
+        background: url('../../../../../../public/assets/icons/Header/Logout.svg') center no-repeat;
+      }
+    }
+  }
+}
+
+@keyframes options {
+  0% {
+    visibility: visible;
+    opacity: 0;
+  }
+
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
