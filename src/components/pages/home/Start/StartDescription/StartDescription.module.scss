@@ -2,11 +2,7 @@
 @import '../../../../../common/style/abstracts/mixins';
 
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   max-width: 34rem;
-  height: 24rem;
   margin-top: 4.5rem;
 
   @media screen and (max-width: $large) {
@@ -18,8 +14,10 @@
   }
 
   h1 {
+    overflow: hidden;
     @include h1;
-    margin: 0;
+    transform: translateY(100%);
+    animation: text-up 1s forwards;
 
     @media screen and (max-width: $large) {
       text-align: center;
@@ -28,10 +26,33 @@
 
   .description {
     @include main-font($font-second-color);
-    margin: 2rem 0 4rem;
+    transform: translateY(100%);
+    animation: text-up 1s 1s forwards;
 
     @media screen and (max-width: $large) {
       text-align: center;
     }
+  }
+
+  .button {
+    width: 26rem;
+
+    @media screen and (max-width: $large) {
+      margin: 0 auto;
+    }
+  }
+}
+
+.animation__container {
+  overflow: hidden;
+
+  &:nth-child(2) {
+    margin: 2rem 0 4rem;
+  }
+}
+
+@keyframes text-up {
+  100% {
+    transform: translateY(0);
   }
 }
