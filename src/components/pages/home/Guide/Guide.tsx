@@ -10,7 +10,7 @@ const Guide = () => {
   return (
     <div className={classes.container}>
       <h2 className={classes.header}>{dictionarySection[lang]}</h2>
-      <Video embedId="Sy0A0pQmGPM" />
+      <Video embedId="lGNv7EufjMY" />
     </div>
   );
 };
