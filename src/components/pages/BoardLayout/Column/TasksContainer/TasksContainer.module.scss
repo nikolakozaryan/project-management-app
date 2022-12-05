@@ -11,19 +11,20 @@
     width: 21rem;
     max-height: calc(100% - 8.6rem);
     overflow-y: auto;
+    min-height: 10rem;
 
     &::-webkit-scrollbar {
-      width: .5rem;
+      width: 0.5rem;
     }
 
     &::-webkit-scrollbar-track {
       background: white;
-      border-radius: .25rem;
+      border-radius: 0.25rem;
     }
 
     &::-webkit-scrollbar-thumb {
       background: $main-color-hover;
-      border-radius: .25rem;
+      border-radius: 0.25rem;
     }
   }
 }

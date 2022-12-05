@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import classes from './BoardLayout.module.scss';
 import { Link } from 'react-router-dom';
 import CurrentBoard from './CurrentBoard/CurrentBoard';
+import { DragDropContext, DropResult, OnDragEndResponder } from 'react-beautiful-dnd';
 import { useAppDispatch, useAppSelector, useBoardID } from '../../../app/hooks';
 import { getBoardsList } from '../../../features/dashboard/dashboardSlice';
 import { parseBoardDescription } from '../../../common/functions/parseBoardDescription';
@@ -15,6 +16,8 @@ const BoardLayout = () => {
     state.dashboard.boards.find((board) => board._id === boardId)
   );
 
+  const onDragEnd = (result: DropResult) => {};
+
   useEffect(() => {
     if (!boardData) dispatch(getBoardsList());
     else {
@@ -24,19 +27,21 @@ const BoardLayout = () => {
   }, [boardData, dispatch]);
 
   return (
-    <section className={`${classes.board} section`}>
-      <div className={classes.board__container}>
-        <div className={classes.board__headingContainer}>
-          <Link
-            to="/dashboard"
-            className={classes.board__link}
-            onClick={() => dispatch(resetState())}
-          />
-          <h2 className={classes.board__heading}>{title}</h2>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <section className={`${classes.board} section`}>
+        <div className={classes.board__container}>
+          <div className={classes.board__headingContainer}>
+            <Link
+              to="/dashboard"
+              className={classes.board__link}
+              onClick={() => dispatch(resetState())}
+            />
+            <h2 className={classes.board__heading}>{title}</h2>
+          </div>
+          <CurrentBoard />
         </div>
-        <CurrentBoard />
-      </div>
-    </section>
+      </section>
+    </DragDropContext>
   );
 };
 

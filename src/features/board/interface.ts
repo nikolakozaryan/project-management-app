@@ -14,6 +14,8 @@ export interface IState {
   tasks: ITask[];
   errorMessage: string;
   loading: boolean;
+  users: string[];
+  usersTasks: string[];
 }
 
 export interface ICreateTask {

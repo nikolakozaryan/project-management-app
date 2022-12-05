@@ -10,26 +10,55 @@ import { MODAL_NEW_TYPES } from '../../../../constants/Modal';
 import UserSelect from '../../../common/userSelect/userSelect';
 import Overlay from '../../../common/Overlay/Overlay';
 import { MyProps } from './types';
-import { createColumn, createTask, editTask } from '../../../../features/board/boardSlice';
+import {
+  createColumn,
+  createTask,
+  editTask,
+  getTasks,
+  getUsersList,
+  getUsersListTasks,
+} from '../../../../features/board/boardSlice';
 import { parseBoardDescription } from '../../../../common/functions/parseBoardDescription';
 
-const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
+const ModalDesk: React.FC<MyProps> = ({ type, id, setModal, hasSelect, taskId, columnId }) => {
   const { register, handleSubmit, watch, setValue } = useForm();
   const userId = localStorage.getItem('user_id') as string;
   const isEdit = type.startsWith('edit');
-  const boardId = useBoardID();
-
+  const boardIdCurrent = useBoardID();
+  const boardUsers = useAppSelector((state) => state.board.users);
+  const taskUsers = useAppSelector((state) => state.board.usersTasks);
+  const [taskCurrentId, setTaskId] = useState(taskId);
+  const [usersBoard, setUsersBoard] = React.useState<string[]>(boardUsers);
+  const [usersTask, setUsersTask] = React.useState<string[]>(boardUsers);
   const dispatch = useAppDispatch();
   const lang: Languages = useAppSelector((state) => state.language.lang);
   const columns = useAppSelector((state) => state.board.columns);
   const tasks = useAppSelector((state) => state.board.tasks);
-
   const [columnMaxOrder, setColumnMaxOrder] = useState(0);
   const [taskMaxOrder, setTaskMaxOrder] = useState(0);
 
   const boardData = useAppSelector((state) =>
     state.dashboard.boards.find((board) => board._id === id)
   );
+
+  useEffect(() => {
+    const number = columnId ? boardIdCurrent : id;
+    dispatch(getUsersList(number));
+    if (taskId) {
+      dispatch(
+        getUsersListTasks({
+          columnId: id,
+          boardId: boardIdCurrent as string,
+          taskId: taskCurrentId as string,
+        })
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    setUsersBoard(boardUsers);
+    setUsersTask(taskUsers);
+  }, [boardUsers, taskUsers]);
 
   useEffect(() => {
     const order = columns.filter((column) => column.boardId === id).length;
@@ -39,15 +68,14 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
   useEffect(() => {
     const order = tasks.filter((task) => task.columnId === id).length;
     setTaskMaxOrder(order);
-  }, [tasks, id]);
+  }, [id, tasks]);
 
   useEffect(() => {
-    if (boardData && type === 'editBoard') {
+    if (boardData && type === 'editDesk') {
       const data = parseBoardDescription(boardData);
       setValue('deskName', data.name);
       setValue('deskDescription', data.description);
-    }
-    if (type === 'editTask') {
+    } else {
       const task = tasks.find((task) => task._id === id);
       setValue('deskName', task?.title);
       setValue('deskDescription', task?.description);
@@ -68,9 +96,10 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
         dispatch(
           editBoard({
             id: id,
-            data: { title: JSON.stringify(title), owner: userId, users: [] },
+            data: { title: JSON.stringify(title), owner: userId, users: [...usersBoard] },
           })
         );
+        dispatch(getUsersList(id));
         break;
       }
       case MODAL_NEW_TYPES.newColumn: {
@@ -82,12 +111,11 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
           createTask({
             userId,
             description: description,
-            boardId,
+            boardId: boardIdCurrent,
             columnId: id,
             title: name,
             order: taskMaxOrder + 1,
-            // DON'T FORGET TO PASS USERS ARRAY HERE
-            users: [],
+            users: [...usersTask],
           })
         );
         break;
@@ -105,8 +133,7 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
               order,
               boardId,
               columnId,
-              // DON'T FORGET TO PASS USERS ARRAY HERE
-              users: [],
+              users: [...usersTask],
             })
           );
         }
@@ -124,7 +151,6 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
       <div className={classes.container}>
         <div onClick={() => setModal(false)} className={classes.exit} />
         <h2 className={classes.heading}>{DICTIONARY[type as DictionaryKeys][lang]}</h2>
-        <UserSelect />
 
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)} id="form">
           <div className={classes.input__wrapper}>
@@ -150,8 +176,23 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal }) => {
             </div>
           )}
         </form>
-
-        <Button formID="form" type={isEdit ? 'save_profile' : 'add'} link={false} color={'blue'} />
+        {hasSelect && (
+          <UserSelect
+            set={type === MODAL_NEW_TYPES.editBoard ? setUsersBoard : setUsersTask}
+            id={id}
+            users={usersBoard}
+            isBoard={type === MODAL_NEW_TYPES.editBoard ? true : false}
+            userTasks={usersTask}
+          />
+        )}
+        <div className={classes.buttonContainer}>
+          <Button
+            formID="form"
+            type={isEdit ? 'save_profile' : 'add'}
+            link={false}
+            color={'blue'}
+          />
+        </div>
       </div>
     </Overlay>
   );

@@ -11,6 +11,37 @@ import {
   ITask,
 } from './interface';
 
+export const getUsersBoardList = (boardId: string) => {
+  const token = localStorage.getItem('user_token');
+  const URL = `${API_URL}/boards/${boardId}`;
+
+  return axios
+    .get(URL, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(
+      (resp) => {
+        return resp.data;
+      },
+      (err: AxiosError) => Promise.reject(err.response?.data)
+    );
+};
+export const getUsersListTask = (ids: deleteTaskIds) => {
+  const token = localStorage.getItem('user_token');
+  const { boardId, columnId, taskId } = ids;
+  const URL = `${API_URL}/boards/${boardId}/columns/${columnId}/tasks/${taskId}`;
+
+  return axios
+    .get(URL, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(
+      (resp) => {
+        return resp.data;
+      },
+      (err: AxiosError) => Promise.reject(err.response?.data)
+    );
+};
 export const getColumnsList = (boardId: string) => {
   const token = localStorage.getItem('user_token');
   const URL = `${API_URL}/boards/${boardId}/columns`;
@@ -20,7 +51,9 @@ export const getColumnsList = (boardId: string) => {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then(
-      (resp) => resp.data,
+      (resp) => {
+        return resp.data;
+      },
       (err: AxiosError) => Promise.reject(err.response?.data)
     );
 };
@@ -166,7 +199,7 @@ export const editOneTask = (data: ITask) => {
   return axios
     .put(
       URL,
-      { title, order, description, userId, users, columnId },
+      { title, order, description, columnId, userId, users },
       {
         headers: { Authorization: `Bearer ${token}` },
       }

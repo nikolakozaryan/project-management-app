@@ -6,7 +6,7 @@ import { IBoard } from '../../../features/dashboard/interface';
 import ModalDelete from '../../common/modalDelete/modalDelete';
 import { DICTIONARY, Languages } from '../../../constants/Dictionary/Dictionary';
 import { MODAL_NEW_TYPES, MODAL_DELETE_TYPES } from '../../../constants/Modal';
-import { useAppSelector } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import NewItem from '../../common/NewItem/NewItem';
 
 const DeskLayout: React.FC<{ boards: IBoard[] }> = ({ boards }) => {
@@ -18,9 +18,21 @@ const DeskLayout: React.FC<{ boards: IBoard[] }> = ({ boards }) => {
 
   return (
     <section className={`${classes.dashboard} section`}>
-      {isModalAdd && <ModalDesk setModal={setIsModalAdd} type={MODAL_NEW_TYPES.newBoard} id={id} />}
+      {isModalAdd && (
+        <ModalDesk
+          setModal={setIsModalAdd}
+          type={MODAL_NEW_TYPES.newBoard}
+          id={id}
+          hasSelect={false}
+        />
+      )}
       {isModalEdit && (
-        <ModalDesk setModal={setIsModalEdit} type={MODAL_NEW_TYPES.editBoard} id={id} />
+        <ModalDesk
+          setModal={setIsModalEdit}
+          type={MODAL_NEW_TYPES.editBoard}
+          id={id}
+          hasSelect={true}
+        />
       )}
       {isModalDelete && (
         <ModalDelete type={MODAL_DELETE_TYPES.deleteBoard} id={id} setModal={setIsModalDelete} />
