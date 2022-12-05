@@ -54,6 +54,7 @@ export const boardSlice = createSlice({
     });
     builder.addCase(getUsersList.fulfilled, (state, action: PayloadAction<IBoard>) => {
       const userList = action.payload.users;
+      console.log(userList);
       state.users = userList;
       state.errorMessage = 'success';
     });
@@ -134,7 +135,7 @@ export const boardSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(getTasks.fulfilled, (state, action: PayloadAction<ITask[]>) => {
-      state.tasks = action.payload;
+      state.tasks = action.payload.sort((a, b) => a.order - b.order);
 
       state.errorMessage = 'success';
       state.loading = false;

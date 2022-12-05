@@ -28,7 +28,7 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal, hasSelect, taskId, c
   const taskUsers = useAppSelector((state) => state.board.usersTasks);
   const [taskCurrentId, setTaskId] = useState(taskId);
   const [usersBoard, setUsersBoard] = React.useState<string[]>(boardUsers);
-  const [usersTask, setUsersTask] = React.useState<string[]>(['']);
+  const [usersTask, setUsersTask] = React.useState<string[]>(boardUsers);
   const dispatch = useAppDispatch();
   const lang: Languages = useAppSelector((state) => state.language.lang);
   const columns = useAppSelector((state) => state.board.columns);
@@ -99,6 +99,7 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal, hasSelect, taskId, c
             data: { title: JSON.stringify(title), owner: userId, users: [...usersBoard] },
           })
         );
+        dispatch(getUsersList(id));
         break;
       }
       case MODAL_NEW_TYPES.newColumn: {
@@ -114,7 +115,6 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal, hasSelect, taskId, c
             columnId: id,
             title: name,
             order: taskMaxOrder + 1,
-            // DON'T FORGET TO PASS USERS ARRAY HERE
             users: [...usersTask],
           })
         );
@@ -133,7 +133,6 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal, hasSelect, taskId, c
               order,
               boardId,
               columnId,
-              // DON'T FORGET TO PASS USERS ARRAY HERE
               users: [...usersTask],
             })
           );

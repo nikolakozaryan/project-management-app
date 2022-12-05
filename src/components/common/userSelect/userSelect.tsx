@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { getUsersList } from '../../../features/board/boardSlice';
+import { useAppSelector } from '../../../app/hooks';
+import { IUser } from '../../../features/users/interface';
 import classes from './userSelect.module.scss';
 
 const UserSelect: React.FC<{
@@ -9,9 +9,14 @@ const UserSelect: React.FC<{
   users: string[];
   isBoard: boolean;
   userTasks: string[];
-}> = ({ set, id, users, isBoard, userTasks }) => {
+}> = ({ set, users, isBoard, userTasks }) => {
   const usersStore = useAppSelector((state) => state.users.users);
-  const [list, setList] = useState(usersStore.filter((item) => users.includes(item._id)));
+  const usersBoard = useAppSelector((state) => state.board.users);
+  const [list, setList] = useState<IUser[]>([]);
+
+  useEffect(() => {
+    if (users) setList(usersStore.filter((item) => users.includes(item._id)));
+  }, [usersBoard, users]);
 
   const [isListShown, setIsListShown] = React.useState(false);
   const handleClickList = () => {
@@ -25,7 +30,6 @@ const UserSelect: React.FC<{
     if (isBoard) {
       if (users.includes(value)) {
         arrayCoppy.splice(+users.indexOf(value), 1);
-
         set(arrayCoppy);
       } else {
         set((prev) => {
@@ -34,8 +38,7 @@ const UserSelect: React.FC<{
       }
     } else {
       if (userTasks.includes(value)) {
-        arrayCoppy.splice(+users.indexOf(value), 1);
-
+        arrayCoppy.splice(+userTasks.indexOf(value), 1);
         set(arrayCoppy);
       } else {
         set((prev) => {
@@ -51,7 +54,7 @@ const UserSelect: React.FC<{
         <div onClick={handleClickList} className={classes.select}>
           <div className={classes.info}>
             <img src="../../../assets/icons/deskLayout/userIcon.svg" alt="userIcon" />
-            <span className={classes.text}>{usersStore[0].name}</span>
+            <span className={classes.text}>{'users'}</span>
           </div>
           <img
             className={classes.arrow}

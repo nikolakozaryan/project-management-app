@@ -71,7 +71,7 @@ const CurrentBoard = () => {
             columnId: start._id,
           };
         });
-
+        console.log(newOrderColumn, 'order');
         dispatch(editTasksOrder(newOrderColumn));
         setTasks(newColumn);
       } else if (start !== finish) {

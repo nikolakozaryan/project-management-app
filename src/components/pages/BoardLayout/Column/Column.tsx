@@ -20,6 +20,8 @@ const Column: FC<MyProps> = ({ title, columnId, index, tasks, boardId }) => {
   const [modalAddVisible, setModalAddVisible] = useState(false);
   const tasksColumn = tasks.filter((task) => task.columnId === columnId);
 
+  console.log(tasksColumn, 'check');
+
   return (
     <>
       {modalAddVisible ? (
