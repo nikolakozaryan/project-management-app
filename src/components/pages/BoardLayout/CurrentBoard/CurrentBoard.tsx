@@ -38,7 +38,6 @@ const CurrentBoard = () => {
   }, [columns]);
 
   useEffect(() => {
-    console.log('whatawet');
     setTasks(tasksStore);
   }, [tasksStore]);
 
@@ -72,7 +71,7 @@ const CurrentBoard = () => {
             columnId: start._id,
           };
         });
-        console.log(newOrderColumn, 'new');
+
         dispatch(editTasksOrder(newOrderColumn));
         setTasks(newColumn);
       } else if (start !== finish) {
@@ -103,7 +102,7 @@ const CurrentBoard = () => {
       <div className={classes.board}>
         {/* {loading ? <Loader /> : null} */}
         {showAddModal ? (
-          <ModalDesk type="newColumn" id={boardId} setModal={setShowAddModal} />
+          <ModalDesk type="newColumn" id={boardId} setModal={setShowAddModal} hasSelect={false} />
         ) : null}
         <div className={classes.columns}>
           <Droppable droppableId={boardId} direction="horizontal" type="column">

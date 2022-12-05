@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import ModalDelete from '../../../../../common/modalDelete/modalDelete';
 import ModalDesk from '../../../../DeskLayout/ModalDesk/ModalDesk';
@@ -8,16 +8,30 @@ type MyProps = {
   id: string;
   title: string;
   index: number;
+  columnId: string;
 };
 
-const Task: FC<MyProps> = ({ title, id, index }) => {
+const Task: FC<MyProps> = ({ title, id, index, columnId }) => {
   const [showDelModal, setShowDelModal] = useState(false);
   const [showEditModal, setshowEditModal] = useState(false);
+  const [taskId, setTaskId] = useState('');
 
+  useEffect(() => {
+    setTaskId(id);
+  }, []);
   return (
     <>
       {showDelModal ? <ModalDelete setModal={setShowDelModal} id={id} type="deleteTask" /> : null}
-      {showEditModal ? <ModalDesk setModal={setshowEditModal} id={id} type="editTask" /> : null}
+      {showEditModal ? (
+        <ModalDesk
+          setModal={setshowEditModal}
+          id={id}
+          type="editTask"
+          hasSelect={true}
+          taskId={taskId}
+          columnId={columnId}
+        />
+      ) : null}
       <Draggable draggableId={id} index={index}>
         {(provided) => (
           <div

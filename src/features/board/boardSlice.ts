@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IBoard } from '../dashboard/interface';
 import {
   createNewColumn,
   createNewTask,
@@ -8,6 +9,8 @@ import {
   editOneTask,
   getBoardTasks,
   getColumnsList,
+  getUsersBoardList,
+  getUsersListTask,
   updateColumnsOrder,
   updateTasksOrder,
 } from './helpers';
@@ -18,6 +21,8 @@ const initialState: IState = {
   tasks: [],
   errorMessage: '',
   loading: false,
+  users: [],
+  usersTasks: [],
 };
 
 export const boardSlice = createSlice({
@@ -40,6 +45,32 @@ export const boardSlice = createSlice({
       state.errorMessage = 'success';
     });
     builder.addCase(getColumns.rejected, (state) => {
+      state.errorMessage = 'Server error. Try later, please.';
+      state.loading = false;
+    });
+    // GET USER LIST
+    builder.addCase(getUsersList.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getUsersList.fulfilled, (state, action: PayloadAction<IBoard>) => {
+      const userList = action.payload.users;
+      state.users = userList;
+      state.errorMessage = 'success';
+    });
+    builder.addCase(getUsersList.rejected, (state) => {
+      state.errorMessage = 'Server error. Try later, please.';
+      state.loading = false;
+    });
+    // GET USER TASK LIST
+    builder.addCase(getUsersListTasks.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getUsersListTasks.fulfilled, (state, action: PayloadAction<IBoard>) => {
+      const list = action.payload.users;
+      state.usersTasks = list;
+      state.errorMessage = 'success';
+    });
+    builder.addCase(getUsersListTasks.rejected, (state) => {
       state.errorMessage = 'Server error. Try later, please.';
       state.loading = false;
     });
@@ -141,7 +172,7 @@ export const boardSlice = createSlice({
     builder.addCase(editTasksOrder.fulfilled, (state, action: PayloadAction<ITask[]>) => {
       const updatedTasks = action.payload;
       const columnId = updatedTasks[0].columnId;
-      console.log('lbarhoa', updatedTasks, state.tasks);
+
       state.tasks = [...state.tasks.filter((task) => task.columnId !== columnId), ...updatedTasks];
     });
     builder.addCase(editTasksOrder.rejected, (state, action) => {
@@ -166,6 +197,9 @@ export const boardSlice = createSlice({
     });
   },
 });
+
+export const getUsersList = createAsyncThunk('board/getUsersList', getUsersBoardList);
+export const getUsersListTasks = createAsyncThunk('board/getUsersListTask', getUsersListTask);
 
 export const getColumns = createAsyncThunk('board/getColumns', getColumnsList);
 export const createColumn = createAsyncThunk('board/createColumn', createNewColumn);

@@ -1,7 +1,5 @@
 import React, { FC, useState } from 'react';
 import { Draggable, DropResult } from 'react-beautiful-dnd';
-import ModalDelete from '../../../common/modalDelete/modalDelete';
-import { useAppSelector } from '../../../../app/hooks';
 import ModalDesk from '../../DeskLayout/ModalDesk/ModalDesk';
 import AddTask from './AddTask/AddTask';
 import classes from './Column.module.scss';
@@ -18,15 +16,14 @@ type MyProps = {
   tasks: ITask[];
 };
 
-const Column: FC<MyProps> = ({ title, columnId, index, tasks }) => {
+const Column: FC<MyProps> = ({ title, columnId, index, tasks, boardId }) => {
   const [modalAddVisible, setModalAddVisible] = useState(false);
-  console.log(tasks, 'checkwhat');
   const tasksColumn = tasks.filter((task) => task.columnId === columnId);
 
   return (
     <>
       {modalAddVisible ? (
-        <ModalDesk type="newTask" id={columnId} setModal={setModalAddVisible} />
+        <ModalDesk type="newTask" id={columnId} setModal={setModalAddVisible} hasSelect={false} />
       ) : null}
       <Draggable draggableId={columnId} index={index}>
         {(provided) => (
@@ -40,7 +37,13 @@ const Column: FC<MyProps> = ({ title, columnId, index, tasks }) => {
             <TasksContainer id={columnId}>
               <>
                 {tasksColumn.map((task, index) => (
-                  <Task key={task._id} id={task._id} title={task.title} index={index} />
+                  <Task
+                    key={task._id}
+                    id={task._id}
+                    title={task.title}
+                    index={index}
+                    columnId={columnId}
+                  />
                 ))}
               </>
             </TasksContainer>
