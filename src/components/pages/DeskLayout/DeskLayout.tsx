@@ -6,14 +6,8 @@ import { IBoard } from '../../../features/dashboard/interface';
 import ModalDelete from '../../common/modalDelete/modalDelete';
 import { DICTIONARY, Languages } from '../../../constants/Dictionary/Dictionary';
 import { MODAL_NEW_TYPES, MODAL_DELETE_TYPES } from '../../../constants/Modal';
-<<<<<<< HEAD
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import NewItem from '../../common/NewItem/NewItem';
-import { getUsersList } from '../../../features/board/boardSlice';
-=======
-import { useAppSelector } from '../../../app/hooks';
-import NewItem from '../../common/NewItem/NewItem';
->>>>>>> d2039b5720c2d82bc929ccb1bd6cee7a43b41dec
 
 const DeskLayout: React.FC<{ boards: IBoard[] }> = ({ boards }) => {
   const lang: string = useAppSelector((state) => state.language.lang);
@@ -21,7 +15,6 @@ const DeskLayout: React.FC<{ boards: IBoard[] }> = ({ boards }) => {
   const [isModalEdit, setIsModalEdit] = useState(false);
   const [isModalDelete, setIsModalDelete] = useState(false);
   const [id, setId] = useState('');
-  const dispatch = useAppDispatch();
 
   return (
     <section className={`${classes.dashboard} section`}>

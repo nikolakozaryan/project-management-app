@@ -1,8 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-<<<<<<< HEAD
 import { IBoard } from '../dashboard/interface';
-=======
->>>>>>> d2039b5720c2d82bc929ccb1bd6cee7a43b41dec
 import {
   createNewColumn,
   createNewTask,
@@ -12,11 +9,8 @@ import {
   editOneTask,
   getBoardTasks,
   getColumnsList,
-<<<<<<< HEAD
   getUsersBoardList,
   getUsersListTask,
-=======
->>>>>>> d2039b5720c2d82bc929ccb1bd6cee7a43b41dec
   updateColumnsOrder,
   updateTasksOrder,
 } from './helpers';
@@ -27,11 +21,8 @@ const initialState: IState = {
   tasks: [],
   errorMessage: '',
   loading: false,
-<<<<<<< HEAD
   users: [],
   usersTasks: [],
-=======
->>>>>>> d2039b5720c2d82bc929ccb1bd6cee7a43b41dec
 };
 
 export const boardSlice = createSlice({
@@ -57,7 +48,6 @@ export const boardSlice = createSlice({
       state.errorMessage = 'Server error. Try later, please.';
       state.loading = false;
     });
-<<<<<<< HEAD
     // GET USER LIST
     builder.addCase(getUsersList.pending, (state) => {
       state.loading = true;
@@ -84,8 +74,6 @@ export const boardSlice = createSlice({
       state.errorMessage = 'Server error. Try later, please.';
       state.loading = false;
     });
-=======
->>>>>>> d2039b5720c2d82bc929ccb1bd6cee7a43b41dec
 
     //CREATE COLUMN
     builder.addCase(createColumn.pending, (state) => {
@@ -146,11 +134,7 @@ export const boardSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(getTasks.fulfilled, (state, action: PayloadAction<ITask[]>) => {
-<<<<<<< HEAD
       state.tasks = action.payload.sort((a, b) => a.order - b.order);
-=======
-      state.tasks = action.payload;
->>>>>>> d2039b5720c2d82bc929ccb1bd6cee7a43b41dec
 
       state.errorMessage = 'success';
       state.loading = false;
@@ -214,12 +198,9 @@ export const boardSlice = createSlice({
   },
 });
 
-<<<<<<< HEAD
 export const getUsersList = createAsyncThunk('board/getUsersList', getUsersBoardList);
 export const getUsersListTasks = createAsyncThunk('board/getUsersListTask', getUsersListTask);
 
-=======
->>>>>>> d2039b5720c2d82bc929ccb1bd6cee7a43b41dec
 export const getColumns = createAsyncThunk('board/getColumns', getColumnsList);
 export const createColumn = createAsyncThunk('board/createColumn', createNewColumn);
 export const deleteColumn = createAsyncThunk('board/deleteColumn', deleteOneColumn);

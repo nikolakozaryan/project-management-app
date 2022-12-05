@@ -51,8 +51,6 @@ export const DICTIONARY = {
     ru: 'Добавить задачу',
     en: 'Add task',
   },
-<<<<<<< HEAD
-=======
   my_boards: {
     ru: 'Мои доски',
     en: 'My boards',
@@ -65,18 +63,9 @@ export const DICTIONARY = {
     ru: 'Новая задача',
     en: 'New task',
   },
->>>>>>> d2039b5720c2d82bc929ccb1bd6cee7a43b41dec
   newBoard: {
     ru: 'Новая доска',
     en: 'New board',
-  },
-  newColumn: {
-    ru: 'Новая колонка',
-    en: 'New column',
-  },
-  newTask: {
-    ru: 'Новая задача',
-    en: 'New task',
   },
   boards: {
     ru: 'Доски',

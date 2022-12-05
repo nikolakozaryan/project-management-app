@@ -11,7 +11,6 @@ import {
   ITask,
 } from './interface';
 
-<<<<<<< HEAD
 export const getUsersBoardList = (boardId: string) => {
   const token = localStorage.getItem('user_token');
   const URL = `${API_URL}/boards/${boardId}`;
@@ -43,8 +42,6 @@ export const getUsersListTask = (ids: deleteTaskIds) => {
       (err: AxiosError) => Promise.reject(err.response?.data)
     );
 };
-=======
->>>>>>> d2039b5720c2d82bc929ccb1bd6cee7a43b41dec
 export const getColumnsList = (boardId: string) => {
   const token = localStorage.getItem('user_token');
   const URL = `${API_URL}/boards/${boardId}/columns`;
@@ -54,13 +51,9 @@ export const getColumnsList = (boardId: string) => {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then(
-<<<<<<< HEAD
       (resp) => {
         return resp.data;
       },
-=======
-      (resp) => resp.data,
->>>>>>> d2039b5720c2d82bc929ccb1bd6cee7a43b41dec
       (err: AxiosError) => Promise.reject(err.response?.data)
     );
 };
@@ -206,11 +199,7 @@ export const editOneTask = (data: ITask) => {
   return axios
     .put(
       URL,
-<<<<<<< HEAD
       { title, order, description, columnId, userId, users },
-=======
-      { title, order, description, userId, users, columnId },
->>>>>>> d2039b5720c2d82bc929ccb1bd6cee7a43b41dec
       {
         headers: { Authorization: `Bearer ${token}` },
       }
