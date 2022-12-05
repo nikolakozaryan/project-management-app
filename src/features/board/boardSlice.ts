@@ -54,7 +54,6 @@ export const boardSlice = createSlice({
     });
     builder.addCase(getUsersList.fulfilled, (state, action: PayloadAction<IBoard>) => {
       const userList = action.payload.users;
-      console.log(userList);
       state.users = userList;
       state.errorMessage = 'success';
     });

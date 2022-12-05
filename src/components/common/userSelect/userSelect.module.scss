@@ -38,9 +38,9 @@
   max-width: 41.3rem;
   width: 85%;
   box-sizing: border-box;
-  height: 100px;
+  height: 11.3rem;
   overflow: scroll;
-  background-color: #fff;
+
   font-size: 1.6rem;
   &::-webkit-scrollbar {
     width: 0 !important;
@@ -51,10 +51,10 @@
     justify-content: space-between;
     width: 97%;
     height: 4.8rem;
+    background-color: #fff;
     border: 1px solid #838ca7;
     border-radius: 4px;
     padding: 5% 45% 0.25% 5%;
     box-sizing: border-box;
-    margin-bottom: 0.2rem;
   }
 }

@@ -6,14 +6,11 @@ import NewItem from '../../../common/NewItem/NewItem';
 import ModalDesk from '../../DeskLayout/ModalDesk/ModalDesk';
 import Column from '../Column/Column';
 import { Droppable, DropResult, DragDropContext } from 'react-beautiful-dnd';
-import Loader from '../../../common/Loader/Loader';
 import { editColumnsOrder } from '../../../../features/board/boardSlice';
 import { editTasksOrder } from '../../../../features/board/boardSlice';
 import { editTask } from '../../../../features/board/boardSlice';
-import { ITask } from '../../../../features/board/interface';
 
 const CurrentBoard = () => {
-  const loading = useAppSelector((state) => state.board.loading);
   const boardId = useBoardID();
   const dispatch = useAppDispatch();
   const columns = useAppSelector((state) => state.board.columns);
@@ -58,12 +55,8 @@ const CurrentBoard = () => {
         newBoardIds.splice(source.index, 1);
         newBoardIds.splice(destination.index, 0, draggableId);
         const newColumn = newBoardIds
-          .map((item) => tasksColumn.filter((column) => column._id === item))
+          .map((item) => tasksColumn.filter((task) => task._id === item))
           .flat(1);
-        tasks.map((item) => {
-          !newColumn.includes(item) ? newColumn.push(item) : null;
-          return item;
-        });
         const newOrderColumn = newColumn.map((item, index) => {
           return {
             _id: item._id,
@@ -71,14 +64,19 @@ const CurrentBoard = () => {
             columnId: start._id,
           };
         });
-        console.log(newOrderColumn, 'order');
+        const newresult = [...newColumn].map((item, index) => {
+          return { ...item, order: index + 1 };
+        });
         dispatch(editTasksOrder(newOrderColumn));
-        setTasks(newColumn);
+        setTasks(newresult);
       } else if (start !== finish) {
         const startTasks = tasks.filter((item) => item.columnId === start._id);
         const newItem = { ...startTasks[source.index], columnId: finish._id };
-        dispatch(editTask(newItem));
-        dispatch(getTasks(boardId));
+        const f = async () => {
+          await dispatch(editTask(newItem));
+          await dispatch(getTasks(boardId));
+        };
+        await f();
       }
     } else {
       const newBoardIds = allColumns.map((item) => item._id);
@@ -100,7 +98,6 @@ const CurrentBoard = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className={classes.board}>
-        {/* {loading ? <Loader /> : null} */}
         {showAddModal ? (
           <ModalDesk type="newColumn" id={boardId} setModal={setShowAddModal} hasSelect={false} />
         ) : null}

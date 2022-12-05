@@ -14,6 +14,7 @@ import {
   createColumn,
   createTask,
   editTask,
+  getTasks,
   getUsersList,
   getUsersListTasks,
 } from '../../../../features/board/boardSlice';
@@ -33,7 +34,6 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal, hasSelect, taskId, c
   const lang: Languages = useAppSelector((state) => state.language.lang);
   const columns = useAppSelector((state) => state.board.columns);
   const tasks = useAppSelector((state) => state.board.tasks);
-
   const [columnMaxOrder, setColumnMaxOrder] = useState(0);
   const [taskMaxOrder, setTaskMaxOrder] = useState(0);
 
@@ -151,15 +151,6 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal, hasSelect, taskId, c
       <div className={classes.container}>
         <div onClick={() => setModal(false)} className={classes.exit} />
         <h2 className={classes.heading}>{DICTIONARY[type as DictionaryKeys][lang]}</h2>
-        {hasSelect && (
-          <UserSelect
-            set={type === MODAL_NEW_TYPES.editBoard ? setUsersBoard : setUsersTask}
-            id={id}
-            users={usersBoard}
-            isBoard={type === MODAL_NEW_TYPES.editBoard ? true : false}
-            userTasks={usersTask}
-          />
-        )}
 
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)} id="form">
           <div className={classes.input__wrapper}>
@@ -185,8 +176,23 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal, hasSelect, taskId, c
             </div>
           )}
         </form>
-
-        <Button formID="form" type={isEdit ? 'save_profile' : 'add'} link={false} color={'blue'} />
+        {hasSelect && (
+          <UserSelect
+            set={type === MODAL_NEW_TYPES.editBoard ? setUsersBoard : setUsersTask}
+            id={id}
+            users={usersBoard}
+            isBoard={type === MODAL_NEW_TYPES.editBoard ? true : false}
+            userTasks={usersTask}
+          />
+        )}
+        <div className={classes.buttonContainer}>
+          <Button
+            formID="form"
+            type={isEdit ? 'save_profile' : 'add'}
+            link={false}
+            color={'blue'}
+          />
+        </div>
       </div>
     </Overlay>
   );
