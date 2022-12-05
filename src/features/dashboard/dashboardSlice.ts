@@ -13,6 +13,9 @@ export const dashboardSlice = createSlice({
   initialState,
   reducers: {
     resetBoards: () => initialState,
+    resetError: (state) => {
+      state.errorMessage = '';
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getBoardsList.pending, (state) => {
@@ -24,8 +27,14 @@ export const dashboardSlice = createSlice({
       state.errorMessage = 'success';
       state.loading = false;
     });
-    builder.addCase(getBoardsList.rejected, (state) => {
-      state.errorMessage = 'Server error. Try later, please.';
+    builder.addCase(getBoardsList.rejected, (state, action) => {
+      const message = (
+        action.error.message === 'Rejected'
+          ? 'Server error. Try later, please.'
+          : action.error.message
+      ) as string;
+
+      state.errorMessage = message;
       state.loading = false;
     });
     builder.addCase(createBoard.fulfilled, (state, action) => {
@@ -80,6 +89,6 @@ export const createBoard = createAsyncThunk('dashboard/addBoard', addBoard);
 export const removeBoard = createAsyncThunk('dashboard/deleteBoard', deleteBoard);
 export const editBoard = createAsyncThunk('dashboard/editBoards', changeBoard);
 
-export const { resetBoards } = dashboardSlice.actions;
+export const { resetBoards, resetError } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;
