@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import classes from './BoardLayout.module.scss';
 import { Link } from 'react-router-dom';
 import CurrentBoard from './CurrentBoard/CurrentBoard';
-import { DragDropContext, DropResult, OnDragEndResponder } from 'react-beautiful-dnd';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { useAppDispatch, useAppSelector, useBoardID } from '../../../app/hooks';
 import { getBoardsList } from '../../../features/dashboard/dashboardSlice';
 import { parseBoardDescription } from '../../../common/functions/parseBoardDescription';
