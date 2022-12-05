@@ -5,7 +5,7 @@ import classes from './Logo.module.scss';
 const Logo = () => (
   <Link to="/">
     <div className={classes.container}>
-      <img src="./home/logo.svg" alt="logo" />
+      <span className={classes.logo} title="logo" />
       <h2>RS Project Management</h2>
     </div>
   </Link>

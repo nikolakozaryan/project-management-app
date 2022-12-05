@@ -14,8 +14,11 @@ export interface IState {
   tasks: ITask[];
   errorMessage: string;
   loading: boolean;
+<<<<<<< HEAD
   users: string[];
   usersTasks: string[];
+=======
+>>>>>>> d2039b5720c2d82bc929ccb1bd6cee7a43b41dec
 }
 
 export interface ICreateTask {

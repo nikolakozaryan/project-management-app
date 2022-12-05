@@ -5,14 +5,15 @@
   max-width: 110rem;
   padding: 0 5rem;
   justify-content: space-between;
-  margin: auto;
-  margin-bottom: 10rem;
+  margin: 7.4rem auto 10rem;
 
   @media screen and (max-width: $large) {
+    margin-top: 2rem;
     margin-bottom: 5rem;
   }
 
   @media screen and (max-width: $small) {
+    margin-top: 0rem;
     padding: 0 2rem;
   }
 

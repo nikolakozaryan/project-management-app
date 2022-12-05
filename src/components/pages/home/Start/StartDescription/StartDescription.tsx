@@ -15,9 +15,15 @@ const StartDescription = () => {
 
   return (
     <div className={classes.container}>
-      <h1 className={classes.header}>RS Project Management</h1>
-      <p className={classes.description}>{dictionarySection[lang]}</p>
-      <Button type={BUTTONS.start as DictionaryKeys} link={true} color={'blue'} />
+      <div className={classes.animation__container}>
+        <h1 className={classes.header}>RS Project Management</h1>
+      </div>
+      <div className={classes.animation__container}>
+        <p className={classes.description}>{dictionarySection[lang]}</p>
+      </div>
+      <div className={classes.button}>
+        <Button type={BUTTONS.start as DictionaryKeys} link={true} color={'blue'} />
+      </div>
     </div>
   );
 };

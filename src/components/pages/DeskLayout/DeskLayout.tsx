@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import classes from './DeskLayout.module.scss';
 import Desk from './Desk/Desk';
 import ModalDesk from './ModalDesk/ModalDesk';
@@ -6,9 +6,14 @@ import { IBoard } from '../../../features/dashboard/interface';
 import ModalDelete from '../../common/modalDelete/modalDelete';
 import { DICTIONARY, Languages } from '../../../constants/Dictionary/Dictionary';
 import { MODAL_NEW_TYPES, MODAL_DELETE_TYPES } from '../../../constants/Modal';
+<<<<<<< HEAD
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import NewItem from '../../common/NewItem/NewItem';
 import { getUsersList } from '../../../features/board/boardSlice';
+=======
+import { useAppSelector } from '../../../app/hooks';
+import NewItem from '../../common/NewItem/NewItem';
+>>>>>>> d2039b5720c2d82bc929ccb1bd6cee7a43b41dec
 
 const DeskLayout: React.FC<{ boards: IBoard[] }> = ({ boards }) => {
   const lang: string = useAppSelector((state) => state.language.lang);
@@ -17,12 +22,6 @@ const DeskLayout: React.FC<{ boards: IBoard[] }> = ({ boards }) => {
   const [isModalDelete, setIsModalDelete] = useState(false);
   const [id, setId] = useState('');
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    isModalAdd
-      ? (document.body.style.overflow = 'hidden')
-      : (document.body.style.overflow = 'visible');
-  }, [isModalAdd]);
 
   return (
     <section className={`${classes.dashboard} section`}>

@@ -10,4 +10,7 @@ export const BUTTONS = {
   add: 'add',
   cancel: 'cancel',
   delete: 'delete',
+  edit: 'edit',
+  edit_profile: 'edit_profile',
+  signout: 'signout',
 };
