@@ -71,7 +71,7 @@ const ModalDesk: React.FC<MyProps> = ({ type, id, setModal, hasSelect, taskId, c
   }, [id, tasks]);
 
   useEffect(() => {
-    if (boardData && type === 'editDesk') {
+    if (boardData && type === 'editBoard') {
       const data = parseBoardDescription(boardData);
       setValue('deskName', data.name);
       setValue('deskDescription', data.description);

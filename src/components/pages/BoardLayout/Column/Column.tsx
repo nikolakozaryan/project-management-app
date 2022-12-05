@@ -27,7 +27,7 @@ const Column: FC<MyProps> = ({ title, columnId, index, tasks, boardId }) => {
 
   useEffect(() => {
     dispatch(getTasks(boardId));
-  }, []);
+  }, [boardId, dispatch]);
 
   return (
     <>
