@@ -39,8 +39,14 @@ export const boardSlice = createSlice({
       state.columns = sortedColumns;
       state.errorMessage = 'success';
     });
-    builder.addCase(getColumns.rejected, (state) => {
-      state.errorMessage = 'Server error. Try later, please.';
+    builder.addCase(getColumns.rejected, (state, action) => {
+      const message = (
+        action.error.message === 'Rejected'
+          ? 'Server error. Try later, please.'
+          : action.error.message
+      ) as string;
+
+      state.errorMessage = message;
       state.loading = false;
     });
 
@@ -55,7 +61,13 @@ export const boardSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(createColumn.rejected, (state, action) => {
-      state.errorMessage = action.error.message || 'Server error. Try later, please.';
+      const message = (
+        action.error.message === 'Rejected'
+          ? 'Server error. Try later, please.'
+          : action.error.message
+      ) as string;
+
+      state.errorMessage = message;
       state.loading = false;
     });
 
@@ -68,8 +80,14 @@ export const boardSlice = createSlice({
       state.errorMessage = 'success';
       state.loading = false;
     });
-    builder.addCase(deleteColumn.rejected, (state) => {
-      state.errorMessage = 'Server error. Try later, please.';
+    builder.addCase(deleteColumn.rejected, (state, action) => {
+      const message = (
+        action.error.message === 'Rejected'
+          ? 'Server error. Try later, please.'
+          : action.error.message
+      ) as string;
+
+      state.errorMessage = message;
       state.loading = false;
     });
 
@@ -82,7 +100,13 @@ export const boardSlice = createSlice({
       state.errorMessage = 'success';
     });
     builder.addCase(editColumn.rejected, (state, action) => {
-      state.errorMessage = action.error.message || 'Server error. Try later, please.';
+      const message = (
+        action.error.message === 'Rejected'
+          ? 'Server error. Try later, please.'
+          : action.error.message
+      ) as string;
+
+      state.errorMessage = message;
     });
 
     //EDIT COLUMNS ORDER
@@ -95,7 +119,13 @@ export const boardSlice = createSlice({
       state.errorMessage = 'success';
     });
     builder.addCase(editColumnsOrder.rejected, (state, action) => {
-      state.errorMessage = action.error.message || 'Server error. Try later, please.';
+      const message = (
+        action.error.message === 'Rejected'
+          ? 'Server error. Try later, please.'
+          : action.error.message
+      ) as string;
+
+      state.errorMessage = message;
     });
 
     //GET BOARD TASKS
@@ -109,7 +139,13 @@ export const boardSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(getTasks.rejected, (state, action) => {
-      state.errorMessage = action.error.message || 'Server error. Try later, please.';
+      const message = (
+        action.error.message === 'Rejected'
+          ? 'Server error. Try later, please.'
+          : action.error.message
+      ) as string;
+
+      state.errorMessage = message;
       state.loading = false;
     });
 
@@ -124,7 +160,13 @@ export const boardSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(createTask.rejected, (state, action) => {
-      state.errorMessage = action.error.message || 'Server error. Try later, please.';
+      const message = (
+        action.error.message === 'Rejected'
+          ? 'Server error. Try later, please.'
+          : action.error.message
+      ) as string;
+
+      state.errorMessage = message;
       state.loading = false;
     });
 
@@ -134,7 +176,13 @@ export const boardSlice = createSlice({
       state.errorMessage = 'success';
     });
     builder.addCase(deleteTask.rejected, (state, action) => {
-      state.errorMessage = action.error.message || 'Server error. Try later, please.';
+      const message = (
+        action.error.message === 'Rejected'
+          ? 'Server error. Try later, please.'
+          : action.error.message
+      ) as string;
+
+      state.errorMessage = message;
     });
 
     //UPDATE TASKS ORDER
@@ -145,7 +193,13 @@ export const boardSlice = createSlice({
       state.tasks = [...state.tasks.filter((task) => task.columnId !== columnId), ...updatedTasks];
     });
     builder.addCase(editTasksOrder.rejected, (state, action) => {
-      state.errorMessage = action.error.message || 'Server error. Try later, please.';
+      const message = (
+        action.error.message === 'Rejected'
+          ? 'Server error. Try later, please.'
+          : action.error.message
+      ) as string;
+
+      state.errorMessage = message;
     });
 
     //EDIT TASK
@@ -161,7 +215,13 @@ export const boardSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(editTask.rejected, (state, action) => {
-      state.errorMessage = action.error.message || 'Server error. Try later, please.';
+      const message = (
+        action.error.message === 'Rejected'
+          ? 'Server error. Try later, please.'
+          : action.error.message
+      ) as string;
+
+      state.errorMessage = message;
       state.loading = false;
     });
   },
