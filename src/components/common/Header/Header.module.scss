@@ -1,0 +1,32 @@
+@import '../../../common/style/abstracts/variables';
+
+.container {
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  z-index: 100;
+  margin: auto;
+  transition: background-color 0.5s ease;
+}
+
+.header {
+  max-width: 110rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5rem;
+  margin: 2rem auto;
+  z-index: inherit;
+
+  @media screen and (max-width: $small) {
+    padding: 0 2rem;
+  }
+}
+
+.scrolled {
+  background-color: $header-bg-color;
+
+  select {
+    background-color: $header-bg-color;
+  }
+}

@@ -1,0 +1,35 @@
+@import '../../../../../common/style/abstracts/variables';
+@import '../../../../../common/style/abstracts/mixins';
+
+.menu {
+  @include main-font;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: 1s;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.4rem;
+  background-color: $header-bg-color;
+  z-index: 100;
+
+  li {
+    line-height: 5rem;
+    text-align: center;
+  }
+
+  a:visited {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.active {
+  visibility: visible;
+  transform: translateX(0%);
+}

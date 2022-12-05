@@ -1,0 +1,9 @@
+@import '../../../../../common/style/abstracts/mixins';
+
+.heading__container {
+  height: 3.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.6rem;
+}

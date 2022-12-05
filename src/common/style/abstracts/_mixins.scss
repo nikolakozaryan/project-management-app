@@ -1,0 +1,44 @@
+@import './variables';
+
+@mixin font($s, $lh, $w, $c) {
+  font-size: $s;
+  line-height: $lh;
+  font-weight: $w;
+  color: $c;
+}
+
+@mixin h1($color: $font-main-color) {
+  @include font(4.2rem, 5.1rem, 600, $color)
+}
+
+@mixin h2($color: $font-main-color) {
+  @include font(2.8rem, 3.4rem, 600, $color)
+}
+
+@mixin h3($color: $font-main-color) {
+  @include font(2.4rem, 2.9rem, 600, $color)
+}
+
+@mixin h4($color: $font-main-color) {
+  @include font(2.2rem, 2.7rem, 600, $color)
+}
+
+@mixin h5($color: $font-main-color) {
+  @include font(1.8rem, 2.2rem, 600, $color)
+}
+
+@mixin main-font($color: $font-main-color) {
+  @include font(1.6rem, 1.9rem, 400, $color)
+}
+
+@mixin second-font($color: $font-main-color) {
+  @include font(1.4rem, 1.7rem, 400, $color)
+}
+
+@mixin button-font($color: $font-main-color) {
+  @include font(1.6rem, 2rem, 600, $color)
+}
+
+@mixin input-signature-font($color: $font-main-color) {
+  @include font(1.2rem, 1.4rem, 400, $color)
+}

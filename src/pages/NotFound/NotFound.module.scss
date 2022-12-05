@@ -1,0 +1,49 @@
+@import '../../common/style/abstracts/variables';
+@import '../../common/style/abstracts/mixins';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 6rem;
+
+  @media screen and (max-width: $medium) {
+    padding: 0 1rem;
+    gap: 6rem;
+  }
+
+  .description {
+    &__heading {
+      @include h1;
+      margin-bottom: 3rem;
+
+      @media screen and (max-width: $medium) {
+        @include h2;
+      }
+
+      @media screen and (max-width: $small) {
+        @include h3;
+      }
+
+      @media screen and (max-width: $extra-small) {
+        margin: 0;
+      }
+    }
+
+    &__message {
+      @include main-font;
+
+      @media screen and (max-width: $extra-small) {
+        display: none;
+      }
+    }
+  }
+
+  img {
+    max-width: 58.6rem;
+    width: 100%;
+    height: auto;
+  }
+}

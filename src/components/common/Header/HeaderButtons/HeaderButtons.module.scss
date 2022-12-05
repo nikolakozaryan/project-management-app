@@ -1,0 +1,10 @@
+@import '../../../../common/style/abstracts/variables';
+
+.container {
+  display: flex;
+  gap: 3rem;
+
+  @media screen and (max-width: $medium) {
+    display: none;
+  }
+}

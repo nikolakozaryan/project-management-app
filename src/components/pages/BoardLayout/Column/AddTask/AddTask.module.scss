@@ -1,0 +1,20 @@
+@import '../../../../../common/style/abstracts/mixins';
+
+.add {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  cursor: pointer;
+  margin-top: 2rem;
+
+  &__icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    background: url('../../../../../../public/assets/icons/Board/Plus.svg') center no-repeat;
+    margin-right: .5rem;
+  }
+
+  &__text {
+    @include button-font($main-color);
+  }
+}

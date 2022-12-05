@@ -1,0 +1,29 @@
+@import '../../../common/style/abstracts/mixins';
+
+.container {
+  width: 23.5rem;
+  height: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  border: 0.1rem dashed $main-color;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: .5s;
+
+  &:hover {
+    background: white;
+  }
+
+  h3 {
+    @include button-font($main-color);
+  }
+}
+
+.icon {
+  width: 4rem;
+  height: 4rem;
+  background: url('../../../../public/assets/icons/deskLayout/plus.svg');
+}

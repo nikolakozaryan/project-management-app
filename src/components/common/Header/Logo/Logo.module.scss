@@ -1,0 +1,19 @@
+@import '../../../../common/style/abstracts/variables';
+@import '../../../../common/style/abstracts/mixins';
+
+.container {
+  display: flex;
+
+  .logo {
+    width: 4.4rem;
+    height: 4rem;
+    background: url('../../../../../public/home/logo.svg') no-repeat center;
+  }
+
+  h2 {
+    @include button-font;
+    line-height: 2rem;
+    max-width: 10rem;
+    margin-left: 1rem;
+  }
+}

@@ -1,0 +1,24 @@
+@import '../../../../common/style/abstracts/variables';
+@import '../../../../common/style/abstracts/mixins';
+
+.container {
+  text-align: center;
+  width: 100%;
+  max-width: 110rem;
+  padding: 0 5rem;
+  margin: auto;
+  margin-bottom: 10rem;
+
+  @media screen and (max-width: $large) {
+    margin-bottom: 5rem;
+  }
+
+  @media screen and (max-width: $small) {
+    padding: 0 2rem;
+  }
+
+  h2 {
+    @include h2;
+    margin-bottom: 5rem;
+  }
+}

@@ -1,0 +1,60 @@
+@import '../../../common/style/abstracts/mixins';
+
+.dashboard {
+  background: #F8F9FD;
+
+  &__container {
+    width: 100%;
+    max-width: 110rem;
+    padding: 0 5rem;
+    height: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-rows: 6.4rem 1fr;
+
+    @media screen and (max-width: $small) {
+      padding: 0 2rem;
+    }
+  }
+
+  &__heading {
+    @include h2;
+    margin-bottom: 3rem;
+  }
+}
+
+.boards {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 2rem 1.5rem;
+
+  @media screen and (max-width: $small) {
+    justify-content: center;
+  }
+
+  &__container {
+    position: relative;
+    overflow-y: overlay;
+
+    &::-webkit-scrollbar {
+      position: absolute;
+      width: .5rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: white;
+      border-radius: .25rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $main-color-hover;
+      border-radius: .25rem;
+    }
+  }
+}

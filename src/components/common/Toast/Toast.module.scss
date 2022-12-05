@@ -1,0 +1,33 @@
+@import '../../../common/style/abstracts/mixins';
+
+.toast {
+  @include main-font($error-color);
+  width: 30rem;
+  height: 5rem;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $error-bg-color;
+  border-right: none;
+  border-radius: .4rem 0 0 .4rem;
+
+  position: fixed;
+  right: -30rem;
+  top: 10rem;
+  animation: appear 5s;
+}
+
+@keyframes appear {
+  20% {
+    right: 0;
+  }
+
+  80% {
+    right: 0;
+  }
+
+  100% {
+    right: -30rem;
+  }
+}

@@ -1,0 +1,33 @@
+@import '../../../../../common/style/abstracts/variables';
+@import '../../../../../common/style/abstracts/mixins';
+
+.card {
+  @include main-font;
+  max-width: 48rem;
+  width: 100%;
+  min-height: 25rem;
+  border: 0.05rem solid $font-second-color;
+  border-radius: 1rem;
+  padding: 2rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  &__avatar {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+  }
+
+  &__name {
+    margin-left: 2rem;
+  }
+
+  &__description {
+    text-align: start;
+    color: $font-second-color;
+  }
+}

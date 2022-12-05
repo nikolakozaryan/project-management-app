@@ -1,0 +1,60 @@
+@import '../../../common/style/abstracts/variables';
+
+.container {
+  position: relative;
+  max-width: 32rem;
+  width: 100%;
+  background-color: #fff;
+  max-width: 41.3rem;
+  height: 4.8rem;
+  border: 1px solid #838ca7;
+  border-radius: 4px;
+}
+.select {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: 5rem;
+  align-items: center;
+  padding: 0 1.6rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+
+  .info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 8.5rem;
+    width: 100%;
+    font-size: 1.6rem;
+  }
+  .arrow {
+    transition: transform 0.2s ease-in;
+  }
+}
+.list {
+  position: absolute;
+  max-width: 41.3rem;
+  width: 85%;
+  box-sizing: border-box;
+  height: 11.3rem;
+  overflow: scroll;
+
+  font-size: 1.6rem;
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+  transition: all ease-out 0.5s;
+  .item {
+    display: flex;
+    justify-content: space-between;
+    width: 97%;
+    height: 4.8rem;
+    background-color: #fff;
+    border: 1px solid #838ca7;
+    border-radius: 4px;
+    padding: 5% 45% 0.25% 5%;
+    box-sizing: border-box;
+  }
+}

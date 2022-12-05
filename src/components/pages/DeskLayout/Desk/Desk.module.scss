@@ -1,0 +1,60 @@
+@import '../../../../common/style/abstracts/mixins';
+@import '../../../../common/style/abstracts/variables';
+
+.card {
+  position: relative;
+  width: 23.5rem;
+  height: 15rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  box-shadow: 0px .4rem .6rem #b7c8e040;
+  border-radius: .4rem;
+  cursor: pointer;
+  transition: .5s;
+
+  &:hover {
+    box-shadow: 0px 1rem 1rem #818d9e40;
+  }
+
+  &__content {
+    width: 16.5rem;
+
+    &__heading {
+      @include h5;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &__description {
+      @include second-font($font-second-color);
+      height: 7rem;
+      overflow: hidden;
+      text-overflow: clip;
+      white-space: normal;
+    }
+  }
+
+  &__icon_edit,
+  &__icon_delete {
+    position: absolute;
+    right: 2.2rem;
+    padding: .2rem;
+    transition: .3s;
+
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+
+  &__icon_edit {
+    top: 2.2rem;
+  }
+
+  &__icon_delete {
+    bottom: 2.2rem;
+  }
+}

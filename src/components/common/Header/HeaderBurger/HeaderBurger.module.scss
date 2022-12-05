@@ -1,0 +1,80 @@
+@import '../../../../common/style/abstracts/variables';
+
+.burger_button {
+  display: none;
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  transition: 1s;
+  z-index: 999;
+
+  &:before,
+  &:after,
+  span {
+    content: '';
+    position: absolute;
+    width: 3rem;
+    background-color: $font-main-color;
+    height: .2rem;
+    transition: 1s;
+    border-radius: 0.1rem;
+  }
+
+  &:before {
+    transform-origin: center left;
+    bottom: 0;
+  }
+
+  &:after {
+    top: 0;
+    transform-origin: center left;
+  }
+
+  span {
+    top: 1.5rem;
+  }
+
+  @media screen and (max-width: $medium) {
+    display: block;
+  }
+}
+
+.active {
+
+  &:before,
+  &:after {
+    width: 4rem;
+  }
+
+  &:after {
+    transform: rotate(45deg);
+  }
+
+  span {
+    opacity: 0;
+  }
+
+  &:before {
+    transform: rotate(-45deg);
+  }
+}
+
+.not_active {
+  &:after {
+    transition: 1s;
+    transform: rotate(0deg);
+    transform: translateX(0%);
+  }
+
+  &:before {
+    transition: 1s;
+    transform: rotate(0deg);
+  }
+
+  span {
+    transition: 1s;
+    transform: rotate(0deg);
+    transform: translateX(0%);
+  }
+}

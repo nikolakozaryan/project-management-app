@@ -1,0 +1,71 @@
+@import '../../common/style/abstracts/variables';
+@import '../../common/style/abstracts/mixins';
+
+.edit {
+  border: .1rem solid $font-second-color;
+  border-radius: .6rem;
+  padding: 3rem;
+  transition: .5s;
+  max-width: 48rem;
+  width: 100%;
+
+  @media (max-width: $small) {
+    min-width: 28rem;
+    padding: 2rem;
+  }
+
+  @media (max-width: $extra-small) {
+    padding: 1rem;
+  }
+
+  &__section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 5rem;
+
+    @media (max-width: $small) {
+      padding: 0 2rem;
+    }
+  }
+
+  &__heading {
+    @include h2;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    @media (max-width: $small) {
+      gap: 1rem;
+    }
+  }
+}
+
+.buttons {
+  width: 100%;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 3rem;
+
+  @media (max-width: $small) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.input__label {
+  width: 100%;
+
+  & span {
+    @include input-signature-font($font-second-color);
+    margin-bottom: .2rem;
+  }
+}
