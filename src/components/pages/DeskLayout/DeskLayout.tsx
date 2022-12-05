@@ -6,7 +6,7 @@ import { IBoard } from '../../../features/dashboard/interface';
 import ModalDelete from '../../common/modalDelete/modalDelete';
 import { DICTIONARY, Languages } from '../../../constants/Dictionary/Dictionary';
 import { MODAL_NEW_TYPES, MODAL_DELETE_TYPES } from '../../../constants/Modal';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppSelector } from '../../../app/hooks';
 import NewItem from '../../common/NewItem/NewItem';
 
 const DeskLayout: React.FC<{ boards: IBoard[] }> = ({ boards }) => {

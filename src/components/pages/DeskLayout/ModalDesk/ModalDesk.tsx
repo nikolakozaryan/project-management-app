@@ -14,7 +14,6 @@ import {
   createColumn,
   createTask,
   editTask,
-  getTasks,
   getUsersList,
   getUsersListTasks,
 } from '../../../../features/board/boardSlice';
