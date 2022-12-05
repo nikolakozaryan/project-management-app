@@ -5,7 +5,6 @@ import { store } from './app/store';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import './common/style/index.scss';
-import { getUsersList } from './features/board/boardSlice';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);

@@ -90,7 +90,6 @@ const CurrentBoard = () => {
             }
             return 0;
           });
-        console.log(newresult, 'checking');
         setTasks(newresult);
         const newItem = { ...startTasks[source.index], columnId: finish._id };
         const f = async () => {

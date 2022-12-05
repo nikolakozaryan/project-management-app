@@ -6,7 +6,6 @@ import Footer from './components/common/Footer/Footer';
 import AuthVerify from './components/common/AuthVerify/AuthVerify';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { fetchUsers } from './features/users/usersSlice';
-import { getUsersList } from './features/board/boardSlice';
 
 const App = () => {
   const dispatch = useAppDispatch();
