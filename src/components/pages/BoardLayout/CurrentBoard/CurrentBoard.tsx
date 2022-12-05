@@ -71,6 +71,27 @@ const CurrentBoard = () => {
         setTasks(newresult);
       } else if (start !== finish) {
         const startTasks = tasks.filter((item) => item.columnId === start._id);
+        const newresult = tasks
+          .map((item) => {
+            let result;
+            item === startTasks[source.index]
+              ? (result = { ...item, columnId: finish._id })
+              : (result = { ...item });
+
+            return result;
+          })
+          .sort((a, b) => a.order - b.order)
+          .sort(function (a, b) {
+            if (a.columnId < b.columnId) {
+              return -1;
+            }
+            if (a.columnId > b.columnId) {
+              return 1;
+            }
+            return 0;
+          });
+        console.log(newresult, 'checking');
+        setTasks(newresult);
         const newItem = { ...startTasks[source.index], columnId: finish._id };
         const f = async () => {
           await dispatch(editTask(newItem));
