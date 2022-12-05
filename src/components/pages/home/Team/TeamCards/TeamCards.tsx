@@ -10,7 +10,7 @@ const TeamCards = () => {
   return (
     <div className={classes.container}>
       {TEAM_MEMBERS.map((item, index) => (
-        <TeamCard name={item.name[lang]} done={item.done[lang]} key={index} />
+        <TeamCard name={item.name[lang]} done={item.done[lang]} key={index} image={item.image} />
       ))}
     </div>
   );
