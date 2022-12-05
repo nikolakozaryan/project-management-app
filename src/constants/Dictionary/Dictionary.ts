@@ -37,7 +37,7 @@ export const DICTIONARY = {
   },
   deleteQuestion: {
     ru: 'Вы уверены, что хотите безвозвратно удалить',
-    en: 'Are sure that you want to delete',
+    en: 'Are you sure you want to delete',
   },
   addBoardText: {
     ru: 'Добавить доску',
@@ -51,9 +51,9 @@ export const DICTIONARY = {
     ru: 'Добавить задачу',
     en: 'Add task',
   },
-  newBoard: {
-    ru: 'Новая доска',
-    en: 'New Desk',
+  my_boards: {
+    ru: 'Мои доски',
+    en: 'My boards',
   },
   newColumn: {
     ru: 'Новая колонка',
@@ -62,6 +62,10 @@ export const DICTIONARY = {
   newTask: {
     ru: 'Новая задача',
     en: 'New task',
+  },
+  newBoard: {
+    ru: 'Новая доска',
+    en: 'New board',
   },
   boards: {
     ru: 'Доски',
@@ -169,6 +173,9 @@ export const DICTIONARY = {
     ru: 'Описание (не более 150 символов)',
     en: 'Description (no more than 150 characters)',
   },
+  edit: { ru: 'Редактировать', en: 'Edit' },
+  edit_profile: { ru: 'Редактировать профиль', en: 'Edit profile' },
+  signout: { ru: 'Выйти', en: 'Sign Out' },
 };
 
 export type Languages = 'ru' | 'en';
