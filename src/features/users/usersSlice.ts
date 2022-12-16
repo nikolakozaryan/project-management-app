@@ -4,7 +4,6 @@ import { IState, IUser } from './interface';
 
 const initialState: IState = {
   users: [],
-  loading: false,
   errorMessage: '',
 };
 
@@ -24,12 +23,8 @@ export const usersSlice = createSlice({
     resetUsersState: () => initialState,
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchUsers.pending, (state) => {
-      state.loading = true;
-    });
     builder.addCase(fetchUsers.fulfilled, (state, action: PayloadAction<IUser[]>) => {
       state.users = action.payload;
-      state.loading = false;
     });
     builder.addCase(fetchUsers.rejected, (state, action) => {
       const message = (
@@ -38,7 +33,6 @@ export const usersSlice = createSlice({
           : action.error.message
       ) as string;
       state.errorMessage = message;
-      state.loading = false;
     });
   },
 });

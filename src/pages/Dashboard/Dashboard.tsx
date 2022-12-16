@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector, useAuth } from '../../app/hooks';
 import Loader from '../../components/common/Loader/Loader';
 import { getBoardsList, resetError } from '../../features/dashboard/dashboardSlice';
 import DeskLayout from '../../components/pages/DeskLayout/DeskLayout';
@@ -11,7 +11,7 @@ const Dashboard = () => {
   const boards = useAppSelector((state) => state.dashboard.boards);
   const errorMessage = useAppSelector((state) => state.dashboard.errorMessage);
   const isLoading = useAppSelector((state) => state.dashboard.loading);
-  const isAuth = useAppSelector((state) => state.signin.login);
+  const isAuth = useAuth();
   const [showError, setShowError] = useState(false);
   const location = useLocation();
 

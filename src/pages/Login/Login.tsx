@@ -9,20 +9,20 @@ import { DICTIONARY, DictionaryKeys, Languages } from '../../constants/Dictionar
 import { BUTTONS } from '../../constants/HeaderButtonsConstants';
 import { FormInputs } from './types';
 import classes from './Login.module.scss';
-import { resetSigninError, sendSigninData } from '../../features/signin/signinSlice';
 import Loader from '../../components/common/Loader/Loader';
 import { fetchUsers } from '../../features/users/usersSlice';
+import { resetError, signin } from '../../features/authentification/authentificationSlice';
 
 const Login = () => {
   const methods = useForm<FormInputs>({ reValidateMode: 'onChange' });
-  const errorMessage = useAppSelector((state) => state.signin.message);
-  const isLoading = useAppSelector((state) => state.signin.loading);
-  const isAuth = useAppSelector((state) => state.signin.login);
+  const errorMessage = useAppSelector((state) => state.authentification.message);
+  const isLoading = useAppSelector((state) => state.authentification.loading);
+  const isAuth = useAppSelector((state) => state.authentification.login);
   const lang = useAppSelector((state) => state.language.lang) as Languages;
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(resetSigninError());
+    dispatch(resetError());
   }, [dispatch]);
 
   if (isAuth) {
@@ -31,7 +31,7 @@ const Login = () => {
 
   const formSubmitHandler: SubmitHandler<FormInputs> = async (data, event) => {
     event?.preventDefault();
-    await dispatch(sendSigninData(data));
+    await dispatch(signin(data));
     await dispatch(fetchUsers());
   };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAppSelector, useLogout } from '../../../../../app/hooks';
+import { useAppSelector, useAuth, useLogout } from '../../../../../app/hooks';
 import { DICTIONARY, Languages } from '../../../../../constants/Dictionary/Dictionary';
 import { BUTTONS } from '../../../../../constants/HeaderButtonsConstants';
 import classes from './MenuBurger.module.scss';
@@ -8,7 +8,7 @@ import { MyProps } from './types';
 
 const MenuBurger: React.FC<MyProps> = ({ active, handleClick }) => {
   const lang = useAppSelector((state) => state.language.lang) as Languages;
-  const isAuth = useAppSelector((state) => state.signin.login);
+  const isAuth = useAuth();
   const logout = useLogout();
 
   const options = isAuth ? (

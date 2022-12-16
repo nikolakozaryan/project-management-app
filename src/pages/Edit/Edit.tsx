@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector, useCurrentUser, useLogout } from '../../app/hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useAuth,
+  useCurrentUser,
+  useLogout,
+} from '../../app/hooks';
 import Button from '../../components/common/Button/Button';
 import FormMessage from '../../components/common/FormMessage/FormMessage';
 import FormInput from '../../components/common/FormInput/FormInput';
@@ -24,7 +30,7 @@ const Edit = () => {
 
   const lang = useAppSelector((state) => state.language.lang) as Languages;
   const isLoading = useAppSelector((state) => state.editUser.loading);
-  const isAuth = useAppSelector((state) => state.signin.login);
+  const isAuth = useAuth();
 
   const editErrorMessage = useAppSelector((state) => state.editUser.errorMessage);
   const deleteErrorMessage = useAppSelector((state) => state.deleteUser.errorMessage);

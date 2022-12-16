@@ -4,11 +4,11 @@ import Button from '../../Button/Button';
 import LanguageSelect from './LanguageSelect/LanguageSelect';
 import classes from './HeaderButtons.module.scss';
 import { DictionaryKeys } from '../../../../constants/Dictionary/Dictionary';
-import { useAppSelector } from '../../../../app/hooks';
+import { useAuth } from '../../../../app/hooks';
 import AuthButtons from './AuthButtons/AuthButtons';
 
 const HeaderButtons = () => {
-  const isAuth = useAppSelector((state) => state.signin.login);
+  const isAuth = useAuth();
 
   return (
     <div className={classes.container}>

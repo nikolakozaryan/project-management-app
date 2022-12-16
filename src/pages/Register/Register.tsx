@@ -1,39 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { FormInputs } from './types';
 import classes from './Register.module.scss';
 import Button from '../../components/common/Button/Button';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { resetSignupError, sendSignupData } from '../../features/signup/signupSlice';
-import { sendSigninData } from '../../features/signin/signinSlice';
+import { useAppDispatch, useAppSelector, useAuth } from '../../app/hooks';
 import FormMessage from '../../components/common/FormMessage/FormMessage';
 import { Link, Navigate } from 'react-router-dom';
 import FormInput from '../../components/common/FormInput/FormInput';
 import { BUTTONS } from '../../constants/HeaderButtonsConstants';
 import { DICTIONARY, DictionaryKeys, Languages } from '../../constants/Dictionary/Dictionary';
 import Loader from '../../components/common/Loader/Loader';
+import { resetError, signin, signup } from '../../features/authentification/authentificationSlice';
 
 const Register = () => {
-  const methods = useForm<FormInputs>({ reValidateMode: 'onChange' });
-  const errorMessage = useAppSelector((state) => state.signup.message);
-  const isRegisterLoading = useAppSelector((state) => state.signup.loading);
-  const isLoginLoading = useAppSelector((state) => state.signin.loading);
   const lang = useAppSelector((state) => state.language.lang) as Languages;
-  const isAuth = useAppSelector((state) => state.signin.login);
+  const methods = useForm<FormInputs>({ reValidateMode: 'onChange' });
   const dispatch = useAppDispatch();
-  const [submitAmount, setSubmitAmount] = useState(0);
+
+  const errorMessage = useAppSelector((state) => state.authentification.message);
+  const isLoading = useAppSelector((state) => state.authentification.loading);
+  const isAuth = useAuth();
 
   useEffect(() => {
-    dispatch(resetSignupError());
+    dispatch(resetError());
   }, [dispatch]);
-
-  useEffect(() => {
-    const { login, password } = methods.getValues();
-    if (!errorMessage && !isRegisterLoading && submitAmount > 0) {
-      dispatch(sendSigninData({ login, password }));
-      setSubmitAmount(0);
-    }
-  }, [errorMessage, isRegisterLoading, submitAmount]);
 
   if (isAuth) {
     return <Navigate to="/dashboard" />;
@@ -41,13 +31,18 @@ const Register = () => {
 
   const formSubmitHandler: SubmitHandler<FormInputs> = async (data, event) => {
     event?.preventDefault();
-    await dispatch(sendSignupData(data));
-    setSubmitAmount(submitAmount + 1);
+    const response = await dispatch(signup(data));
+    const { requestStatus, arg } = response.meta;
+
+    if (requestStatus === 'fulfilled') {
+      const { login, password } = arg;
+      dispatch(signin({ login, password }));
+    }
   };
 
   return (
     <section className={`${classes.register__section} section`}>
-      {isRegisterLoading || isLoginLoading ? <Loader /> : null}
+      {isLoading || isLoading ? <Loader /> : null}
       <div className={classes.register}>
         <h2 className={classes.register__heading}>{DICTIONARY.registration[lang]}</h2>
         {errorMessage ? <FormMessage value={errorMessage} type="failed" /> : null}

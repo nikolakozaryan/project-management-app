@@ -5,7 +5,7 @@ import { DICTIONARY, Languages } from '../../../../../constants/Dictionary/Dicti
 import classes from './AuthButtons.module.scss';
 
 const AuthButtons = () => {
-  const userId = useAppSelector((state) => state.signin._id);
+  const userId = useAppSelector((state) => state.authentification._id);
   const users = useAppSelector((state) => state.users.users);
   const userName = users.find((user) => user._id === userId)?.name;
   const logout = useLogout();

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAppSelector } from '../../app/hooks';
+import { useAppSelector, useAuth } from '../../app/hooks';
 import Toast from '../../components/common/Toast/Toast';
 import BoardLayout from '../../components/pages/BoardLayout/BoardLayout';
 
 const Board = () => {
-  const isAuth = useAppSelector((state) => state.signin.login);
+  const isAuth = useAuth();
   const errorMessage = useAppSelector((state) => state.board.errorMessage);
   const [showError, setShowError] = useState(false);
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAppSelector } from '../../../app/hooks';
+import { useAuth } from '../../../app/hooks';
 
 const Start = () => {
-  const isAuth = useAppSelector((state) => state.signin.login);
+  const isAuth = useAuth();
 
   return <Navigate to={isAuth ? '/dashboard' : '/signin'} />;
 };
