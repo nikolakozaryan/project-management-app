@@ -1,18 +1,16 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import authentificationSlice from '../features/authentification/authentificationSlice';
 import boardSlice from '../features/board/boardSlice';
 import dashboardSlice from '../features/dashboard/dashboardSlice';
 import deleteUserSlice from '../features/deleteUser/deleteUserSlice';
 import editUserSlice from '../features/editUser/editUserSlice';
 import languageSlice from '../features/language/languageSlice';
-import signinSlice from '../features/signin/signinSlice';
-import signupSlice from '../features/signup/signupSlice';
 import usersSlice from '../features/users/usersSlice';
 
 export const store = configureStore({
   reducer: {
     language: languageSlice,
-    signup: signupSlice,
-    signin: signinSlice,
+    authentification: authentificationSlice,
     dashboard: dashboardSlice,
     users: usersSlice,
     deleteUser: deleteUserSlice,
