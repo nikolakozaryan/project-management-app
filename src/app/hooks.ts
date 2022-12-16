@@ -49,3 +49,8 @@ export const useBoardID = () => {
   const boardId = pathname.split('/').at(-1);
   return boardId || '';
 };
+
+export const useAuth = () => {
+  const isAuth = useAppSelector((state) => state.authentification.login);
+  return !!isAuth;
+};
