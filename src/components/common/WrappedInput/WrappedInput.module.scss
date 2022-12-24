@@ -1,0 +1,10 @@
+@import '../../../common/style/abstracts/mixins';
+
+.input__label {
+  width: 100%;
+
+  & span {
+    @include input-signature-font($font-second-color);
+    margin-bottom: .2rem;
+  }
+}

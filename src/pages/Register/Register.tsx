@@ -42,7 +42,7 @@ const Register = () => {
 
   return (
     <section className={`${classes.register__section} section`}>
-      {isLoading || isLoading ? <Loader /> : null}
+      {isLoading ? <Loader /> : null}
       <div className={classes.register}>
         <h2 className={classes.register__heading}>{DICTIONARY.registration[lang]}</h2>
         {errorMessage ? <FormMessage value={errorMessage} type="failed" /> : null}

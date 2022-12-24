@@ -10,7 +10,6 @@ import {
 } from '../../app/hooks';
 import Button from '../../components/common/Button/Button';
 import FormMessage from '../../components/common/FormMessage/FormMessage';
-import FormInput from '../../components/common/FormInput/FormInput';
 import Loader from '../../components/common/Loader/Loader';
 import { DICTIONARY, DictionaryKeys, Languages } from '../../constants/Dictionary/Dictionary';
 import { BUTTONS } from '../../constants/HeaderButtonsConstants';
@@ -21,8 +20,11 @@ import classes from './Edit.module.scss';
 import { FormInputs } from './types';
 import ModalDelete from '../../components/common/modalDelete/modalDelete';
 import { MODAL_DELETE_TYPES } from '../../constants/Modal';
+import WrappedInput from '../../components/common/WrappedInput/WrappedInput';
+import { INPUT_TYPES } from '../../constants/InputTypes';
 
 const Edit = () => {
+  const isAuth = useAuth();
   const logout = useLogout();
   const dispatch = useAppDispatch();
   const currentUser = useCurrentUser();
@@ -30,7 +32,6 @@ const Edit = () => {
 
   const lang = useAppSelector((state) => state.language.lang) as Languages;
   const isLoading = useAppSelector((state) => state.editUser.loading);
-  const isAuth = useAuth();
 
   const editErrorMessage = useAppSelector((state) => state.editUser.errorMessage);
   const deleteErrorMessage = useAppSelector((state) => state.deleteUser.errorMessage);
@@ -57,18 +58,18 @@ const Edit = () => {
 
   const formSubmitHandler: SubmitHandler<FormInputs> = async (data, event) => {
     event?.preventDefault();
-    await dispatch(editCurrentUser(data));
-    await dispatch(fetchUsers());
+
+    const response = await dispatch(editCurrentUser(data));
+    const { requestStatus } = response.meta;
+
+    if (requestStatus === 'fulfilled') dispatch(fetchUsers());
   };
 
   const showFormMessage = (editMessage: string, deleteMessage: string) => {
     if (!editMessage && !deleteMessage) return null;
     const message = editMessage || deleteMessage;
-    return message === 'success' ? (
-      <FormMessage value={message} type="success" />
-    ) : (
-      <FormMessage value={message} type="failed" />
-    );
+    const messageType = message === 'success' ? 'success' : 'failed';
+    return <FormMessage value={message} type={messageType} />;
   };
 
   return (
@@ -86,18 +87,9 @@ const Edit = () => {
             onSubmit={methods.handleSubmit(formSubmitHandler)}
             className={classes.edit__form}
           >
-            <div className={classes.input__label}>
-              <span>{DICTIONARY.name[lang]}</span>
-              <FormInput type="name" validate={true} />
-            </div>
-            <div className={classes.input__label}>
-              <span>{DICTIONARY.login[lang]}</span>
-              <FormInput type="login" validate={true} />
-            </div>
-            <div className={classes.input__label}>
-              <span>{DICTIONARY.password[lang]}</span>
-              <FormInput type="password" validate={true} />
-            </div>
+            {INPUT_TYPES.map((type) => (
+              <WrappedInput key={type} type={type} />
+            ))}
           </form>
           <div className={classes.buttons}>
             <Button
